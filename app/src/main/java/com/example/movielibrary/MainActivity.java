@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,6 +17,7 @@ import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
+import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.Utils.RequestManager;
 
 public class MainActivity extends AppCompatActivity implements OnMovieClickListener {
@@ -88,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
     @Override
     public void onMovieClicked(String id) {
-        Toast.makeText(MainActivity.this, id, Toast.LENGTH_LONG).show();
+        startActivity(new Intent(MainActivity.this, DetailsActivity.class)
+        .putExtra("data", id));
     }
 }

@@ -42,7 +42,6 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeViewHolder>{
     public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
         holder.textView_movie.setText(list.get(position).getTitle());
         Picasso.get().load(list.get(position).getImage()).into(holder.imageView_poster);
-
         holder.homeContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,5 +69,7 @@ class HomeViewHolder extends RecyclerView.ViewHolder {
         imageView_poster = itemView.findViewById(R.id.imageView_poster);
         textView_movie = itemView.findViewById(R.id.textView_movie);
         homeContainer = itemView.findViewById(R.id.home_container);
+
+        textView_movie.setSelected(true);
     }
 }
