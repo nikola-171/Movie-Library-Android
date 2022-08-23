@@ -2,12 +2,15 @@ package com.example.movielibrary;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -27,16 +30,21 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     HomeRecyclerAdapter adapter;
     RequestManager requestManager;
     ProgressDialog dialog;
+    CardView CardView_search_placeholder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
+        CardView_search_placeholder = findViewById(R.id.CardView_search_placeholder);
         searchView = findViewById(R.id.search_view);
         recyclerView = findViewById(R.id.recycler_view_home);
         requestManager = new RequestManager(this);
         dialog = new ProgressDialog(this);
+        dialog.setCancelable(false);
+        recyclerView.setVisibility(View.GONE);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -49,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
                 requestManager.searchMovies(listener, query);
+                CardView_search_placeholder.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
+
+
                 return true;
             }
 
@@ -85,6 +97,9 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
         adapter = new HomeRecyclerAdapter(this, result.getResults(), this);
         recyclerView.setAdapter(adapter);
+        CardView_search_placeholder.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
+
     }
 
 

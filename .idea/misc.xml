@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/MovieLibraryAndroid/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.1845" />
         <entry key="..\:/MovieLibraryAndroid/app/src/main/res/layout/activity_details.xml" value="0.30120481927710846" />
-        <entry key="..\:/MovieLibraryAndroid/app/src/main/res/layout/activity_main.xml" value="0.13253012048192772" />
+        <entry key="..\:/MovieLibraryAndroid/app/src/main/res/layout/activity_loading.xml" value="0.264" />
+        <entry key="..\:/MovieLibraryAndroid/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/MovieLibraryAndroid/app/src/main/res/layout/cast_list.xml" value="0.25416666666666665" />
         <entry key="..\:/MovieLibraryAndroid/app/src/main/res/layout/home_movies_list.xml" value="0.18020833333333333" />
       </map>

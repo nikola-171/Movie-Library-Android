@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class DetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_details);
 
         textView_movie_title = findViewById(R.id.textView_movie_name);
@@ -87,7 +89,7 @@ public class DetailsActivity extends AppCompatActivity {
         textView_movie_plot.setText(response.getPlot());
 
         try{
-            Picasso.get().load(response.getImage()).into(imageView_movie_poster);
+            Picasso.get().load(response.getImage()).resize(800, 1300).into(imageView_movie_poster);
         }
         catch (Exception e) {
             e.printStackTrace();
