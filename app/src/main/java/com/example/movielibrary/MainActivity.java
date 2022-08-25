@@ -116,7 +116,19 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
                 Toast.makeText(MainActivity.this, R.string.details_search_no_data, Toast.LENGTH_LONG).show();
                 return;
             }
-            HideLoadingAnimation();
+
+            if(result.getErrorMessage() != null && result.getErrorMessage() != ""){
+                HideLoadingAnimation();
+
+                Toast.makeText(MainActivity.this, result.getErrorMessage(), Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            if(result.getResults() == null){
+                HideLoadingAnimation();
+                Toast.makeText(MainActivity.this, R.string.api_error_response, Toast.LENGTH_LONG).show();
+                return;
+            }
 
             showResult(result);
         }

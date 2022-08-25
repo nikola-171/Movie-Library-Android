@@ -127,6 +127,14 @@ public class DetailsActivity extends AppCompatActivity {
                 return;
             }
 
+            if(response.getErrorMessage() != null && response.getErrorMessage() != ""){
+                Intent intent = new Intent(DetailsActivity.this, MainActivity.class);
+                startActivity(intent);
+                Toast.makeText(DetailsActivity.this, response.getErrorMessage(), Toast.LENGTH_LONG).show();
+                startActivity(intent);
+                return;
+            }
+
             showResults(response);
         }
 
