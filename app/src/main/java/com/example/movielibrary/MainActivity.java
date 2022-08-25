@@ -13,37 +13,38 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
+import com.example.movielibrary.MovieActivities.SavedMoviesActivity;
+import com.example.movielibrary.Utils.DBHandler;
 import com.example.movielibrary.Utils.RequestManager;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity implements OnMovieClickListener {
 
-    SearchView searchView = null;
-    RecyclerView recyclerView = null;
+    SearchView searchView;
+    RecyclerView recyclerView;
     HomeRecyclerAdapter adapter;
     RequestManager requestManager;
-    ProgressDialog dialog;
     CardView CardView_search_placeholder;
-
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
-
+    DBHandler dbHandler;
+    LottieAnimationView loadingAnimation, searchPlaceholderAnimation;
+    CardView loadingAnimationCard, displayMoviesCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,38 +52,44 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
+        InitViewElements();
+    }
+
+    private void InitViewElements(){
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_open, R.string.menu_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        dbHandler = new DBHandler(MainActivity.this);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-
-                return false;
-            }
-        });
-
+        loadingAnimation = findViewById(R.id.animationLoadingView);
+        loadingAnimationCard = findViewById(R.id.loadingCardView);
+        displayMoviesCardView = findViewById(R.id.displayMoviesCardView);
+        loadingAnimationCard.setVisibility(View.GONE);
+        searchPlaceholderAnimation = findViewById(R.id.searchPlaceholderAnimation);
 
         CardView_search_placeholder = findViewById(R.id.CardView_search_placeholder);
         searchView = findViewById(R.id.search_view);
         recyclerView = findViewById(R.id.recycler_view_home);
         requestManager = new RequestManager(this);
-        dialog = new ProgressDialog(this);
-        dialog.setCancelable(false);
         recyclerView.setVisibility(View.GONE);
+
+        navigationView.setNavigationItemSelectedListener(item -> {
+
+            if (item.getItemId() == R.id.nav_saved) {
+                displaySavedMovies();
+            }
+            return false;
+        });
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // we call the api
-                dialog.setTitle("Searching...");
-                dialog.show();
+                ShowLoadingAnimation();
 
                 InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
@@ -90,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
                 requestManager.searchMovies(listener, query);
                 CardView_search_placeholder.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
-
 
                 return true;
             }
@@ -106,19 +112,19 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     private final OnSearchMoviesListener listener = new OnSearchMoviesListener() {
         @Override
         public void onResponse(SearchResult result) {
-            dialog.dismiss();
             if(result == null){
-                Toast.makeText(MainActivity.this, "No data available!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, R.string.details_search_no_data, Toast.LENGTH_LONG).show();
                 return;
             }
+            HideLoadingAnimation();
 
             showResult(result);
         }
 
         @Override
         public void onError(String error) {
-            dialog.dismiss();
-            Toast.makeText(MainActivity.this, "An error occured!", Toast.LENGTH_LONG).show();
+            HideLoadingAnimation();
+            Toast.makeText(MainActivity.this, R.string.api_error_response, Toast.LENGTH_LONG).show();
         }
     };
 
@@ -130,7 +136,6 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         recyclerView.setAdapter(adapter);
         CardView_search_placeholder.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
-
     }
 
     @Override
@@ -141,9 +146,27 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         return super.onOptionsItemSelected(item);
     }
 
+    private void displaySavedMovies() {
+        Intent intent = new Intent(MainActivity.this, SavedMoviesActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onMovieClicked(String id) {
         startActivity(new Intent(MainActivity.this, DetailsActivity.class)
         .putExtra("data", id));
+    }
+
+    private void ShowLoadingAnimation(){
+        searchPlaceholderAnimation.setAnimation(R.raw.loading);
+        searchPlaceholderAnimation.playAnimation();
+
+
+    }
+    private void HideLoadingAnimation(){
+        searchPlaceholderAnimation.setAnimation(R.raw.watch);
+        searchPlaceholderAnimation.playAnimation();
+
     }
 }

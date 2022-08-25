@@ -7,6 +7,7 @@ import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
 import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
+import com.example.movielibrary.R;
 import com.example.movielibrary.Utils.Search.GetMovieDetails;
 import com.example.movielibrary.Utils.Search.SearchMovies;
 
@@ -35,7 +36,7 @@ public class RequestManager {
             @Override
             public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(context, "Couldn't fetch the data", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.request_manager_fetch_failed, Toast.LENGTH_LONG).show();
                     return;
                 }
                 listener.onResponse(response.body());
@@ -56,7 +57,7 @@ public class RequestManager {
             @Override
             public void onResponse(Call<DetailsMovieResponse> call, Response<DetailsMovieResponse> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(context, "Couldn't fetch the data", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.request_manager_fetch_failed, Toast.LENGTH_LONG).show();
                     return;
                 }
                 listener.onResponse(response.body());

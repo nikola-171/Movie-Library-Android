@@ -9,7 +9,7 @@ import retrofit2.http.Path;
 
 public interface GetMovieDetails {
 
-    @GET("en/API/Title/k_pr9cuhk2/{movie_id}")
+    @GET("en/API/Title/{apiKey}/{movie_id}")
     Call<DetailsMovieResponse> getMovieDetails (
             @Path("movie_id") String movie_id
     );

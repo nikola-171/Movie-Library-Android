@@ -10,11 +10,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black"
         android:orientation="vertical"
         tools:context=".MovieActivities.DetailsActivity">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/CardView_search_placeholder"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="80dp"
+            android:textAlignment="center"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="8dp">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/searchPlaceholderAnimation"
+                android:layout_width="250dp"
+                android:layout_height="290dp"
+                app:lottie_autoPlay="true"
+                app:lottie_rawRes="@raw/loading"
+                android:layout_gravity="center"/>
+
+        </androidx.cardview.widget.CardView>
+
         <ScrollView
+            android:id="@+id/detailsPageContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -28,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:elevation="8dp"
-                    app:cardBackgroundColor="@color/yellow"
+                    app:cardBackgroundColor="@color/purple_500"
                     app:cardCornerRadius="8dp">
 
                     <LinearLayout
@@ -36,18 +56,34 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/textView_movie_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text="Movie name"
-                            android:textAlignment="textStart"
-                            android:textColor="@color/black"
-                            android:textSize="24sp"
-                            android:textStyle="bold">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_weight="5"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+                            <TextView
+                                android:layout_weight="4"
+                                android:id="@+id/textView_movie_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:maxWidth="150dp"
+                                android:padding="8dp"
+                                android:text="@string/details_movie_title"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:textStyle="bold"/>
+                            <ImageButton
+                                android:id="@+id/ImageButton_action"
+                                android:layout_weight="1"
+                                android:layout_marginRight="10dp"
+                                android:layout_width="20dp"
+                                android:layout_height="50dp"
+                                android:contentDescription="@string/details_button_save_description" />
 
-                        </TextView>
+                        </LinearLayout>
+
+
 
                         <TextView
                             android:id="@+id/textView_movie_released"
@@ -71,7 +107,7 @@
                             android:textAlignment="textStart"
                             android:textColor="@color/black"
                             android:textSize="18sp"
-                            android:textStyle="normal"></TextView>
+                            android:textStyle="normal"/>
 
 
                         <TextView
@@ -82,7 +118,7 @@
                             android:text=""
                             android:textAlignment="center"
                             android:textColor="@color/black"
-                            android:textSize="24sp"
+                            android:textSize="18sp"
                             android:textStyle="normal">
 
                         </TextView>
@@ -95,7 +131,7 @@
                             android:text=""
                             android:textAlignment="center"
                             android:textColor="@color/black"
-                            android:textSize="20sp"
+                            android:textSize="18sp"
                             android:textStyle="normal">
 
                         </TextView>
@@ -106,7 +142,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    app:cardBackgroundColor="@color/yellow"
+                    app:cardBackgroundColor="@color/purple_500"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
@@ -139,7 +175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    app:cardBackgroundColor="@color/yellow"
+                    app:cardBackgroundColor="@color/purple_500"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 

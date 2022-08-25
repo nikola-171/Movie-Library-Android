@@ -8,7 +8,7 @@ import retrofit2.http.Path;
 
 public interface SearchMovies {
 
-    @GET("en/API/Search/k_pr9cuhk2/{movie_title}")
+    @GET("en/API/Search/{apiKey}/{movie_title}")
     Call<SearchResult> searchMovies(
             @Path("movie_title") String movie_title
     );
