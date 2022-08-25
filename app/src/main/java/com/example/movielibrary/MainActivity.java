@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
                 return;
             }
 
-            if(result.getErrorMessage() != null && result.getErrorMessage() != ""){
+            if(!Objects.equals(result.getErrorMessage(), "")){
                 HideLoadingAnimation();
 
                 Toast.makeText(MainActivity.this, result.getErrorMessage(), Toast.LENGTH_LONG).show();
