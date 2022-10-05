@@ -172,12 +172,14 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
     private void ShowLoadingAnimation(){
         searchPlaceholderAnimation.setAnimation(R.raw.loading);
+        searchPlaceholderAnimation.loop(true);
         searchPlaceholderAnimation.playAnimation();
 
 
     }
     private void HideLoadingAnimation(){
         searchPlaceholderAnimation.setAnimation(R.raw.watch);
+        searchPlaceholderAnimation.loop(false);
         searchPlaceholderAnimation.playAnimation();
 
     }
