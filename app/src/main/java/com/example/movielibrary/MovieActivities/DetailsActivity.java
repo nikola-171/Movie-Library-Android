@@ -46,9 +46,6 @@ public class DetailsActivity extends AppCompatActivity {
     RecyclerView recyclerView_movie_cast;
     CastRecyclerAdapter adapter;
     RequestManager requestManager;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    ActionBarDrawerToggle actionBarDrawerToggle;
     DBHandler dbHandler;
     ImageButton imageButton;
     ScrollView detailsPageContent;
@@ -78,29 +75,12 @@ public class DetailsActivity extends AppCompatActivity {
     private void InitViewElements(){
         dbHandler = new DBHandler(DetailsActivity.this);
         imageButton = findViewById(R.id.ImageButton_action);
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigationView);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_open, R.string.menu_close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         detailsPageContent = findViewById(R.id.detailsPageContent);
         detailsPageContent.setVisibility(View.GONE);
         CardView_search_placeholder = findViewById(R.id.CardView_search_placeholder);
-
-        navigationView.setNavigationItemSelectedListener(item -> {
-
-            switch (item.getItemId()) {
-                case R.id.nav_home:
-                    goToHomePage();
-                    break;
-                case R.id.nav_saved:
-                    displaySavedMovies();
-                    break;
-            }
-            return false;
-        });
 
         textView_movie_title = findViewById(R.id.textView_movie_name);
         textView_movie_released = findViewById(R.id.textView_movie_released);
@@ -216,13 +196,4 @@ public class DetailsActivity extends AppCompatActivity {
         CardView_search_placeholder.setVisibility(View.GONE);
         detailsPageContent.setVisibility(View.VISIBLE);
     }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
 }
