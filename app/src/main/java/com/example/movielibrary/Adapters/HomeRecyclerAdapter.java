@@ -41,7 +41,7 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
         holder.textView_movie.setText(list.get(position).getTitle());
-        Picasso.get().load(list.get(position).getImage()).into(holder.imageView_poster);
+        Picasso.get().load(list.get(position).getImage()).resize(200, 300).into(holder.imageView_poster);
         holder.homeContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
