@@ -35,9 +35,6 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
     DBHandler dbHandler;
     RecyclerView recyclerView;
     HomeRecyclerAdapter adapter;
-    DrawerLayout drawerLayout;
-    NavigationView navigationView;
-    ActionBarDrawerToggle actionBarDrawerToggle;
     CardView CardView_displayMovies, CardView_noMoviesSaved;
 
     @Override
@@ -54,23 +51,12 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
         CardView_noMoviesSaved = findViewById(R.id.CardView_noMoviesSaved);
 
         ArrayList<MovieDetailsEntity> movies = dbHandler.readAllMovies();
-        drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigationView);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_open, R.string.menu_close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         recyclerView = findViewById(R.id.recycler_view_saved_movies);
         showResult(movies);
 
-        navigationView.setNavigationItemSelectedListener(item -> {
-
-            if (item.getItemId() == R.id.nav_home) {
-                goToHomePage();
-            }
-            return false;
-        });
     }
 
 
@@ -112,13 +98,5 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
         Intent intent = new Intent(SavedMoviesActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

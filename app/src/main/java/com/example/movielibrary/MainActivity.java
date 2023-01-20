@@ -161,7 +161,6 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     private void displaySavedMovies() {
         Intent intent = new Intent(MainActivity.this, SavedMoviesActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override

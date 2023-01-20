@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +34,8 @@ import com.example.movielibrary.Utils.DBHandler;
 import com.example.movielibrary.Utils.RequestManager;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
+
+import java.util.Objects;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -83,6 +86,9 @@ public class DetailsActivity extends AppCompatActivity {
         CardView_search_placeholder = findViewById(R.id.CardView_search_placeholder);
 
         textView_movie_title = findViewById(R.id.textView_movie_name);
+
+        textView_movie_title.setTextColor(ContextCompat.getColor(DetailsActivity.this, R.color.white));
+
         textView_movie_released = findViewById(R.id.textView_movie_released);
         textView_movie_runtime = findViewById(R.id.textView_movie_runtime);
         textView_movie_rating = findViewById(R.id.textView_movie_rating);
@@ -107,7 +113,7 @@ public class DetailsActivity extends AppCompatActivity {
                 return;
             }
 
-            if(response.getErrorMessage() != null && response.getErrorMessage() != ""){
+            if(response.getErrorMessage() != null && !Objects.equals(response.getErrorMessage(), "")){
                 Intent intent = new Intent(DetailsActivity.this, MainActivity.class);
                 startActivity(intent);
                 Toast.makeText(DetailsActivity.this, response.getErrorMessage(), Toast.LENGTH_LONG).show();
@@ -138,7 +144,7 @@ public class DetailsActivity extends AppCompatActivity {
         movieId = response.getId();
 
         try {
-            Picasso.get().load(response.getImage()).resize(800, 1300).into(imageView_movie_poster);
+            Picasso.get().load(response.getImage()).resize(800, 1560).into(imageView_movie_poster);
         } catch (Exception e) {
             e.printStackTrace();
         }

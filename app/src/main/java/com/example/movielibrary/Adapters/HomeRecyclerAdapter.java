@@ -17,6 +17,7 @@ import com.example.movielibrary.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
 
 public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeViewHolder>{
 
@@ -41,13 +42,11 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
         holder.textView_movie.setText(list.get(position).getTitle());
-        Picasso.get().load(list.get(position).getImage()).resize(200, 300).into(holder.imageView_poster);
-        holder.homeContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listener.onMovieClicked(list.get(position).getId());
-            }
-        });
+
+        if(list.get(position).getImage() != null && !Objects.equals(list.get(position).getImage(), "")){
+            Picasso.get().load(list.get(position).getImage()).fit().into(holder.imageView_poster);
+        }
+        holder.homeContainer.setOnClickListener(view -> listener.onMovieClicked(list.get(position).getId()));
     }
 
     @Override
