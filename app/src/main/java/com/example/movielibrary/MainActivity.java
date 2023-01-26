@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -26,8 +25,8 @@ import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.SavedMoviesActivity;
-import com.example.movielibrary.Utils.DBHandler;
-import com.example.movielibrary.Utils.RequestManager;
+import com.example.movielibrary.Database.DBHandler;
+import com.example.movielibrary.Utils.ImdbApi.RequestManager;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Objects;
@@ -166,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     @Override
     public void onMovieClicked(String id) {
         startActivity(new Intent(MainActivity.this, DetailsActivity.class)
-        .putExtra("data", id));
+        .putExtra("data", id).putExtra("parent", "main"));
     }
 
     private void ShowLoadingAnimation(){

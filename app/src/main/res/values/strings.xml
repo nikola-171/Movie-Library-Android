@@ -29,4 +29,9 @@
     <string name="saved_movies_title">Saved movies</string>
     <string name="saved_movies_no_data_title">No movies? Quick go and search some!</string>
     <string name="request_manager_fetch_failed">Couldn\'t fetch the data</string>
+    <string name="DetailsActivity_awards">Awards:</string>
+    <string name="DetailsActivity_genres">Genre(s):</string>
+    <string name="DetailsActivity_companies">Companies:</string>
+    <string name="DetailsActivity_languages">Language(s):</string>
+    <string name="DetailsActivity_keywords">Keyword(s):</string>
 </resources>

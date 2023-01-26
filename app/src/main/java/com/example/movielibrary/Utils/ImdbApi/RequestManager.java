@@ -1,4 +1,4 @@
-package com.example.movielibrary.Utils;
+package com.example.movielibrary.Utils.ImdbApi;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -8,8 +8,6 @@ import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.R;
-import com.example.movielibrary.Utils.Search.GetMovieDetails;
-import com.example.movielibrary.Utils.Search.SearchMovies;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +48,7 @@ public class RequestManager {
     }
 
     public void searchMovieDetails(OnMovieDetailsSearchListener listener, String movie_id){
-        GetMovieDetails getMovieDetails = retrofit.create(GetMovieDetails.class);
+        SearchMovies getMovieDetails = retrofit.create(SearchMovies.class);
         Call<DetailsMovieResponse> call = getMovieDetails.getMovieDetails(movie_id);
 
         call.enqueue(new Callback<DetailsMovieResponse>() {

@@ -1,38 +1,31 @@
 package com.example.movielibrary.MovieActivities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.movielibrary.Adapters.MovieDetails.CastRecyclerAdapter;
+import com.example.movielibrary.Adapters.MovieDetails.SimilarMoviesRecycleAdapter;
 import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
 import com.example.movielibrary.MainActivity;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.R;
-import com.example.movielibrary.Utils.DBHandler;
-import com.example.movielibrary.Utils.RequestManager;
-import com.google.android.material.navigation.NavigationView;
+import com.example.movielibrary.Database.DBHandler;
+import com.example.movielibrary.Utils.ImdbApi.RequestManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -44,16 +37,26 @@ public class DetailsActivity extends AppCompatActivity {
     TextView textView_movie_runtime;
     TextView textView_movie_rating;
     TextView textView_movie_votes;
+    TextView textView_awards;
+    TextView textView_genres;
+    TextView textView_companies;
+    TextView textView_languages;
+    TextView textView_keywords;
+
     ImageView imageView_movie_poster;
     TextView textView_movie_plot;
     RecyclerView recyclerView_movie_cast;
+    RecyclerView recyclerView_similarMovies;
     CastRecyclerAdapter adapter;
+    SimilarMoviesRecycleAdapter similarMoviesAdapter;
+
     RequestManager requestManager;
     DBHandler dbHandler;
     ImageButton imageButton;
     ScrollView detailsPageContent;
     CardView CardView_search_placeholder;
     String title = "", poster = "", movieId = "";
+    String parent = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,20 +78,54 @@ public class DetailsActivity extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public Intent getSupportParentActivityIntent() {
+        return getParentActivityIntentImpl();
+    }
+
+    @Override
+    public Intent getParentActivityIntent() {
+        return getParentActivityIntentImpl();
+    }
+
+    private Intent getParentActivityIntentImpl() {
+        Intent i = null;
+
+        // Here you need to do some logic to determine from which Activity you came.
+        // example: you could pass a variable through your Intent extras and check that.
+        if (parent == "main") {
+            i = new Intent(this, MainActivity.class);
+            // set any flags or extras that you need.
+            // If you are reusing the previous Activity (i.e. bringing it to the top
+            // without re-creating a new instance) set these flags:
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            // if you are re-using the parent Activity you may not need to set any extras
+            i.putExtra("someExtra", "whateverYouNeed");
+        } else {
+            i = new Intent(this, SavedMoviesActivity.class);
+            // same comments as above
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            i.putExtra("someExtra", "whateverYouNeed");
+        }
+
+        return i;
+    }
+
     private void InitViewElements(){
         dbHandler = new DBHandler(DetailsActivity.this);
         imageButton = findViewById(R.id.ImageButton_action);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            parent = extras.getString("parent");
+            //The key argument here must match that used in the other activity
+        }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         detailsPageContent = findViewById(R.id.detailsPageContent);
-        detailsPageContent.setVisibility(View.GONE);
         CardView_search_placeholder = findViewById(R.id.CardView_search_placeholder);
-
         textView_movie_title = findViewById(R.id.textView_movie_name);
-
-        textView_movie_title.setTextColor(ContextCompat.getColor(DetailsActivity.this, R.color.white));
-
         textView_movie_released = findViewById(R.id.textView_movie_released);
         textView_movie_runtime = findViewById(R.id.textView_movie_runtime);
         textView_movie_rating = findViewById(R.id.textView_movie_rating);
@@ -96,7 +133,18 @@ public class DetailsActivity extends AppCompatActivity {
         imageView_movie_poster = findViewById(R.id.imageView_movie_poster);
         textView_movie_plot = findViewById(R.id.textView_movie_plot);
         recyclerView_movie_cast = findViewById(R.id.recyclerView_movie_cast);
+        recyclerView_similarMovies = findViewById(R.id.recyclerView_similarMovies);
+        textView_awards = findViewById(R.id.textView_awards);
+        textView_genres = findViewById(R.id.textView_genres);
+        textView_languages = findViewById(R.id.textView_languages);
+        textView_keywords = findViewById(R.id.textView_keywords);
 
+        detailsPageContent.setVisibility(View.GONE);
+
+        textView_movie_title.setTextColor(ContextCompat.getColor(DetailsActivity.this, R.color.white));
+        textView_movie_plot.setTextColor(ContextCompat.getColor(DetailsActivity.this, R.color.white));
+
+        textView_companies = findViewById(R.id.textView_companies);
         requestManager = new RequestManager(this);
         String movie_id = getIntent().getStringExtra("data");
 
@@ -133,25 +181,30 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void showResults(DetailsMovieResponse response) {
         textView_movie_title.setText(response.getTitle());
-        textView_movie_released.setText(getString(R.string.details_release_date) + " " + response.getReleaseDate());
-        textView_movie_runtime.setText(getString(R.string.details_runtime) + " " + response.getRuntimeStr());
-        textView_movie_rating.setText(getString(R.string.details_rating) + " " + response.getImDbRating());
-        textView_movie_votes.setText(getString(R.string.details_votes) + " " + response.getImDbRatingVotes());
+        textView_movie_released.setText(String.format("%s %s", getString(R.string.details_release_date), response.getReleaseDate()));
+        textView_movie_runtime.setText(String.format("%s %s", getString(R.string.details_runtime), response.getRuntimeStr()));
+        textView_movie_rating.setText(String.format("%s %s", getString(R.string.details_rating), response.getImDbRating()));
+        textView_movie_votes.setText(String.format("%s %s", getString(R.string.details_votes), response.getImDbRatingVotes()));
+        textView_awards.setText(String.format("%s %s", getString(R.string.DetailsActivity_awards), response.getAwards()));
+        textView_genres.setText(String.format("%s %s", getString(R.string.DetailsActivity_genres), response.getGenres()));
         textView_movie_plot.setText(response.getPlot());
+        textView_companies.setText(String.format("%s %s", getString(R.string.DetailsActivity_companies), response.getCompanies()));
+        textView_languages.setText(String.format("%s %s", getString(R.string.DetailsActivity_languages), response.getLanguages()));
+        textView_keywords.setText(String.format("%s %s", getString(R.string.DetailsActivity_keywords), response.getKeywords()));
 
         title = response.getTitle();
         poster = response.getImage();
         movieId = response.getId();
 
         try {
-            Picasso.get().load(response.getImage()).resize(800, 1560).into(imageView_movie_poster);
+            Picasso.get().load(response.getImage()).resize(900, 1560).into(imageView_movie_poster);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         if(!dbHandler.IsMovieInDatabase(movieId)){
 
-            imageButton.setImageResource(R.drawable.ic_baseline_save_alt_24);
+            imageButton.setImageResource(R.drawable.save_icon);
             imageButton.setOnClickListener(view -> {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
@@ -172,7 +225,7 @@ public class DetailsActivity extends AppCompatActivity {
                 builder.show();
             });
         }else{
-            imageButton.setImageResource(R.drawable.ic_baseline_delete_24);
+            imageButton.setImageResource(R.drawable.delete_icon);
             imageButton.setOnClickListener(view -> {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
@@ -198,6 +251,13 @@ public class DetailsActivity extends AppCompatActivity {
         recyclerView_movie_cast.setLayoutManager(new GridLayoutManager(this, 1));
         adapter = new CastRecyclerAdapter(this, response.getActorList());
         recyclerView_movie_cast.setAdapter(adapter);
+
+
+        recyclerView_similarMovies.setHasFixedSize(true);
+        recyclerView_similarMovies.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        similarMoviesAdapter = new SimilarMoviesRecycleAdapter(this, response.getSimilars());
+
+        recyclerView_similarMovies.setAdapter(similarMoviesAdapter);
 
         CardView_search_placeholder.setVisibility(View.GONE);
         detailsPageContent.setVisibility(View.VISIBLE);

@@ -1,5 +1,7 @@
 package com.example.movielibrary.Models.SearchModels.DetailsSearch;
 
+import com.example.movielibrary.Models.SearchModels.SimilarMovieModel;
+
 import java.util.List;
 
 public class DetailsMovieResponse {
@@ -22,6 +24,43 @@ public class DetailsMovieResponse {
     String imDbRating = "";
     String imDbRatingVotes = "";
     String errorMessage = "";
+    String genres = "";
+    String companies = "";
+    String languages = "";
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    String keywords = "";
+
+    public String getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String languages) {
+        this.languages = languages;
+    }
+
+    public String getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(String companies) {
+        this.companies = companies;
+    }
+
+    public String getGenres() {
+        return genres;
+    }
+
+    public void setGenres(String genres) {
+        this.genres = genres;
+    }
 
     public String getErrorMessage() {
         return errorMessage;
@@ -165,6 +204,16 @@ public class DetailsMovieResponse {
 
     public void setActorList(List<Actor> actorList) {
         this.actorList = actorList;
+    }
+
+    public List<SimilarMovieModel> similars;
+
+    public List<SimilarMovieModel> getSimilars() {
+        return similars;
+    }
+
+    public void setSimilars(List<SimilarMovieModel> similars) {
+        this.similars = similars;
     }
 }
 

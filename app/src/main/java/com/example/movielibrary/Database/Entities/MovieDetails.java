@@ -1,12 +1,12 @@
-package com.example.movielibrary.Models.Database;
+package com.example.movielibrary.Database.Entities;
 
-public class MovieDetailsEntity {
+public class MovieDetails {
     String title;
     String poster;
     String movieId;
     String id;
 
-    public MovieDetailsEntity(String id, String title, String poster, String movieId) {
+    public MovieDetails(String id, String title, String poster, String movieId) {
         this.title = title;
         this.poster = poster;
         this.movieId = movieId;

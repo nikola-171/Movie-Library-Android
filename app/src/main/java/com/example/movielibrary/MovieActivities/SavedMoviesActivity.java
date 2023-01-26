@@ -1,32 +1,22 @@
 package com.example.movielibrary.MovieActivities;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.MainActivity;
-import com.example.movielibrary.Models.Database.MovieDetailsEntity;
+import com.example.movielibrary.Database.Entities.MovieDetails;
 import com.example.movielibrary.Models.SearchModels.MovieSearchResult;
-import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.R;
-import com.example.movielibrary.Utils.DBHandler;
-import com.example.movielibrary.Utils.RequestManager;
-import com.google.android.material.navigation.NavigationView;
+import com.example.movielibrary.Database.DBHandler;
 
 import java.util.ArrayList;
 
@@ -50,7 +40,7 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
         CardView_displayMovies = findViewById(R.id.CardView_savedMovies);
         CardView_noMoviesSaved = findViewById(R.id.CardView_noMoviesSaved);
 
-        ArrayList<MovieDetailsEntity> movies = dbHandler.readAllMovies();
+        ArrayList<MovieDetails> movies = dbHandler.readAllMovies();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -60,11 +50,11 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
     }
 
 
-    private void showResult(ArrayList<MovieDetailsEntity> result) {
+    private void showResult(ArrayList<MovieDetails> result) {
         if(result.size() > 0){
             ArrayList<MovieSearchResult> list = new ArrayList<>();
 
-            for(MovieDetailsEntity entity : result){
+            for(MovieDetails entity : result){
                 MovieSearchResult searchResult = new MovieSearchResult();
                 searchResult.setId(entity.getMovieId());
                 searchResult.setTitle(entity.getTitle());
@@ -91,7 +81,7 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
     @Override
     public void onMovieClicked(String id) {
         startActivity(new Intent(SavedMoviesActivity.this, DetailsActivity.class)
-                .putExtra("data", id));
+                .putExtra("data", id).putExtra("parent", "saved"));
     }
 
     private void goToHomePage() {

@@ -1,4 +1,4 @@
-package com.example.movielibrary.Utils;
+package com.example.movielibrary.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,9 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
-import com.example.movielibrary.Models.Database.MovieDetailsEntity;
+import com.example.movielibrary.Database.Entities.MovieDetails;
 
 import java.util.ArrayList;
 
@@ -76,16 +74,16 @@ public class DBHandler extends SQLiteOpenHelper {
         return hasObject;
     }
 
-    public ArrayList<MovieDetailsEntity> readAllMovies() {
+    public ArrayList<MovieDetails> readAllMovies() {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursorCourses = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
-        ArrayList<MovieDetailsEntity> courseModalArrayList = new ArrayList<>();
+        ArrayList<MovieDetails> courseModalArrayList = new ArrayList<>();
 
         if (cursorCourses.moveToFirst()) {
             do {
-                courseModalArrayList.add(new MovieDetailsEntity(cursorCourses.getString(0),
+                courseModalArrayList.add(new MovieDetails(cursorCourses.getString(0),
                         cursorCourses.getString(1),
                         cursorCourses.getString(2),
                         cursorCourses.getString(3)));
