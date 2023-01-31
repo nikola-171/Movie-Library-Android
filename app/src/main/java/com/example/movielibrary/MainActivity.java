@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -23,9 +25,11 @@ import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
+import com.example.movielibrary.MovieActivities.AdvancedFilterForm;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.SavedMoviesActivity;
 import com.example.movielibrary.Database.DBHandler;
+import com.example.movielibrary.Shared.MovieActivitiesDefaults;
 import com.example.movielibrary.Utils.ImdbApi.RequestManager;
 import com.google.android.material.navigation.NavigationView;
 
@@ -44,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     DBHandler dbHandler;
     LottieAnimationView loadingAnimation, searchPlaceholderAnimation;
     CardView loadingAnimationCard, displayMoviesCardView;
+    ImageView ImageView_advancedSearch;
+
+    ConstraintLayout ConstraintLayout_searchAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         recyclerView = findViewById(R.id.recycler_view_home);
         requestManager = new RequestManager(this);
         recyclerView.setVisibility(View.GONE);
+        ConstraintLayout_searchAnimation = findViewById(R.id.ConstraintLayout_searchAnimation);
+        ImageView_advancedSearch = findViewById(R.id.ImageView_advancedSearch);
+        ImageView_advancedSearch.setOnClickListener(this::OpenAdvancedSearchForm);
 
         navigationView.setNavigationItemSelectedListener(item -> {
 
@@ -95,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
                 requestManager.searchMovies(listener, query);
                 CardView_search_placeholder.setVisibility(View.VISIBLE);
+                ConstraintLayout_searchAnimation.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
 
                 return true;
@@ -107,11 +118,17 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         });
     }
 
+    private void OpenAdvancedSearchForm(View view) {
+        Intent i = new Intent(MainActivity.this, AdvancedFilterForm.class);
+        startActivity(i);
+    }
+
 
     private final OnSearchMoviesListener listener = new OnSearchMoviesListener() {
         @Override
         public void onResponse(SearchResult result) {
-            if(result == null){
+            if(result == null || result.getResults().size() <= 0 ){
+                HideLoadingAnimation();
                 Toast.makeText(MainActivity.this, R.string.details_search_no_data, Toast.LENGTH_LONG).show();
                 return;
             }
@@ -146,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         adapter = new HomeRecyclerAdapter(this, result.getResults(), this);
         recyclerView.setAdapter(adapter);
         CardView_search_placeholder.setVisibility(View.GONE);
+        ConstraintLayout_searchAnimation.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
 
@@ -165,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     @Override
     public void onMovieClicked(String id) {
         startActivity(new Intent(MainActivity.this, DetailsActivity.class)
-        .putExtra("data", id).putExtra("parent", "main"));
+        .putExtra(MovieActivitiesDefaults.DATA, id).putExtra(MovieActivitiesDefaults.PARENT, MainActivity.class.toString()));
     }
 
     private void ShowLoadingAnimation(){

@@ -1,4 +1,4 @@
-package com.example.movielibrary.SearchActivities;
+package com.example.movielibrary.MovieActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -8,7 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Models.SearchModels.SimilarMovieModel;
 import com.example.movielibrary.R;
 import com.squareup.picasso.Picasso;
@@ -19,10 +22,12 @@ public class SimilarMoviesRecycleAdapter extends RecyclerView.Adapter<SimilarMov
 
     Context context;
     List<SimilarMovieModel> list;
+    OnMovieClickListener listener;
 
-    public SimilarMoviesRecycleAdapter(Context context, List<SimilarMovieModel> list) {
+    public SimilarMoviesRecycleAdapter(Context context, List<SimilarMovieModel> list, OnMovieClickListener listener) {
         this.context = context;
         this.list = list;
+        this.listener = listener;
     }
 
     @NonNull
@@ -34,13 +39,15 @@ public class SimilarMoviesRecycleAdapter extends RecyclerView.Adapter<SimilarMov
     @Override
     public void onBindViewHolder(@NonNull SimilarMoviesViewHolder holder, int position) {
         holder.textView_title.setText(list.get(position).getTitle());
-        holder.textView_rating.setText(list.get(position).getImDbRating() + "/10");
+        holder.textView_rating.setText(String.format("%s/10", list.get(position).getImDbRating()));
 
         try {
             Picasso.get().load(list.get(position).getImage()).resize(300, 400).into(holder.imageView_poster);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        holder.CardView_wrapper.setOnClickListener(view -> listener.onMovieClicked(list.get(position).getId()));
     }
 
 
@@ -54,6 +61,7 @@ class SimilarMoviesViewHolder extends RecyclerView.ViewHolder {
 
     TextView textView_title, textView_rating;
     ImageView imageView_poster;
+    CardView CardView_wrapper;
 
     public SimilarMoviesViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -61,6 +69,7 @@ class SimilarMoviesViewHolder extends RecyclerView.ViewHolder {
         textView_title = itemView.findViewById(R.id.textView_title);
         textView_rating = itemView.findViewById(R.id.textView_rating);
         imageView_poster = itemView.findViewById(R.id.imageView_poster);
+        CardView_wrapper = itemView.findViewById(R.id.CardView_wrapper);
 
     }
 }

@@ -38,7 +38,7 @@ public class CastRecyclerAdapter extends RecyclerView.Adapter<CastViewHolder>{
         holder.textView_character.setText(list.get(position).getAsCharacter());
 
         try {
-            Picasso.get().load(list.get(position).getImage()).resize(300, 400).into(holder.imageView_actor);
+            Picasso.get().load(list.get(position).getImage()).placeholder(R.drawable.camera_icon).resize(300, 400).into(holder.imageView_actor);
         } catch (Exception e) {
             e.printStackTrace();
         }

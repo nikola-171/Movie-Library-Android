@@ -17,6 +17,7 @@ import com.example.movielibrary.Database.Entities.MovieDetails;
 import com.example.movielibrary.Models.SearchModels.MovieSearchResult;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Database.DBHandler;
+import com.example.movielibrary.Shared.MovieActivitiesDefaults;
 
 import java.util.ArrayList;
 
@@ -63,8 +64,7 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
                 list.add(searchResult);
             }
             recyclerView.setHasFixedSize(true);
-            int spanCount = result.size() > 1 ? 2 : 1;
-            recyclerView.setLayoutManager(new GridLayoutManager(SavedMoviesActivity.this, spanCount));
+            recyclerView.setLayoutManager(new GridLayoutManager(SavedMoviesActivity.this, 2));
 
             adapter = new HomeRecyclerAdapter(this, list, this);
             recyclerView.setAdapter(adapter);
@@ -81,7 +81,7 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
     @Override
     public void onMovieClicked(String id) {
         startActivity(new Intent(SavedMoviesActivity.this, DetailsActivity.class)
-                .putExtra("data", id).putExtra("parent", "saved"));
+                .putExtra(MovieActivitiesDefaults.DATA, id).putExtra(MovieActivitiesDefaults.PARENT, SavedMoviesActivity.class.toString()));
     }
 
     private void goToHomePage() {

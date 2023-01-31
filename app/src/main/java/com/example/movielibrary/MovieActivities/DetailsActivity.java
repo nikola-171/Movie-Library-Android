@@ -20,17 +20,19 @@ import android.widget.Toast;
 
 import com.example.movielibrary.Adapters.MovieDetails.CastRecyclerAdapter;
 import com.example.movielibrary.Adapters.MovieDetails.SimilarMoviesRecycleAdapter;
+import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
 import com.example.movielibrary.MainActivity;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Database.DBHandler;
+import com.example.movielibrary.Shared.MovieActivitiesDefaults;
 import com.example.movielibrary.Utils.ImdbApi.RequestManager;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-public class DetailsActivity extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity implements OnMovieClickListener {
 
     TextView textView_movie_title;
     TextView textView_movie_released;
@@ -91,22 +93,12 @@ public class DetailsActivity extends AppCompatActivity {
     private Intent getParentActivityIntentImpl() {
         Intent i = null;
 
-        // Here you need to do some logic to determine from which Activity you came.
-        // example: you could pass a variable through your Intent extras and check that.
-        if (parent == "main") {
+        if (Objects.equals(parent, MainActivity.class.toString())) {
             i = new Intent(this, MainActivity.class);
-            // set any flags or extras that you need.
-            // If you are reusing the previous Activity (i.e. bringing it to the top
-            // without re-creating a new instance) set these flags:
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            // if you are re-using the parent Activity you may not need to set any extras
-            i.putExtra("someExtra", "whateverYouNeed");
         } else {
             i = new Intent(this, SavedMoviesActivity.class);
-            // same comments as above
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            i.putExtra("someExtra", "whateverYouNeed");
         }
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         return i;
     }
@@ -117,7 +109,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            parent = extras.getString("parent");
+            parent = extras.getString(MovieActivitiesDefaults.PARENT);
             //The key argument here must match that used in the other activity
         }
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -146,7 +138,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         textView_companies = findViewById(R.id.textView_companies);
         requestManager = new RequestManager(this);
-        String movie_id = getIntent().getStringExtra("data");
+        String movie_id = getIntent().getStringExtra(MovieActivitiesDefaults.DATA);
 
         requestManager.searchMovieDetails(_listener, movie_id);
     }
@@ -156,7 +148,7 @@ public class DetailsActivity extends AppCompatActivity {
         @Override
         public void onResponse(DetailsMovieResponse response) {
 
-            if (response.equals(null)) {
+            if (response == null) {
                 Toast.makeText(DetailsActivity.this, R.string.api_error_response, Toast.LENGTH_LONG).show();
                 return;
             }
@@ -204,7 +196,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         if(!dbHandler.IsMovieInDatabase(movieId)){
 
-            imageButton.setImageResource(R.drawable.save_icon);
+            imageButton.setImageResource(R.drawable.ic_baseline_save_50);
             imageButton.setOnClickListener(view -> {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
@@ -225,7 +217,7 @@ public class DetailsActivity extends AppCompatActivity {
                 builder.show();
             });
         }else{
-            imageButton.setImageResource(R.drawable.delete_icon);
+            imageButton.setImageResource(R.drawable.ic_baseline_delete_forever_50);
             imageButton.setOnClickListener(view -> {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
@@ -255,11 +247,17 @@ public class DetailsActivity extends AppCompatActivity {
 
         recyclerView_similarMovies.setHasFixedSize(true);
         recyclerView_similarMovies.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        similarMoviesAdapter = new SimilarMoviesRecycleAdapter(this, response.getSimilars());
+        similarMoviesAdapter = new SimilarMoviesRecycleAdapter(this, response.getSimilars(), this);
 
         recyclerView_similarMovies.setAdapter(similarMoviesAdapter);
 
         CardView_search_placeholder.setVisibility(View.GONE);
         detailsPageContent.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onMovieClicked(String id) {
+        startActivity(new Intent(DetailsActivity.this, DetailsActivity.class)
+                .putExtra("data", id).putExtra("parent", "main"));
     }
 }
