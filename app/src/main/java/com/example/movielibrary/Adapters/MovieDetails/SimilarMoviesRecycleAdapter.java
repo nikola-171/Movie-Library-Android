@@ -42,7 +42,7 @@ public class SimilarMoviesRecycleAdapter extends RecyclerView.Adapter<SimilarMov
         holder.textView_rating.setText(String.format("%s/10", list.get(position).getImDbRating()));
 
         try {
-            Picasso.get().load(list.get(position).getImage()).resize(300, 400).into(holder.imageView_poster);
+            Picasso.get().load(list.get(position).getImage()).resize(500, 600).placeholder(R.drawable.loading).into(holder.imageView_poster);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,6 +70,8 @@ class SimilarMoviesViewHolder extends RecyclerView.ViewHolder {
         textView_rating = itemView.findViewById(R.id.textView_rating);
         imageView_poster = itemView.findViewById(R.id.imageView_poster);
         CardView_wrapper = itemView.findViewById(R.id.CardView_wrapper);
+
+        textView_title.setSelected(true);
 
     }
 }

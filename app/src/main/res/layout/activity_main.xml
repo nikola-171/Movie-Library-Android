@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".MovieActivities.MainActivity">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -29,7 +29,10 @@
                 android:layout_height="wrap_content">
                 <androidx.appcompat.widget.SearchView
                     android:layout_weight="5"
+                    android:backgroundTint="@color/white"
                     android:id="@+id/search_view"
+                    app:closeIcon="@drawable/ic_baseline_close_24"
+                    app:searchIcon="@drawable/ic_baseline_manage_search_50"
                     android:layout_width="0dp"
                     android:layout_height="?attr/actionBarSize"
                     android:padding="8dp"

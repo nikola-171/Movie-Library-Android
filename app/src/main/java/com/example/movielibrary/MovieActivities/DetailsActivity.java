@@ -22,7 +22,6 @@ import com.example.movielibrary.Adapters.MovieDetails.CastRecyclerAdapter;
 import com.example.movielibrary.Adapters.MovieDetails.SimilarMoviesRecycleAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
-import com.example.movielibrary.MainActivity;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Database.DBHandler;

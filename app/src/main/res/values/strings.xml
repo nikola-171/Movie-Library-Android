@@ -34,4 +34,6 @@
     <string name="DetailsActivity_companies">Companies:</string>
     <string name="DetailsActivity_languages">Language(s):</string>
     <string name="DetailsActivity_keywords">Keyword(s):</string>
+    <string name="MainActivity_SearchMoviesHint">Search movies...</string>
+    <string name="nav_top250Movies">Top 250 movies</string>
 </resources>

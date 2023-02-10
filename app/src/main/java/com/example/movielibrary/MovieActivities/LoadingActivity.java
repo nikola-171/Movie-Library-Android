@@ -7,7 +7,6 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.example.movielibrary.MainActivity;
 import com.example.movielibrary.R;
 
 import java.util.Objects;

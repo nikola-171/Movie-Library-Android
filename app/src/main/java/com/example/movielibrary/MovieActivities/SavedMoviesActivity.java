@@ -12,7 +12,6 @@ import android.view.View;
 
 import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.MainActivity;
 import com.example.movielibrary.Database.Entities.MovieDetails;
 import com.example.movielibrary.Models.SearchModels.MovieSearchResult;
 import com.example.movielibrary.R;
@@ -82,11 +81,5 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
     public void onMovieClicked(String id) {
         startActivity(new Intent(SavedMoviesActivity.this, DetailsActivity.class)
                 .putExtra(MovieActivitiesDefaults.DATA, id).putExtra(MovieActivitiesDefaults.PARENT, SavedMoviesActivity.class.toString()));
-    }
-
-    private void goToHomePage() {
-        Intent intent = new Intent(SavedMoviesActivity.this, MainActivity.class);
-        startActivity(intent);
-        finish();
     }
 }

@@ -9,6 +9,10 @@ import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieRe
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.R;
 
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,6 +33,27 @@ public class RequestManager {
     public void searchMovies(OnSearchMoviesListener listener, String movie_title){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
         Call<SearchResult> call = searchMovies.searchMovies(movie_title);
+
+        call.enqueue(new Callback<SearchResult>() {
+            @Override
+            public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(context, R.string.request_manager_fetch_failed, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                listener.onResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<SearchResult> call, Throwable t) {
+                listener.onError(t.getMessage());
+            }
+        });
+    }
+
+    public void advancedSearchMovies(OnSearchMoviesListener listener, HashMap<String, Object> data){
+        SearchMovies searchMovies = retrofit.create(SearchMovies.class);
+        Call<SearchResult> call = searchMovies.advancedSearch(data);
 
         call.enqueue(new Callback<SearchResult>() {
             @Override

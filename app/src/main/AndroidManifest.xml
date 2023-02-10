@@ -13,10 +13,11 @@
         android:theme="@style/Theme.MovieLibrary">
         <activity
             android:name=".MovieActivities.AdvancedFilterForm"
+            android:parentActivityName=".MovieActivities.MainActivity"
             android:exported="false" />
         <activity
             android:name=".MovieActivities.SavedMoviesActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".MovieActivities.MainActivity"
             android:exported="false" />
 
         <activity
@@ -32,13 +33,13 @@
         <activity
             android:name=".MovieActivities.DetailsActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MovieActivities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MovieActivities.MainActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".MovieActivities.MainActivity"
             android:exported="false" />
     </application>
 

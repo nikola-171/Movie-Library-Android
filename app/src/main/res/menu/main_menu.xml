@@ -9,5 +9,9 @@
          <item android:id="@+id/nav_saved"
              android:title="@string/nav_saved"
              android:icon="@drawable/ic_baseline_save_alt_24"/>
+
+         <item android:id="@+id/nav_top250Movies"
+             android:title="@string/nav_top250Movies"
+             android:icon="@drawable/ic_baseline_camera_alt_24"/>
      </group>
 </menu>

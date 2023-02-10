@@ -1,5 +1,7 @@
-package com.example.movielibrary;
+package com.example.movielibrary.MovieActivities;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,26 +15,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieDrawable;
 import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
-import com.example.movielibrary.MovieActivities.AdvancedFilterForm;
-import com.example.movielibrary.MovieActivities.DetailsActivity;
-import com.example.movielibrary.MovieActivities.SavedMoviesActivity;
 import com.example.movielibrary.Database.DBHandler;
+import com.example.movielibrary.R;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
 import com.example.movielibrary.Utils.ImdbApi.RequestManager;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements OnMovieClickListener {
@@ -49,7 +53,6 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     LottieAnimationView loadingAnimation, searchPlaceholderAnimation;
     CardView loadingAnimationCard, displayMoviesCardView;
     ImageView ImageView_advancedSearch;
-
     ConstraintLayout ConstraintLayout_searchAnimation;
 
     @Override
@@ -94,6 +97,11 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
             return false;
         });
 
+        EditText txtSearch = (searchView.findViewById(androidx.appcompat.R.id.search_src_text));
+        txtSearch.setHint(R.string.MainActivity_SearchMoviesHint);
+        txtSearch.setHintTextColor(Color.WHITE);
+        txtSearch.setTextColor(Color.WHITE);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -120,9 +128,8 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
     private void OpenAdvancedSearchForm(View view) {
         Intent i = new Intent(MainActivity.this, AdvancedFilterForm.class);
-        startActivity(i);
+        activityResult.launch(i);
     }
-
 
     private final OnSearchMoviesListener listener = new OnSearchMoviesListener() {
         @Override
@@ -133,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
                 return;
             }
 
-            if(!Objects.equals(result.getErrorMessage(), "")){
+            if(result.getErrorMessage() != null && !result.getErrorMessage().equals("")){
                 HideLoadingAnimation();
 
                 Toast.makeText(MainActivity.this, result.getErrorMessage(), Toast.LENGTH_LONG).show();
@@ -188,15 +195,41 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
     private void ShowLoadingAnimation(){
         searchPlaceholderAnimation.setAnimation(R.raw.loading);
-        searchPlaceholderAnimation.loop(true);
+        searchPlaceholderAnimation.setRepeatCount(LottieDrawable.INFINITE);
         searchPlaceholderAnimation.playAnimation();
-
-
     }
+
     private void HideLoadingAnimation(){
         searchPlaceholderAnimation.setAnimation(R.raw.watch);
-        searchPlaceholderAnimation.loop(false);
+        searchPlaceholderAnimation.setRepeatCount(0);
         searchPlaceholderAnimation.playAnimation();
 
     }
+
+    private void ToggleInputFields(boolean val){
+        searchView.setEnabled(val);
+        ImageView_advancedSearch.setEnabled(val);
+    }
+
+    ActivityResultLauncher<Intent> activityResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if(result.getResultCode() == 0){
+                    Intent i = result.getData();
+
+                    if(i != null){
+                        HashMap<String, Object> args = (HashMap<String, Object>) i.getSerializableExtra("data");
+
+                        ShowLoadingAnimation();
+
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+
+                        requestManager.advancedSearchMovies(listener, args);
+                        CardView_search_placeholder.setVisibility(View.VISIBLE);
+                        ConstraintLayout_searchAnimation.setVisibility(View.VISIBLE);
+                        recyclerView.setVisibility(View.GONE);
+
+                    }
+                }
+            });
 }
