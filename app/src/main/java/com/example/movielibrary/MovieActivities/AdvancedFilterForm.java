@@ -59,7 +59,9 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
     Button Button_Submit;
 
     TextInputEditText textInputEditText_TitleType, TextInputEditText_Genres, TextInputEditText_RatingMax, TextInputEditText_RatingMin,
-                      TextInputEditText_Title, textInputEditText_Keywords;
+                      TextInputEditText_Title, textInputEditText_Keywords,
+                      TextInputEditText_VotesMax, TextInputEditText_VotesMin, textInputEditText_Plot,
+                      TextInputEditText_RuntimeMin, TextInputEditText_RuntimeMax, textInputEditText_FilmingLocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +74,12 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         Button_Submit = findViewById(id.Button_Submit);
         TextInputEditText_Title = findViewById(id.TextInputEditText_Title);
         textInputEditText_Keywords = findViewById(R.id.textInputEditText_Keywords);
+        TextInputEditText_VotesMax = findViewById(R.id.TextInputEditText_VotesMax);
+        TextInputEditText_VotesMin = findViewById(R.id.TextInputEditText_VotesMin);
+        textInputEditText_Plot = findViewById(R.id.textInputEditText_Plot);
+        TextInputEditText_RuntimeMin = findViewById(R.id.TextInputEditText_RuntimeMin);
+        TextInputEditText_RuntimeMax = findViewById(R.id.TextInputEditText_RuntimeMax);
+        textInputEditText_FilmingLocation = findViewById(R.id.textInputEditText_FilmingLocation);
 
         Button_Submit.setOnClickListener(view -> {
 
@@ -79,10 +87,18 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
                 return;
             }
 
+            AddRuntimeValues();
+
             String keywords = Objects.requireNonNull(textInputEditText_Keywords.getText()).toString();
 
             if(!keywords.equals("")){
                 filterData.put("keywords", keywords);
+            }
+
+            String filmingLocation = Objects.requireNonNull(textInputEditText_FilmingLocation.getText()).toString();
+
+            if(!filmingLocation.equals("")){
+                filterData.put("locations", filmingLocation);
             }
 
             StringBuilder b = new StringBuilder();
@@ -106,7 +122,28 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
                 filterData.put("user_rating", b.toString());
             }
 
-            if(!TextInputEditText_Title.getText().equals("")){
+            StringBuilder votes = new StringBuilder();
+
+            String minVotesValue = String.valueOf(TextInputEditText_VotesMin.getText());
+            String maxVotesValue = String.valueOf(TextInputEditText_VotesMax.getText());
+
+            if(!minVotesValue.equals("")){
+                votes.append(minVotesValue).append(",");
+            }
+
+            if(!maxVotesValue.equals("")){
+                votes.append(maxVotesValue);
+            }
+
+            if(!minVotesValue.equals("") || !maxVotesValue.equals("")){
+                filterData.put("num_votes", votes.toString());
+            }
+
+            if(!textInputEditText_Plot.getText().toString().trim().equals("")){
+                filterData.put("plot", textInputEditText_Plot.getText().toString().trim());
+            }
+
+            if(!TextInputEditText_Title.getText().toString().trim().equals("")){
                 filterData.put("title", TextInputEditText_Title.getText().toString().trim());
             }
 
@@ -142,6 +179,25 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         });
     }
 
+    private void AddRuntimeValues(){
+        StringBuilder votes = new StringBuilder();
+
+        String minValue = String.valueOf(TextInputEditText_RuntimeMin.getText());
+        String maxValue = String.valueOf(TextInputEditText_RuntimeMax.getText());
+
+        if(!minValue.equals("")){
+            votes.append(minValue).append(",");
+        }
+
+        if(!maxValue.equals("")){
+            votes.append(maxValue);
+        }
+
+        if(!minValue.equals("") || !maxValue.equals("")){
+            filterData.put("moviemeter", votes.toString());
+        }
+    }
+
     @Override
     public void onPositiveButtonClicked(Pair<String, ArrayList<String>> data) {
 
@@ -155,18 +211,36 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         String minValue = String.valueOf(TextInputEditText_RatingMin.getText());
         String maxValue = String.valueOf(TextInputEditText_RatingMax.getText());
 
-        if(!minValue.equals("") && Float.parseFloat(minValue) >= 10){
+        String minVotesValue = String.valueOf(TextInputEditText_VotesMin.getText());
+        String maxVotesValue = String.valueOf(TextInputEditText_VotesMax.getText());
+
+        String minRuntimeValue = String.valueOf(TextInputEditText_RuntimeMin.getText());
+        String maxRuntimeValue = String.valueOf(TextInputEditText_RuntimeMax.getText());
+
+        if(!minValue.equals("") && Float.parseFloat(minValue) > 10){
             Toast.makeText(AdvancedFilterForm.this, "Value must not be grater that 10", Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if(!maxValue.equals("") && Float.parseFloat( maxValue) >= 10){
+        if(!maxValue.equals("") && Float.parseFloat( maxValue) > 10){
             Toast.makeText(AdvancedFilterForm.this, "Value must not be grater that 10", Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(!minValue.equals("") && !maxValue.equals("") && Float.parseFloat(minValue) > Float.parseFloat( maxValue)){
             Toast.makeText(AdvancedFilterForm.this, "Minimum rating must not be greater that maximum rating", Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+
+        if(!minVotesValue.equals("") && !maxVotesValue.equals("") && Float.parseFloat(minVotesValue) > Float.parseFloat(maxVotesValue)){
+            Toast.makeText(AdvancedFilterForm.this, "Minimum votes must not be greater that maximum votes", Toast.LENGTH_SHORT).show();
+
+            return false;
+        }
+
+        if(!minRuntimeValue.equals("") && !maxRuntimeValue.equals("") && Float.parseFloat(minRuntimeValue) > Float.parseFloat(maxRuntimeValue)){
+            Toast.makeText(AdvancedFilterForm.this, "Minimum runtime must not be greater that maximum runtime", Toast.LENGTH_SHORT).show();
 
             return false;
         }

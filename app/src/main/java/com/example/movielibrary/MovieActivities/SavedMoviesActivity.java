@@ -10,7 +10,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
+import com.example.movielibrary.Adapters.MovieDetails.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Database.Entities.MovieDetails;
 import com.example.movielibrary.Models.SearchModels.MovieSearchResult;

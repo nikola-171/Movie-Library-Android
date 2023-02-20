@@ -5,13 +5,13 @@ import android.widget.Toast;
 
 import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
 import com.example.movielibrary.Listeners.OnSearchMoviesListener;
+import com.example.movielibrary.Listeners.OnTopListMovieSearchListener;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
+import com.example.movielibrary.Models.SearchModels.TopListSearchResult;
 import com.example.movielibrary.R;
 
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -88,6 +88,27 @@ public class RequestManager {
 
             @Override
             public void onFailure(Call<DetailsMovieResponse> call, Throwable t) {
+                listener.onError(t.getMessage());
+            }
+        });
+    }
+
+    public void top250MoviesSearch(OnTopListMovieSearchListener listener){
+        SearchMovies searchMovies = retrofit.create(SearchMovies.class);
+        Call<TopListSearchResult> call = searchMovies.getTop250Movies();
+
+        call.enqueue(new Callback<TopListSearchResult>() {
+            @Override
+            public void onResponse(Call<TopListSearchResult> call, Response<TopListSearchResult> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(context, R.string.request_manager_fetch_failed, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                listener.onResponse(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<TopListSearchResult> call, Throwable t) {
                 listener.onError(t.getMessage());
             }
         });

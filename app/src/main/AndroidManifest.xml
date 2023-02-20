@@ -12,14 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieLibrary">
         <activity
-            android:name=".MovieActivities.AdvancedFilterForm"
             android:parentActivityName=".MovieActivities.MainActivity"
-            android:exported="false" />
+            android:name=".MovieActivities.TopList"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".MovieActivities.AdvancedFilterForm"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity" />
         <activity
             android:name=".MovieActivities.SavedMoviesActivity"
-            android:parentActivityName=".MovieActivities.MainActivity"
-            android:exported="false" />
-
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity" />
         <activity
             android:name=".MovieActivities.LoadingActivity"
             android:exported="true">
@@ -29,7 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MovieActivities.DetailsActivity"
             android:exported="false"

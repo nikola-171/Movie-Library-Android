@@ -25,12 +25,12 @@ public class SearchResult {
         this.expression = expression;
     }
 
-    public List<MovieSearchResult> getResults() {
+    public List<MovieSearchResult> getItems() {
         return results;
     }
 
-    public void setResults(List<MovieSearchResult> results) {
-        this.results = results;
+    public void setItems(List<MovieSearchResult> items) {
+        this.results = items;
     }
 
     public String getErrorMessage() {

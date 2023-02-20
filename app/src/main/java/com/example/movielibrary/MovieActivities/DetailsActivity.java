@@ -94,7 +94,11 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
 
         if (Objects.equals(parent, MainActivity.class.toString())) {
             i = new Intent(this, MainActivity.class);
-        } else {
+        }
+        else if(Objects.equals(parent, TopList.class.toString())){
+            i = new Intent(this, TopList.class);
+        }
+        else {
             i = new Intent(this, SavedMoviesActivity.class);
         }
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

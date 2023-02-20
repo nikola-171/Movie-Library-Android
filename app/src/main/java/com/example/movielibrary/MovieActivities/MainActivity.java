@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -26,7 +25,7 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
-import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
+import com.example.movielibrary.Adapters.MovieDetails.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+       // setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
         InitViewElements();
@@ -93,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
             if (item.getItemId() == R.id.nav_saved) {
                 displaySavedMovies();
+            }
+
+            if (item.getItemId() == R.id.nav_top250Movies) {
+                displayTop250Movies();
             }
             return false;
         });
@@ -134,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     private final OnSearchMoviesListener listener = new OnSearchMoviesListener() {
         @Override
         public void onResponse(SearchResult result) {
-            if(result == null || result.getResults().size() <= 0 ){
+            if(result == null || (result.getItems() != null && result.getItems().size() <= 0)){
                 HideLoadingAnimation();
                 Toast.makeText(MainActivity.this, R.string.details_search_no_data, Toast.LENGTH_LONG).show();
                 return;
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
                 return;
             }
 
-            if(result.getResults() == null){
+            if(result.getItems() == null){
                 HideLoadingAnimation();
                 Toast.makeText(MainActivity.this, R.string.api_error_response, Toast.LENGTH_LONG).show();
                 return;
@@ -167,11 +170,12 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
 
-        adapter = new HomeRecyclerAdapter(this, result.getResults(), this);
+        adapter = new HomeRecyclerAdapter(this, result.getItems(), this);
         recyclerView.setAdapter(adapter);
         CardView_search_placeholder.setVisibility(View.GONE);
         ConstraintLayout_searchAnimation.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
+        ToggleInputFields(true);
     }
 
     @Override
@@ -187,6 +191,11 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         startActivity(intent);
     }
 
+    private void displayTop250Movies() {
+        Intent intent = new Intent(MainActivity.this, TopList.class);
+        startActivity(intent);
+    }
+
     @Override
     public void onMovieClicked(String id) {
         startActivity(new Intent(MainActivity.this, DetailsActivity.class)
@@ -197,17 +206,19 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         searchPlaceholderAnimation.setAnimation(R.raw.loading);
         searchPlaceholderAnimation.setRepeatCount(LottieDrawable.INFINITE);
         searchPlaceholderAnimation.playAnimation();
+        ToggleInputFields(false);
     }
 
     private void HideLoadingAnimation(){
         searchPlaceholderAnimation.setAnimation(R.raw.watch);
         searchPlaceholderAnimation.setRepeatCount(0);
         searchPlaceholderAnimation.playAnimation();
+        ToggleInputFields(true);
 
     }
 
     private void ToggleInputFields(boolean val){
-        searchView.setEnabled(val);
+        searchView.setFocusable(val);
         ImageView_advancedSearch.setEnabled(val);
     }
 
