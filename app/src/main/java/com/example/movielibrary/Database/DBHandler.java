@@ -62,7 +62,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public boolean IsMovieInDatabase(String movieId){
+    public boolean isMovieInDatabase(String movieId){
         SQLiteDatabase db = getWritableDatabase();
         String selectString = "SELECT * FROM " + TABLE_NAME + " WHERE " + MOVIE_ID_COL + " =?";
 

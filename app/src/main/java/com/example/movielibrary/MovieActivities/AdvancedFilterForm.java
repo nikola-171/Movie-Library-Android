@@ -1,6 +1,21 @@
 package com.example.movielibrary.MovieActivities;
 
 import static com.example.movielibrary.R.*;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.genres;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.genresTags;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.genresValues;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.keywordList;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.locations;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.movieMeter;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.numVotes;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.plot;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.ratingLimit;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.resultCode;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.title;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.titleFeature;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.titleTypeTags;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.titleTypeVales;
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.userRating;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +26,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.util.Pair;
+import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
@@ -30,33 +46,9 @@ import java.util.Objects;
 public class AdvancedFilterForm extends AppCompatActivity implements MultiChoiceDialogFragment.onMultiChoiceListener,
         DatePickerDialog.OnDateSetListener{
 
-    TextView  TextView_releaseDateTo, TextView_releaseDateFrom;
+    HashMap<String, Object> filterData = new HashMap<>();
 
-    String[] titleTypeTags = {"Feature Film", "TV Movie", "TV Series", "TV Episode", "TV Special", "Mini-Series",
-                              "Documentary", "Short Film", "Video", "TV Short", "Podcast Series",
-                              "Podcast Episode"};
-
-    String[] titleTypeVales = {"feature", "tv_movie", "tv_series", "tv_episode", "tv_special", "tv_miniseries",
-            "documentary", "short", "video", "tv_short", "podcast_series",
-            "podcast_episode",};
-
-    String[] genresTags = {"Action", "Adventure" , "Animation", "Biography", "Comedy",
-         "Crime", "Documentary", "Drama", "Family", "Fantasy", "Film-Noir", "Game-Show",
-         "History", "Horror", "Music", "Musical", "Mystery", "News", "Reality-TV","Romance",
-            "Sci-Fi", "Sport", "Talk-Show", "Thriller", "War", "Western"
-    };
-
-    String[] genresValues = {"action", "adventure" , "animation", "biography", "comedy",
-            "crime", "documentary", "drama", "family", "fantasy", "film_noir", "game_show",
-            "history", "horror", "music", "musical", "mystery", "news", "reality_tV","romance",
-            "sci-fi", "sport", "talk_show", "thriller", "war", "western"
-    };
-
-    HashMap<String, Object> filterData = new HashMap<String, Object>();
-
-    ImageView ImageView_Search;
-
-    Button Button_Submit;
+    Button Button_Submit, Button_Cancel;
 
     TextInputEditText textInputEditText_TitleType, TextInputEditText_Genres, TextInputEditText_RatingMax, TextInputEditText_RatingMin,
                       TextInputEditText_Title, textInputEditText_Keywords,
@@ -72,6 +64,9 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         actionBar.setElevation(0);
 
         Button_Submit = findViewById(id.Button_Submit);
+        Button_Cancel = findViewById(R.id.Button_Cancel);
+        Button_Cancel.setOnClickListener(this::cancelSearch);
+
         TextInputEditText_Title = findViewById(id.TextInputEditText_Title);
         textInputEditText_Keywords = findViewById(R.id.textInputEditText_Keywords);
         TextInputEditText_VotesMax = findViewById(R.id.TextInputEditText_VotesMax);
@@ -83,75 +78,25 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
 
         Button_Submit.setOnClickListener(view -> {
 
-            if(!ValidateForm()){
+            if(!validateForm()){
                 return;
             }
 
-            AddRuntimeValues();
+            addRuntimeValues();
 
-            String keywords = Objects.requireNonNull(textInputEditText_Keywords.getText()).toString();
+            addKeywordValues();
 
-            if(!keywords.equals("")){
-                filterData.put("keywords", keywords);
-            }
+            addFilmingLocation();
 
-            String filmingLocation = Objects.requireNonNull(textInputEditText_FilmingLocation.getText()).toString();
+            addUserRating();
 
-            if(!filmingLocation.equals("")){
-                filterData.put("locations", filmingLocation);
-            }
+            addUserVotes();
 
-            StringBuilder b = new StringBuilder();
+            addTitle();
 
-            String minValue = String.valueOf(TextInputEditText_RatingMin.getText());
-            String maxValue = String.valueOf(TextInputEditText_RatingMax.getText());
+            addPlot();
 
-            if(!minValue.equals("")){
-                b.append(minValue);
-            }
-
-            if(!maxValue.equals("")){
-                if(!minValue.equals("null")){
-                    b.append(",");
-                }
-
-                b.append(maxValue);
-            }
-
-            if(!minValue.equals("null") || !maxValue.equals("null")){
-                filterData.put("user_rating", b.toString());
-            }
-
-            StringBuilder votes = new StringBuilder();
-
-            String minVotesValue = String.valueOf(TextInputEditText_VotesMin.getText());
-            String maxVotesValue = String.valueOf(TextInputEditText_VotesMax.getText());
-
-            if(!minVotesValue.equals("")){
-                votes.append(minVotesValue).append(",");
-            }
-
-            if(!maxVotesValue.equals("")){
-                votes.append(maxVotesValue);
-            }
-
-            if(!minVotesValue.equals("") || !maxVotesValue.equals("")){
-                filterData.put("num_votes", votes.toString());
-            }
-
-            if(!textInputEditText_Plot.getText().toString().trim().equals("")){
-                filterData.put("plot", textInputEditText_Plot.getText().toString().trim());
-            }
-
-            if(!TextInputEditText_Title.getText().toString().trim().equals("")){
-                filterData.put("title", TextInputEditText_Title.getText().toString().trim());
-            }
-
-            Intent i = new Intent();
-
-            i.putExtra("data", filterData);
-
-            setResult(0, i);
+            setResult(resultCode, createFilterDataIntent());
 
             finish();
         });
@@ -162,24 +107,107 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         TextInputEditText_RatingMax = findViewById(id.TextInputEditText_RatingMax);
         TextInputEditText_RatingMin = findViewById(id.TextInputEditText_RatingMin);
 
-        TextInputEditText_RatingMin.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(2,2)});
-        TextInputEditText_RatingMax.setFilters(new InputFilter[] {new DecimalDigitsInputFilter(2,2)});
+        TextInputEditText_RatingMin.setFilters(new InputFilter[] {new DecimalDigitsInputFilter()});
+        TextInputEditText_RatingMax.setFilters(new InputFilter[] {new DecimalDigitsInputFilter()});
 
         textInputEditText_TitleType.setOnClickListener(view -> {
 
-            DialogFragment dialog = new MultiChoiceDialogFragment(titleTypeTags,titleTypeVales, textInputEditText_TitleType, "Dialog Title Type", "title_feature");
+            DialogFragment dialog = new MultiChoiceDialogFragment(titleTypeTags, titleTypeVales, textInputEditText_TitleType, getString(string.AdvancedFilterForm_DialogTitleType), titleFeature);
 
             dialog.show(getSupportFragmentManager(), MovieActivitiesDefaults.DIALOG_TAG);
         });
 
         TextInputEditText_Genres.setOnClickListener(view -> {
-            DialogFragment dialog = new MultiChoiceDialogFragment(genresTags,genresValues, TextInputEditText_Genres, "Genre(s)", "genres");
+            DialogFragment dialog = new MultiChoiceDialogFragment(genresTags, genresValues, TextInputEditText_Genres, getString(string.AdvancedFilterForm_GenresDialogTitle), genres);
 
             dialog.show(getSupportFragmentManager(), MovieActivitiesDefaults.DIALOG_TAG);
         });
     }
 
-    private void AddRuntimeValues(){
+    private Intent createFilterDataIntent(){
+        Intent i = new Intent();
+
+        i.putExtra(MovieActivitiesDefaults.DATA, filterData);
+
+        return i;
+    }
+
+    private void addTitle(){
+        if(!Objects.requireNonNull(TextInputEditText_Title.getText()).toString().trim().equals("")){
+            filterData.put(title, TextInputEditText_Title.getText().toString().trim());
+        }
+    }
+
+    private void addPlot(){
+        if(!Objects.requireNonNull(textInputEditText_Plot.getText()).toString().trim().equals("")){
+            filterData.put(plot, textInputEditText_Plot.getText().toString().trim());
+        }
+    }
+
+    private void cancelSearch(View view){
+        Intent i = new Intent(AdvancedFilterForm.this, MainActivity.class);
+        startActivity(i);
+    }
+
+    private void addUserRating(){
+        StringBuilder b = new StringBuilder();
+
+        String minValue = String.valueOf(TextInputEditText_RatingMin.getText());
+        String maxValue = String.valueOf(TextInputEditText_RatingMax.getText());
+
+        if(!minValue.equals("")){
+            b.append(minValue);
+        }
+
+        if(!maxValue.equals("")){
+            if(!minValue.equals("")){
+                b.append(",");
+            }
+
+            b.append(maxValue);
+        }
+
+        if(!minValue.equals("") || !maxValue.equals("")){
+            filterData.put(userRating, b.toString());
+        }
+    }
+
+    private void addUserVotes(){
+        StringBuilder votes = new StringBuilder();
+
+        String minVotesValue = String.valueOf(TextInputEditText_VotesMin.getText());
+        String maxVotesValue = String.valueOf(TextInputEditText_VotesMax.getText());
+
+        if(!minVotesValue.equals("")){
+            votes.append(minVotesValue).append(",");
+        }
+
+        if(!maxVotesValue.equals("")){
+            votes.append(maxVotesValue);
+        }
+
+        if(!minVotesValue.equals("") || !maxVotesValue.equals("")){
+            filterData.put(numVotes, votes.toString());
+        }
+    }
+
+    private void addFilmingLocation(){
+        String filmingLocation = Objects.requireNonNull(textInputEditText_FilmingLocation.getText()).toString();
+
+        if(!filmingLocation.equals("")){
+            filterData.put(locations, filmingLocation);
+        }
+    }
+
+    private void addKeywordValues(){
+        String keywords = Objects.requireNonNull(textInputEditText_Keywords.getText()).toString();
+
+        if(!keywords.equals("")){
+            filterData.put(keywordList, keywords);
+        }
+    }
+
+    private void addRuntimeValues(){
         StringBuilder votes = new StringBuilder();
 
         String minValue = String.valueOf(TextInputEditText_RuntimeMin.getText());
@@ -194,7 +222,7 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         }
 
         if(!minValue.equals("") || !maxValue.equals("")){
-            filterData.put("moviemeter", votes.toString());
+            filterData.put(movieMeter, votes.toString());
         }
     }
 
@@ -206,7 +234,7 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         filterData.put(data.first, String.join(",",data.second));
     }
 
-    private boolean ValidateForm(){
+    private boolean validateForm(){
 
         String minValue = String.valueOf(TextInputEditText_RatingMin.getText());
         String maxValue = String.valueOf(TextInputEditText_RatingMax.getText());
@@ -217,30 +245,30 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         String minRuntimeValue = String.valueOf(TextInputEditText_RuntimeMin.getText());
         String maxRuntimeValue = String.valueOf(TextInputEditText_RuntimeMax.getText());
 
-        if(!minValue.equals("") && Float.parseFloat(minValue) > 10){
-            Toast.makeText(AdvancedFilterForm.this, "Value must not be grater that 10", Toast.LENGTH_SHORT).show();
+        if(!minValue.equals("") && Float.parseFloat(minValue) > ratingLimit){
+            Toast.makeText(AdvancedFilterForm.this, R.string.Common_Validation_RatingMinValue, Toast.LENGTH_SHORT).show();
             return false;
         }
 
-        if(!maxValue.equals("") && Float.parseFloat( maxValue) > 10){
-            Toast.makeText(AdvancedFilterForm.this, "Value must not be grater that 10", Toast.LENGTH_SHORT).show();
+        if(!maxValue.equals("") && Float.parseFloat(maxValue) > ratingLimit){
+            Toast.makeText(AdvancedFilterForm.this, R.string.Common_Validation_RatingMaxValue, Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(!minValue.equals("") && !maxValue.equals("") && Float.parseFloat(minValue) > Float.parseFloat( maxValue)){
-            Toast.makeText(AdvancedFilterForm.this, "Minimum rating must not be greater that maximum rating", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdvancedFilterForm.this, R.string.Common_Validation_RatingMinGreaterThanMax, Toast.LENGTH_SHORT).show();
 
             return false;
         }
 
         if(!minVotesValue.equals("") && !maxVotesValue.equals("") && Float.parseFloat(minVotesValue) > Float.parseFloat(maxVotesValue)){
-            Toast.makeText(AdvancedFilterForm.this, "Minimum votes must not be greater that maximum votes", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdvancedFilterForm.this, R.string.Common_Validation_VotesMinGreaterThanMax, Toast.LENGTH_SHORT).show();
 
             return false;
         }
 
         if(!minRuntimeValue.equals("") && !maxRuntimeValue.equals("") && Float.parseFloat(minRuntimeValue) > Float.parseFloat(maxRuntimeValue)){
-            Toast.makeText(AdvancedFilterForm.this, "Minimum runtime must not be greater that maximum runtime", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdvancedFilterForm.this, R.string.Common_Validation_RuntimeMinGreaterThanMax, Toast.LENGTH_SHORT).show();
 
             return false;
         }

@@ -7,15 +7,15 @@
     android:layout_height="match_parent">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".MovieActivities.AdvancedFilterForm">
 
     <TextView
-        android:text="Advanced Filter Form"
+        android:text="@string/AdvancedFilterForm_Title"
         android:paddingTop="10dp"
         android:textAlignment="center"
-        android:textSize="22dp"
+        android:textSize="22sp"
         android:textColor="@color/white"
         android:id="@+id/view"
         android:layout_width="match_parent"
@@ -34,15 +34,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Title"
+            android:hint="@string/AdvancedFilterForm_TitleInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/TextInputEditText_Title"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -50,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Genre(s)"
+            android:hint="@string/AdvancedFilterForm_GenreInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -58,8 +57,7 @@
                 android:id="@+id/TextInputEditText_Genres"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -70,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Title Type"
+            android:hint="@string/AdvancedFilterForm_TitleTypeInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -78,8 +76,7 @@
                 android:id="@+id/textInputEditText_TitleType"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -97,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
-                android:hint="Rating From"
+                android:hint="@string/AdvancedFilterForm_RatingFromInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -105,12 +102,11 @@
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
-
+                android:contentDescription="@string/AdvancedFilterForm_Divider"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -123,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Rating To"
+                android:hint="@string/AdvancedFilterForm_RatingToInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -131,8 +127,7 @@
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -143,15 +138,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Keywords"
+            android:hint="@string/AdvancedFilterForm_KeywordsInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditText_Keywords"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -167,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
-                android:hint="Votes From"
+                android:hint="@string/AdvancedFilterForm_VotesFromInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -175,12 +169,11 @@
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
-
+                android:contentDescription="@string/AdvancedFilterForm_Divider"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -193,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Votes To"
+                android:hint="@string/AdvancedFilterForm_VotesToInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -201,8 +194,7 @@
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -213,15 +205,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Plot"
+            android:hint="@string/AdvancedFilterForm_PlotInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditText_Plot"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -237,7 +228,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
-                android:hint="Runtime From"
+                android:hint="@string/AdvancedFilterForm_RuntimeFromInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -245,8 +236,7 @@
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                    android:layout_height="wrap_content"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
@@ -255,7 +245,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_baseline_linear_scale_24" />
+                android:src="@drawable/ic_baseline_linear_scale_24"
+                android:contentDescription="@string/AdvancedFilterForm_Divider" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_weight="1"
@@ -263,7 +254,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="Runtime to"
+                android:hint="@string/AdvancedFilterForm_RuntimeToInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -271,8 +262,7 @@
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                    android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
@@ -282,15 +272,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="Filming location"
+            android:hint="@string/AdvancedFilterForm_FilmingLocationInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textInputEditText_FilmingLocation"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:theme="@style/ThemeOverlay.AppTheme.TextInputEditText.Outlined" />
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
@@ -301,23 +290,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-                android:layout_marginRight="5dp"
+                android:id="@+id/Button_Cancel"
+                android:layout_marginEnd="5dp"
                 android:layout_weight="1"
-                android:text="Cancel"
+                android:text="@string/AdvancedFilterForm_CancelButton"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" >
             </Button>
             <Button
                 android:id="@+id/Button_Submit"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="Search"
+                android:text="@string/AdvancedFilterForm_SearchButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </Button>
 
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
 </ScrollView>

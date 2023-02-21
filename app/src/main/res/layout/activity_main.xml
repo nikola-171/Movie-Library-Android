@@ -18,7 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            app:cardBackgroundColor="@color/purple_500"
+            style="@style/CardView.Light"
+            app:cardBackgroundColor="@color/design_default_color_primary"
             app:cardCornerRadius="10dp"
             app:cardElevation="8dp">
 
@@ -45,7 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_baseline_add_circle_white_50"
-                    />
+                    android:contentDescription="@string/HomePage_PlusIcon" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -86,7 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="20dp"
-                    android:text="What are we searching?"
+                    android:text="@string/HomePage_Searching"
                     android:textAlignment="center"
                     android:textSize="20sp"
                     android:textStyle="italic" />

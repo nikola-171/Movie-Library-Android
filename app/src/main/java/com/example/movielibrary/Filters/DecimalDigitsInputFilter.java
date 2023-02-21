@@ -8,12 +8,10 @@ import java.util.regex.Pattern;
 
 public class DecimalDigitsInputFilter implements InputFilter {
 
-    Pattern pattern = null;
+    Pattern pattern;
 
-    public DecimalDigitsInputFilter(int digitsBeforeZero, int digitsAfterZero){
-        // try [0-9]{1,3}[, ]*[0-9]{0,2}
-        pattern=Pattern.compile("^[0-9]{0,3}[. ]*[0-9]{0,2}$");
-
+    public DecimalDigitsInputFilter(){
+        pattern = Pattern.compile("^[0-9]{0,3}[. ]*[0-9]{0,2}$");
     }
 
     @Override

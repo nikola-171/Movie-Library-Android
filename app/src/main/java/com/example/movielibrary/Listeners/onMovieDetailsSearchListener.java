@@ -2,7 +2,7 @@ package com.example.movielibrary.Listeners;
 
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 
-public interface OnMovieDetailsSearchListener {
+public interface onMovieDetailsSearchListener {
     void onResponse(DetailsMovieResponse response);
     void onError(String message);
 }

@@ -1,5 +1,7 @@
 package com.example.movielibrary.MovieActivities;
 
+import static com.example.movielibrary.Shared.MovieActivitiesAdvancedSearchDefaults.resultCode;
+
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -27,7 +30,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
 import com.example.movielibrary.Adapters.MovieDetails.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Listeners.OnSearchMoviesListener;
+import com.example.movielibrary.Listeners.onSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.R;
@@ -57,16 +60,16 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
-        InitViewElements();
+        initViewElements();
     }
 
-    private void InitViewElements(){
+    private void initViewElements(){
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_open, R.string.menu_close);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Menu_Open, R.string.Menu_Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         recyclerView.setVisibility(View.GONE);
         ConstraintLayout_searchAnimation = findViewById(R.id.ConstraintLayout_searchAnimation);
         ImageView_advancedSearch = findViewById(R.id.ImageView_advancedSearch);
-        ImageView_advancedSearch.setOnClickListener(this::OpenAdvancedSearchForm);
+        ImageView_advancedSearch.setOnClickListener(this::openAdvancedSearchForm);
 
         navigationView.setNavigationItemSelectedListener(item -> {
 
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
             @Override
             public boolean onQueryTextSubmit(String query) {
                 // we call the api
-                ShowLoadingAnimation();
+                showLoadingAnimation();
 
                 InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
@@ -129,30 +132,30 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         });
     }
 
-    private void OpenAdvancedSearchForm(View view) {
+    private void openAdvancedSearchForm(View view) {
         Intent i = new Intent(MainActivity.this, AdvancedFilterForm.class);
         activityResult.launch(i);
     }
 
-    private final OnSearchMoviesListener listener = new OnSearchMoviesListener() {
+    private final onSearchMoviesListener listener = new onSearchMoviesListener() {
         @Override
         public void onResponse(SearchResult result) {
             if(result == null || (result.getItems() != null && result.getItems().size() <= 0)){
-                HideLoadingAnimation();
-                Toast.makeText(MainActivity.this, R.string.details_search_no_data, Toast.LENGTH_LONG).show();
+                hideLoadingAnimation();
+                Toast.makeText(MainActivity.this, R.string.HomePage_NoDataFound, Toast.LENGTH_LONG).show();
                 return;
             }
 
             if(result.getErrorMessage() != null && !result.getErrorMessage().equals("")){
-                HideLoadingAnimation();
+                hideLoadingAnimation();
 
                 Toast.makeText(MainActivity.this, result.getErrorMessage(), Toast.LENGTH_LONG).show();
                 return;
             }
 
             if(result.getItems() == null){
-                HideLoadingAnimation();
-                Toast.makeText(MainActivity.this, R.string.api_error_response, Toast.LENGTH_LONG).show();
+                hideLoadingAnimation();
+                Toast.makeText(MainActivity.this, R.string.Common_ApiErrorResponse, Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -161,8 +164,8 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
         @Override
         public void onError(String error) {
-            HideLoadingAnimation();
-            Toast.makeText(MainActivity.this, R.string.api_error_response, Toast.LENGTH_LONG).show();
+            hideLoadingAnimation();
+            Toast.makeText(MainActivity.this, R.string.Common_ApiErrorResponse, Toast.LENGTH_LONG).show();
         }
     };
 
@@ -175,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         CardView_search_placeholder.setVisibility(View.GONE);
         ConstraintLayout_searchAnimation.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
-        ToggleInputFields(true);
+        toggleInputFields(true);
     }
 
     @Override
@@ -202,35 +205,34 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         .putExtra(MovieActivitiesDefaults.DATA, id).putExtra(MovieActivitiesDefaults.PARENT, MainActivity.class.toString()));
     }
 
-    private void ShowLoadingAnimation(){
+    private void showLoadingAnimation(){
         searchPlaceholderAnimation.setAnimation(R.raw.loading);
         searchPlaceholderAnimation.setRepeatCount(LottieDrawable.INFINITE);
         searchPlaceholderAnimation.playAnimation();
-        ToggleInputFields(false);
+        toggleInputFields(false);
     }
 
-    private void HideLoadingAnimation(){
+    private void hideLoadingAnimation(){
         searchPlaceholderAnimation.setAnimation(R.raw.watch);
         searchPlaceholderAnimation.setRepeatCount(0);
         searchPlaceholderAnimation.playAnimation();
-        ToggleInputFields(true);
-
+        toggleInputFields(true);
     }
 
-    private void ToggleInputFields(boolean val){
+    private void toggleInputFields(boolean val){
         searchView.setFocusable(val);
         ImageView_advancedSearch.setEnabled(val);
     }
 
     ActivityResultLauncher<Intent> activityResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if(result.getResultCode() == 0){
+                if(result.getResultCode() == resultCode){
                     Intent i = result.getData();
 
                     if(i != null){
                         HashMap<String, Object> args = (HashMap<String, Object>) i.getSerializableExtra("data");
 
-                        ShowLoadingAnimation();
+                        showLoadingAnimation();
 
                         InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
                         imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);

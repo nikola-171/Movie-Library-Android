@@ -32,10 +32,10 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
         super.onCreate(savedInstanceState);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_saved_movies);
-        InitViewElements();
+        initViewElements();
     }
 
-    private void InitViewElements() {
+    private void initViewElements() {
         dbHandler = new DBHandler(SavedMoviesActivity.this);
         CardView_displayMovies = findViewById(R.id.CardView_savedMovies);
         CardView_noMoviesSaved = findViewById(R.id.CardView_noMoviesSaved);
