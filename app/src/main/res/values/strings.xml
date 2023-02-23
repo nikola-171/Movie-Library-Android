@@ -62,4 +62,7 @@
     <string name="Common_Validation_RatingMinGreaterThanMax">Minimum rating must not be greater that maximum rating</string>
     <string name="Common_Validation_VotesMinGreaterThanMax">Minimum votes must not be greater that maximum votes</string>
     <string name="Common_Validation_RuntimeMinGreaterThanMax">Minimum runtime must not be greater that maximum runtime</string>
+    <string name="DetailsActivity_SimilarMovies">Similar Movies</string>
+    <string name="DetailsActivity_Actors">Actors</string>
+    <string name="DetailsActivity_Poster">Poster</string>
 </resources>

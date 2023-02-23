@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
     <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".MovieActivities.DetailsActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/ConstrainLayout_LoadingWrapper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ConstrainLayout_LoadingWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/searchPlaceholderAnimation"
@@ -27,8 +26,7 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/loading" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
             android:id="@+id/detailsPageContent"
@@ -48,17 +46,18 @@
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:orientation="vertical">
+
                         <LinearLayout
                             android:orientation="horizontal"
-                            android:layout_weight="5"
+                            android:weightSum="5"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp">
+                            android:layout_height="wrap_content">
+
                             <TextView
                                 android:layout_weight="4"
                                 android:id="@+id/textView_movie_name"
@@ -71,12 +70,13 @@
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
                                 android:textStyle="bold"/>
+
                             <ImageButton
                                 android:background="@android:color/transparent"
                                 android:id="@+id/ImageButton_action"
                                 android:layout_weight="1"
                                 android:layout_gravity="center"
-                                android:layout_marginRight="10dp"
+                                android:layout_marginEnd="10dp"
                                 android:layout_width="20dp"
                                 android:layout_height="50dp"
                                 android:contentDescription="@string/MovieDetails_SaveMovieButtonMessage" />
@@ -90,12 +90,12 @@
                             app:cardCornerRadius="8dp" android:layout_width="wrap_content">
 
                             <ImageView
-
                                 android:src="@drawable/icon"
                                 android:layout_gravity="center"
                                 android:id="@+id/imageView_movie_poster"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent" />
+                                android:layout_height="match_parent"
+                                android:contentDescription="@string/DetailsActivity_Poster" />
                         </androidx.cardview.widget.CardView>
 
 
@@ -107,10 +107,10 @@
                             android:textColor="@color/black"
                             android:textSize="18sp"
                             android:layout_margin="10dp"
-                            android:textStyle="normal">
+                            android:textStyle="normal"/>
 
-                        </TextView>
                     </LinearLayout>
+
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -120,10 +120,12 @@
                     app:cardElevation="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
+
                         <TextView
                             android:textColor="@color/white"
                             android:id="@+id/textView_movie_released"
@@ -133,9 +135,7 @@
                             android:text=""
                             android:textAlignment="textStart"
                             android:textSize="18sp"
-                            android:textStyle="normal">
-
-                        </TextView>
+                            android:textStyle="normal" />
 
                         <TextView
                             android:id="@+id/textView_movie_runtime"
@@ -146,7 +146,7 @@
                             android:textAlignment="textStart"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            android:textStyle="normal"/>
+                            android:textStyle="normal" />
 
                         <TextView
                             android:id="@+id/textView_movie_rating"
@@ -157,9 +157,7 @@
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            android:textStyle="normal">
-
-                        </TextView>
+                            android:textStyle="normal" />
 
                         <TextView
                             android:id="@+id/textView_movie_votes"
@@ -170,9 +168,7 @@
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            android:textStyle="normal">
-
-                        </TextView>
+                            android:textStyle="normal" />
 
                         <TextView
                             android:id="@+id/textView_awards"
@@ -183,9 +179,7 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            android:textStyle="normal">
-
-                        </TextView>
+                            android:textStyle="normal" />
 
                         <TextView
                             android:id="@+id/textView_genres"
@@ -196,9 +190,7 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            android:textStyle="normal">
-
-                        </TextView>
+                            android:textStyle="normal" />
 
                         <TextView
                             android:id="@+id/textView_companies"
@@ -209,9 +201,7 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            android:textStyle="normal">
-
-                        </TextView>
+                            android:textStyle="normal" />
 
                         <TextView
                             android:id="@+id/textView_languages"
@@ -222,9 +212,7 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            android:textStyle="normal">
-
-                        </TextView>
+                            android:textStyle="normal" />
 
                         <TextView
                             android:id="@+id/textView_keywords"
@@ -235,9 +223,8 @@
                             android:textAlignment="viewStart"
                             android:textColor="@color/white"
                             android:textSize="18sp"
-                            android:textStyle="normal">
+                            android:textStyle="normal" />
 
-                        </TextView>
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -260,21 +247,20 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
                                 android:padding="8dp"
-                                android:text="Actors"
+                                android:text="@string/DetailsActivity_Actors"
                                 android:textAlignment="center"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
+
                         </LinearLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
-
                             android:id="@+id/recyclerView_movie_cast"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -284,7 +270,6 @@
 
                         <androidx.cardview.widget.CardView
                             app:cardBackgroundColor="@color/purple_500"
-
                             android:layout_marginTop="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -297,31 +282,30 @@
                                 <TextView
                                     android:layout_height="wrap_content"
                                     android:padding="8dp"
-                                    android:text="Similar Movies"
+                                    android:text="@string/DetailsActivity_SimilarMovies"
                                     android:textAlignment="center"
                                     android:textColor="@color/white"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
                                     android:layout_width="match_parent"/>
-                                <androidx.recyclerview.widget.RecyclerView
 
+                                <androidx.recyclerview.widget.RecyclerView
                                     android:id="@+id/recyclerView_similarMovies"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:nestedScrollingEnabled="false">
+                                    android:nestedScrollingEnabled="false" />
 
-                                </androidx.recyclerview.widget.RecyclerView>
                             </LinearLayout>
 
-
                         </androidx.cardview.widget.CardView>
-                    </LinearLayout>
 
+                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 
-
             </LinearLayout>
+
         </ScrollView>
+
     </LinearLayout>
 
