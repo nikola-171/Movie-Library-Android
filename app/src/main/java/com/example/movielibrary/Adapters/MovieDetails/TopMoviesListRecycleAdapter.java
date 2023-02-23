@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class TopListRecycleAdapter extends RecyclerView.Adapter<TopListViewHolder>{
+public class TopMoviesListRecycleAdapter extends RecyclerView.Adapter<TopMoviesListViewHolder>{
 
     Context context;
     List<TopListMovieModel> list;
     OnMovieClickListener listener;
 
-    public TopListRecycleAdapter(Context context, List<TopListMovieModel> list, OnMovieClickListener listener) {
+    public TopMoviesListRecycleAdapter(Context context, List<TopListMovieModel> list, OnMovieClickListener listener) {
         this.context = context;
         this.list = list;
         this.listener = listener;
@@ -35,12 +35,12 @@ public class TopListRecycleAdapter extends RecyclerView.Adapter<TopListViewHolde
 
     @NonNull
     @Override
-    public TopListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new TopListViewHolder(LayoutInflater.from(context).inflate(R.layout.top_list, parent, false));
+    public TopMoviesListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new TopMoviesListViewHolder(LayoutInflater.from(context).inflate(R.layout.top_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TopListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TopMoviesListViewHolder holder, int position) {
         NumberFormat formatter = NumberFormat.getInstance(new Locale("en_US"));
 
         holder.textView_movie.setText(list.get(position).getTitle());
@@ -63,13 +63,13 @@ public class TopListRecycleAdapter extends RecyclerView.Adapter<TopListViewHolde
     }
 }
 
-class TopListViewHolder extends RecyclerView.ViewHolder {
+class TopMoviesListViewHolder extends RecyclerView.ViewHolder {
 
     ImageView imageView_poster;
     TextView textView_movie, TextView_Place, TextView_Crew, TextView_Rating, TextView_Votes;
     CardView homeContainer;
 
-    public TopListViewHolder(@NonNull View itemView) {
+    public TopMoviesListViewHolder(@NonNull View itemView) {
         super(itemView);
         TextView_Rating = itemView.findViewById(R.id.TextView_Rating);
         TextView_Crew = itemView.findViewById(R.id.TextView_Crew);

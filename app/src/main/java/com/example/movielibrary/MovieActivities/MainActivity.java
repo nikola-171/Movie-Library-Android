@@ -195,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     }
 
     private void displayTop250Movies() {
-        Intent intent = new Intent(MainActivity.this, TopList.class);
+        Intent intent = new Intent(MainActivity.this, TopMoviesList.class);
         startActivity(intent);
     }
 

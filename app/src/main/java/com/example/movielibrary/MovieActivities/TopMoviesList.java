@@ -15,16 +15,16 @@ import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnTopListMovieSearchListener;
 import com.example.movielibrary.Models.SearchModels.TopListSearchResult;
 import com.example.movielibrary.R;
-import com.example.movielibrary.Adapters.MovieDetails.TopListRecycleAdapter;
+import com.example.movielibrary.Adapters.MovieDetails.TopMoviesListRecycleAdapter;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
 import com.example.movielibrary.Utils.ImdbApi.RequestManager;
 
 import java.util.Objects;
 
-public class TopList extends AppCompatActivity implements OnTopListMovieSearchListener, OnMovieClickListener {
+public class TopMoviesList extends AppCompatActivity implements OnTopListMovieSearchListener, OnMovieClickListener {
 
     RecyclerView recyclerView;
-    TopListRecycleAdapter adapter;
+    TopMoviesListRecycleAdapter adapter;
     ConstraintLayout ConstrainLayout_LoadingAnimation;
     LottieAnimationView LottieAnimationView_AnimationLoadingView;
 
@@ -37,7 +37,7 @@ public class TopList extends AppCompatActivity implements OnTopListMovieSearchLi
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         LottieAnimationView_AnimationLoadingView = findViewById(R.id.LottieAnimationView_AnimationLoadingView);
         ConstrainLayout_LoadingAnimation = findViewById(R.id.ConstrainLayout_LoadingAnimation);
-        RequestManager requestManager = new RequestManager(TopList.this);
+        RequestManager requestManager = new RequestManager(TopMoviesList.this);
 
         recyclerView = findViewById(R.id.RecycleView_TopList);
 
@@ -47,9 +47,9 @@ public class TopList extends AppCompatActivity implements OnTopListMovieSearchLi
 
     private void handleTop250MoviesList(TopListSearchResult result){
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(TopList.this, 1));
+        recyclerView.setLayoutManager(new GridLayoutManager(TopMoviesList.this, 1));
 
-        adapter = new TopListRecycleAdapter(this, result.getItems(), this);
+        adapter = new TopMoviesListRecycleAdapter(this, result.getItems(), this);
         recyclerView.setAdapter(adapter);
         LottieAnimationView_AnimationLoadingView.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
@@ -58,8 +58,8 @@ public class TopList extends AppCompatActivity implements OnTopListMovieSearchLi
     @Override
     public void onResponse(TopListSearchResult result) {
         if(!result.getErrorMessage().equals("")){
-            Toast.makeText(TopList.this, result.getErrorMessage(), Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(TopList.this, MainActivity.class);
+            Toast.makeText(TopMoviesList.this, result.getErrorMessage(), Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(TopMoviesList.this, MainActivity.class);
             startActivity(i);
             finish();
         }else{
@@ -69,16 +69,16 @@ public class TopList extends AppCompatActivity implements OnTopListMovieSearchLi
 
     @Override
     public void onError(String error) {
-        Toast.makeText(TopList.this, error, Toast.LENGTH_SHORT).show();
-        Intent i = new Intent(TopList.this, MainActivity.class);
+        Toast.makeText(TopMoviesList.this, error, Toast.LENGTH_SHORT).show();
+        Intent i = new Intent(TopMoviesList.this, MainActivity.class);
         startActivity(i);
         finish();
     }
 
     @Override
     public void onMovieClicked(String id) {
-            startActivity(new Intent(TopList.this, DetailsActivity.class)
-                    .putExtra(MovieActivitiesDefaults.DATA, id).putExtra(MovieActivitiesDefaults.PARENT, TopList.class.toString()));
+            startActivity(new Intent(TopMoviesList.this, DetailsActivity.class)
+                    .putExtra(MovieActivitiesDefaults.DATA, id).putExtra(MovieActivitiesDefaults.PARENT, TopMoviesList.class.toString()));
 
     }
 }

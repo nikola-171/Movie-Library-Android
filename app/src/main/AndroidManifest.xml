@@ -13,7 +13,7 @@
         android:theme="@style/Theme.MovieLibrary">
         <activity
             android:parentActivityName=".MovieActivities.MainActivity"
-            android:name=".MovieActivities.TopList"
+            android:name=".MovieActivities.TopMoviesList"
             android:exported="false">
         </activity>
         <activity

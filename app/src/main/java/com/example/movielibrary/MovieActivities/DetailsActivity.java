@@ -89,8 +89,8 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         if (Objects.equals(parent, MainActivity.class.toString())) {
             i = new Intent(this, MainActivity.class);
         }
-        else if(Objects.equals(parent, TopList.class.toString())){
-            i = new Intent(this, TopList.class);
+        else if(Objects.equals(parent, TopMoviesList.class.toString())){
+            i = new Intent(this, TopMoviesList.class);
         }
         else if(Objects.equals(parent, DetailsActivity.class.toString())){
             i = new Intent(this, DetailsActivity.class);
