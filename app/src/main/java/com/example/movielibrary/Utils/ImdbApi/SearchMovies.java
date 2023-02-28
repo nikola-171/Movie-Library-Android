@@ -13,42 +13,61 @@ import retrofit2.http.QueryMap;
 
 public interface SearchMovies {
 
-    @GET("en/API/Search/key/{movie_title}")
+    @GET("en/API/Search/{api_key}/{movie_title}")
     Call<SearchResult> searchMovies(
-            @Path("movie_title") String movie_title
+            @Path("movie_title") String movie_title,
+            @Path("api_key") String api_key
     );
 
-    @GET("en/API/Title/key/{movie_id}")
+    @GET("en/API/Title/{api_key}/{movie_id}")
     Call<DetailsMovieResponse> getMovieDetails (
-            @Path("movie_id") String movie_id
+            @Path("movie_id") String movie_id,
+            @Path("api_key") String api_key
     );
 
-    @GET("en/API/AdvancedSearch/key")
+    @GET("en/API/AdvancedSearch/{api_key}")
     Call<SearchResult> advancedSearch(
+            @Path("api_key") String api_key,
             @QueryMap Map<String, Object> map
     );
 
-    @GET("en/API/Top250Movies/key")
-    Call<TopListSearchResult> getTop250Movies ();
+    @GET("en/API/Top250Movies/{api_key}")
+    Call<TopListSearchResult> getTop250Movies (
+            @Path("api_key") String api_key
+    );
 
-    @GET("en/API/Top250TVs/key")
-    Call<TopListSearchResult> getTopTvs ();
+    @GET("en/API/Top250TVs/{api_key}")
+    Call<TopListSearchResult> getTopTvs (
+            @Path("api_key") String api_key
+    );
 
-    @GET("en/API/MostPopularMovies/key")
-    Call<TopListSearchResult> mostPopularMovies ();
+    @GET("en/API/MostPopularMovies/{api_key}")
+    Call<TopListSearchResult> mostPopularMovies (
+            @Path("api_key") String api_key
+    );
 
-    @GET("en/API/MostPopularTVs/key")
-    Call<TopListSearchResult> mostPopularTvs ();
+    @GET("en/API/MostPopularTVs/{api_key}")
+    Call<TopListSearchResult> mostPopularTvs (
+            @Path("api_key") String api_key
+    );
 
-    @GET("en/API/InTheaters/key")
-    Call<TopListSearchResult> inTheaters ();
+    @GET("en/API/InTheaters/{api_key}")
+    Call<TopListSearchResult> inTheaters (
+            @Path("api_key") String api_key
+    );
 
-    @GET("en/API/ComingSoon/key")
-    Call<TopListSearchResult> comingSoon ();
+    @GET("en/API/ComingSoon/{api_key}")
+    Call<TopListSearchResult> comingSoon (
+            @Path("api_key") String api_key
+    );
 
-    @GET("en/API/BoxOffice/key")
-    Call<TopListSearchResult> boxOffice ();
+    @GET("en/API/BoxOffice/{api_key}")
+    Call<TopListSearchResult> boxOffice (
+            @Path("api_key") String api_key
+    );
 
-    @GET("en/API/BoxOfficeAllTime/key")
-    Call<TopListSearchResult> boxOfficeAllTime ();
+    @GET("en/API/BoxOfficeAllTime/{api_key}")
+    Call<TopListSearchResult> boxOfficeAllTime (
+            @Path("api_key") String api_key
+    );
 }

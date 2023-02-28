@@ -1,10 +1,13 @@
 package com.example.movielibrary.Utils.ImdbApi;
 
+import static com.example.movielibrary.Shared.Settings.IMDB_API_KEY;
+
 import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Listeners.onMovieDetailsSearchListener;
 import com.example.movielibrary.Listeners.onSearchMoviesListener;
 import com.example.movielibrary.Listeners.OnTopListMovieSearchListener;
@@ -30,11 +33,14 @@ public class RequestManager {
 
     public RequestManager(Context context) {
         this.context = context;
+        imdbApiKey = new DBHandler(context).getSettingByName(IMDB_API_KEY);
     }
+
+    private String imdbApiKey;
 
     public void searchMovies(onSearchMoviesListener listener, String movie_title){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<SearchResult> call = searchMovies.searchMovies(movie_title);
+        Call<SearchResult> call = searchMovies.searchMovies(movie_title, imdbApiKey);
 
         call.enqueue(new Callback<SearchResult>() {
             @Override
@@ -55,7 +61,7 @@ public class RequestManager {
 
     public void advancedSearchMovies(onSearchMoviesListener listener, HashMap<String, Object> data){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<SearchResult> call = searchMovies.advancedSearch(data);
+        Call<SearchResult> call = searchMovies.advancedSearch(imdbApiKey, data);
 
         call.enqueue(new Callback<SearchResult>() {
             @Override
@@ -76,7 +82,7 @@ public class RequestManager {
 
     public void searchMovieDetails(onMovieDetailsSearchListener listener, String movie_id){
         SearchMovies getMovieDetails = retrofit.create(SearchMovies.class);
-        Call<DetailsMovieResponse> call = getMovieDetails.getMovieDetails(movie_id);
+        Call<DetailsMovieResponse> call = getMovieDetails.getMovieDetails(movie_id, imdbApiKey);
 
         call.enqueue(new Callback<DetailsMovieResponse>() {
             @Override
@@ -97,7 +103,7 @@ public class RequestManager {
 
     public void top250MoviesSearch(OnTopListMovieSearchListener listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<TopListSearchResult> call = searchMovies.getTop250Movies();
+        Call<TopListSearchResult> call = searchMovies.getTop250Movies(imdbApiKey);
 
         call.enqueue(new Callback<TopListSearchResult>() {
             @Override
@@ -118,7 +124,7 @@ public class RequestManager {
 
     public void topTvsSearch(OnTopListMovieSearchListener listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<TopListSearchResult> call = searchMovies.getTopTvs();
+        Call<TopListSearchResult> call = searchMovies.getTopTvs(imdbApiKey);
 
         call.enqueue(new Callback<TopListSearchResult>() {
             @Override
@@ -139,7 +145,7 @@ public class RequestManager {
 
     public void mostPopularMovies(OnTopListMovieSearchListener listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<TopListSearchResult> call = searchMovies.mostPopularMovies();
+        Call<TopListSearchResult> call = searchMovies.mostPopularMovies(imdbApiKey);
 
         call.enqueue(new Callback<TopListSearchResult>() {
             @Override
@@ -160,7 +166,7 @@ public class RequestManager {
 
     public void mostPopularTvs(OnTopListMovieSearchListener listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<TopListSearchResult> call = searchMovies.mostPopularTvs();
+        Call<TopListSearchResult> call = searchMovies.mostPopularTvs(imdbApiKey);
 
         call.enqueue(new Callback<TopListSearchResult>() {
             @Override
@@ -181,7 +187,7 @@ public class RequestManager {
 
     public void inTheaters(OnTopListMovieSearchListener listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<TopListSearchResult> call = searchMovies.inTheaters();
+        Call<TopListSearchResult> call = searchMovies.inTheaters(imdbApiKey);
 
         call.enqueue(new Callback<TopListSearchResult>() {
             @Override
@@ -202,7 +208,7 @@ public class RequestManager {
 
     public void comingSoon(OnTopListMovieSearchListener listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<TopListSearchResult> call = searchMovies.comingSoon();
+        Call<TopListSearchResult> call = searchMovies.comingSoon(imdbApiKey);
 
         call.enqueue(new Callback<TopListSearchResult>() {
             @Override
@@ -223,7 +229,7 @@ public class RequestManager {
 
     public void boxOffice(OnTopListMovieSearchListener listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<TopListSearchResult> call = searchMovies.boxOffice();
+        Call<TopListSearchResult> call = searchMovies.boxOffice(imdbApiKey);
 
         call.enqueue(new Callback<TopListSearchResult>() {
             @Override
@@ -244,7 +250,7 @@ public class RequestManager {
 
     public void boxOfficeAllTime(OnTopListMovieSearchListener listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<TopListSearchResult> call = searchMovies.boxOfficeAllTime();
+        Call<TopListSearchResult> call = searchMovies.boxOfficeAllTime(imdbApiKey);
 
         call.enqueue(new Callback<TopListSearchResult>() {
             @Override

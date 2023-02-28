@@ -14,9 +14,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "movieLibrary";
 
-    private static final int DB_VERSION = 1;
+    private static final int DB_VERSION = 2;
 
     private static final String TABLE_NAME = "movies";
+
+    private static final String TABLE_NAME_SETTINGS = "settings";
+    private static final String TABLE_NAME_SETTING_COL_NAME = "name";
+    private static final String TABLE_NAME_SETTING_COL_VALUE = "value";
 
     private static final String ID_COL = "id";
 
@@ -38,12 +42,19 @@ public class DBHandler extends SQLiteOpenHelper {
                 + POSTER_COL + " TEXT,"
                 + MOVIE_ID_COL + " TEXT)";
 
+        String settingsTable = "CREATE TABLE " + TABLE_NAME_SETTINGS + " ("
+                + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + TABLE_NAME_SETTING_COL_NAME + " TEXT,"
+                + TABLE_NAME_SETTING_COL_VALUE + " TEXT)";
+
         sqLiteDatabase.execSQL(query);
+        sqLiteDatabase.execSQL(settingsTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        //sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_SETTINGS);
         onCreate(sqLiteDatabase);
     }
 
@@ -60,6 +71,45 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
 
         db.close();
+    }
+
+    public void insertSetting(String name, String value) {
+        if(getSettingByName(name) == null){
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+            values.put(TABLE_NAME_SETTING_COL_NAME, name);
+            values.put(TABLE_NAME_SETTING_COL_VALUE, value);
+
+            db.insert(TABLE_NAME_SETTINGS, null, values);
+
+            db.close();
+        }else{
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            ContentValues values = new ContentValues();
+
+            values.put(TABLE_NAME_SETTING_COL_VALUE, value);
+
+            String[] args = new String[]{name};
+
+            db.update(TABLE_NAME_SETTINGS, values, TABLE_NAME_SETTING_COL_NAME +"=?", args);
+
+            db.close();
+        }
+
+    }
+
+    public String getSettingByName(String name) {
+        SQLiteDatabase db = getWritableDatabase();
+        String selectString = "SELECT " + TABLE_NAME_SETTING_COL_VALUE + " FROM " + TABLE_NAME_SETTINGS + " WHERE " + TABLE_NAME_SETTING_COL_NAME + " =?";
+
+        Cursor cursor = db.rawQuery(selectString, new String[] {name});
+        String val = cursor.moveToFirst() ? cursor.getString(0) : null;
+
+        cursor.close();
+        db.close();
+        return val;
     }
 
     public boolean isMovieInDatabase(String movieId){

@@ -49,17 +49,18 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:hint="@string/AdvancedFilterForm_TitleInput"
+                    android:hint="Imdb api key"
                     app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/TextInputEditText_Title"
+                        android:id="@+id/TextInputEditText_ImdbApiKey"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="66dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
+                    android:id="@+id/Button_SaveSettings"
                     android:layout_marginTop="35dp"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
