@@ -44,10 +44,35 @@ public class TopMoviesListRecycleAdapter extends RecyclerView.Adapter<TopMoviesL
         NumberFormat formatter = NumberFormat.getInstance(new Locale("en_US"));
 
         holder.textView_movie.setText(list.get(position).getTitle());
-        holder.TextView_Crew.setText(list.get(position).getCrew());
-        holder.TextView_Votes.setText(String.format("%s votes", formatter.format(Double.parseDouble(list.get(position).getImDbRatingCount()))));
-        holder.TextView_Rating.setText(String.format("%s/10", list.get(position).getImDbRating()));
-        holder.TextView_Place.setText(String.format("#%s", list.get(position).getRank()));
+
+        String crew = list.get(position).getCrew();
+
+        if(crew != null && !crew.equals("")){
+            holder.TextView_Crew.setText(crew);
+        }else{
+            holder.TextView_Crew.setVisibility(View.GONE);
+        }
+
+        String ratingCount = list.get(position).getImDbRatingCount();
+
+        if(ratingCount != null && !ratingCount.equals("")){
+            holder.TextView_Votes.setText(String.format("%s votes", formatter.format(Double.parseDouble(ratingCount))));
+        }
+
+        String rating = list.get(position).getImDbRating();
+
+        if(rating != null && !rating.equals("")){
+            holder.TextView_Rating.setText(String.format("%s/10", rating));
+        }else{
+            holder.TextView_Rating.setVisibility(View.GONE);
+        }
+
+        String rank = list.get(position).getRank();
+
+        if(rank != null && !rank.equals("")){
+            holder.TextView_Place.setText(String.format("#%s", rank));
+        }
+
         if(list.get(position).getImage() != null && !Objects.equals(list.get(position).getImage(), "")){
             Picasso.get().load(list.get(position).getImage()).fit().into(holder.imageView_poster);
         }

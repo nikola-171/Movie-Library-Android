@@ -33,6 +33,14 @@ import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.onSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Database.DBHandler;
+import com.example.movielibrary.MovieActivities.TopLists.BoxOffice;
+import com.example.movielibrary.MovieActivities.TopLists.BoxOfficeAllTime;
+import com.example.movielibrary.MovieActivities.TopLists.ComingSoon;
+import com.example.movielibrary.MovieActivities.TopLists.InTheaters;
+import com.example.movielibrary.MovieActivities.TopLists.MostPopularMovies;
+import com.example.movielibrary.MovieActivities.TopLists.MostPopularTvs;
+import com.example.movielibrary.MovieActivities.TopLists.TopMoviesList;
+import com.example.movielibrary.MovieActivities.TopLists.TopTvsList;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
 import com.example.movielibrary.Utils.ImdbApi.RequestManager;
@@ -91,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         ImageView_advancedSearch = findViewById(R.id.ImageView_advancedSearch);
         ImageView_advancedSearch.setOnClickListener(this::openAdvancedSearchForm);
 
+        navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(item -> {
 
             if (item.getItemId() == R.id.nav_saved) {
@@ -100,6 +109,39 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
             if (item.getItemId() == R.id.nav_top250Movies) {
                 displayTop250Movies();
             }
+
+            if (item.getItemId() == R.id.nav_topTvs) {
+                displayTopTvs();
+            }
+
+            if (item.getItemId() == R.id.nav_mostPopularMovies) {
+                displayMostPopularMovies();
+            }
+
+            if (item.getItemId() == R.id.nav_mostPopularTvs) {
+                displayMostPopularTvs();
+            }
+
+            if (item.getItemId() == R.id.nav_inTheaters) {
+                displayInTheaters();
+            }
+
+            if (item.getItemId() == R.id.nav_comingSoon) {
+                displayComingSoon();
+            }
+
+            if (item.getItemId() == R.id.nav_boxOffice) {
+                displayBoxOffice();
+            }
+
+            if (item.getItemId() == R.id.nav_boxOfficeAllTime) {
+                displayBoxOfficeAllTime();
+            }
+
+            if (item.getItemId() == R.id.nav_settings) {
+                displaySettings();
+            }
+
             return false;
         });
 
@@ -196,6 +238,46 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
     private void displayTop250Movies() {
         Intent intent = new Intent(MainActivity.this, TopMoviesList.class);
+        startActivity(intent);
+    }
+
+    private void displayTopTvs() {
+        Intent intent = new Intent(MainActivity.this, TopTvsList.class);
+        startActivity(intent);
+    }
+
+    private void displayMostPopularMovies() {
+        Intent intent = new Intent(MainActivity.this, MostPopularMovies.class);
+        startActivity(intent);
+    }
+
+    private void displayMostPopularTvs() {
+        Intent intent = new Intent(MainActivity.this, MostPopularTvs.class);
+        startActivity(intent);
+    }
+
+    private void displayInTheaters() {
+        Intent intent = new Intent(MainActivity.this, InTheaters.class);
+        startActivity(intent);
+    }
+
+    private void displayComingSoon() {
+        Intent intent = new Intent(MainActivity.this, ComingSoon.class);
+        startActivity(intent);
+    }
+
+    private void displayBoxOffice() {
+        Intent intent = new Intent(MainActivity.this, BoxOffice.class);
+        startActivity(intent);
+    }
+
+    private void displayBoxOfficeAllTime() {
+        Intent intent = new Intent(MainActivity.this, BoxOfficeAllTime.class);
+        startActivity(intent);
+    }
+
+    private void displaySettings() {
+        Intent intent = new Intent(MainActivity.this, Settings.class);
         startActivity(intent);
     }
 

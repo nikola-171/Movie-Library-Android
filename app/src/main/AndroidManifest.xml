@@ -12,10 +12,80 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieLibrary">
         <activity
-            android:parentActivityName=".MovieActivities.MainActivity"
-            android:name=".MovieActivities.TopMoviesList"
+            android:name=".MovieActivities.Settings"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
         </activity>
+        <activity
+            android:name=".MovieActivities.TopLists.BoxOfficeAllTime"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MovieActivities.TopLists.BoxOffice"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MovieActivities.TopLists.ComingSoon"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MovieActivities.TopLists.TopLists"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MovieActivities.TopLists.InTheaters"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MovieActivities.TopLists.MostPopularTvs"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MovieActivities.TopLists.MostPopularMovies"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MovieActivities.TopLists.TopTvsList"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MovieActivities.TopLists.TopMoviesList"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.MainActivity" />
         <activity
             android:name=".MovieActivities.AdvancedFilterForm"
             android:exported="false"

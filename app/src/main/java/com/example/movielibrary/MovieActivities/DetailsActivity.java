@@ -24,6 +24,7 @@ import com.example.movielibrary.Adapters.MovieDetails.SimilarMoviesRecycleAdapte
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.onMovieDetailsSearchListener;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
+import com.example.movielibrary.MovieActivities.TopLists.TopMoviesList;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;

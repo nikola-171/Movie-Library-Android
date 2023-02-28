@@ -10,8 +10,66 @@
              android:title="@string/Nav_Saved"
              android:icon="@drawable/ic_baseline_save_alt_24"/>
 
-         <item android:id="@+id/nav_top250Movies"
-             android:title="@string/Nav_Top250Movies"
-             android:icon="@drawable/ic_baseline_camera_alt_24"/>
+         <item android:title="Most popular">
+             <menu>
+                 <group android:checkableBehavior="single">
+
+                     <item android:id="@+id/nav_top250Movies"
+                         android:title="@string/Nav_Top250Movies"
+                         android:icon="@drawable/ic_baseline_stars_24"/>
+
+                     <item android:id="@+id/nav_topTvs"
+                         android:title="Top 250 TVs"
+                         android:icon="@drawable/ic_baseline_stars_24"/>
+
+                     <item android:id="@+id/nav_mostPopularMovies"
+                         android:title="Most popular movies"
+                         android:icon="@drawable/ic_baseline_stars_24"/>
+
+                     <item android:id="@+id/nav_mostPopularTvs"
+                         android:title="Most popular TVs"
+                         android:icon="@drawable/ic_baseline_stars_24"/>
+
+                     <item android:id="@+id/nav_inTheaters"
+                         android:title="In theaters"
+                         android:icon="@drawable/ic_baseline_stars_24"/>
+
+                     <item android:id="@+id/nav_comingSoon"
+                         android:title="Coming soon"
+                         android:icon="@drawable/ic_baseline_stars_24"/>
+
+                     <item android:id="@+id/nav_boxOffice"
+                         android:title="Box office"
+                         android:icon="@drawable/ic_baseline_stars_24"/>
+
+                     <item android:id="@+id/nav_boxOfficeAllTime"
+                         android:title="Box office all time"
+                         android:icon="@drawable/ic_baseline_stars_24"/>
+                 </group>
+             </menu>
+         </item>
+
+         <item android:title="Other"
+               android:id="@+id/nav_other">
+             <menu>
+                 <item android:id="@+id/nav_settings"
+                     android:title="Settings"
+                     android:icon="@drawable/ic_baseline_settings_applications_24"/>
+
+                 <item android:id="@+id/nav_about"
+                     android:title="About"
+                     android:icon="@drawable/ic_baseline_info_24"/>
+             </menu>
+
+         </item>
+
+
+
+
+
+
      </group>
+
+
+
 </menu>
