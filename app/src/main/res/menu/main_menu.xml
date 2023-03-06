@@ -4,13 +4,13 @@
          <item
              android:id="@+id/nav_home"
              android:title="@string/Nav_Home"
-             android:icon="@drawable/ic_baseline_home_24"/>
+             android:icon="@drawable/ic_baseline_home_color_24"/>
 
          <item android:id="@+id/nav_saved"
              android:title="@string/Nav_Saved"
-             android:icon="@drawable/ic_baseline_save_alt_24"/>
+             android:icon="@drawable/ic_baseline_save_alt_color_24"/>
 
-         <item android:title="Most popular">
+         <item android:title="@string/Nav_MostPopular">
              <menu>
                  <group android:checkableBehavior="single">
 
@@ -19,57 +19,50 @@
                          android:icon="@drawable/ic_baseline_stars_24"/>
 
                      <item android:id="@+id/nav_topTvs"
-                         android:title="Top 250 TVs"
+                         android:title="@string/Nav_Top250Tvs"
                          android:icon="@drawable/ic_baseline_stars_24"/>
 
                      <item android:id="@+id/nav_mostPopularMovies"
-                         android:title="Most popular movies"
+                         android:title="@string/Nav_MostPopularMovies"
                          android:icon="@drawable/ic_baseline_stars_24"/>
 
                      <item android:id="@+id/nav_mostPopularTvs"
-                         android:title="Most popular TVs"
+                         android:title="@string/Nav_MostPopularTvs"
                          android:icon="@drawable/ic_baseline_stars_24"/>
 
                      <item android:id="@+id/nav_inTheaters"
-                         android:title="In theaters"
+                         android:title="@string/Nav_InTheaters"
                          android:icon="@drawable/ic_baseline_stars_24"/>
 
                      <item android:id="@+id/nav_comingSoon"
-                         android:title="Coming soon"
+                         android:title="@string/Nav_ComingSoon"
                          android:icon="@drawable/ic_baseline_stars_24"/>
 
                      <item android:id="@+id/nav_boxOffice"
-                         android:title="Box office"
+                         android:title="@string/Nav_BoxOffice"
                          android:icon="@drawable/ic_baseline_stars_24"/>
 
                      <item android:id="@+id/nav_boxOfficeAllTime"
-                         android:title="Box office all time"
+                         android:title="@string/Nav_BoxOfficeAllTime"
                          android:icon="@drawable/ic_baseline_stars_24"/>
                  </group>
              </menu>
          </item>
 
-         <item android:title="Other"
+         <item android:title="@string/Nav_Other"
                android:id="@+id/nav_other">
              <menu>
                  <item android:id="@+id/nav_settings"
-                     android:title="Settings"
-                     android:icon="@drawable/ic_baseline_settings_applications_24"/>
+                     android:title="@string/Nav_Settings"
+                     android:icon="@drawable/ic_baseline_settings_filled_24"/>
 
                  <item android:id="@+id/nav_about"
-                     android:title="About"
+                     android:title="@string/Nav_About"
                      android:icon="@drawable/ic_baseline_info_24"/>
              </menu>
 
          </item>
 
-
-
-
-
-
      </group>
-
-
 
 </menu>

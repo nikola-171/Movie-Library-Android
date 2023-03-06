@@ -24,6 +24,7 @@ import com.example.movielibrary.Adapters.MovieDetails.SimilarMoviesRecycleAdapte
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.onMovieDetailsSearchListener;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
+import com.example.movielibrary.MovieActivities.TopLists.BoxOfficeAllTime;
 import com.example.movielibrary.MovieActivities.TopLists.TopMoviesList;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Database.DBHandler;
@@ -96,9 +97,13 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         else if(Objects.equals(parent, DetailsActivity.class.toString())){
             i = new Intent(this, DetailsActivity.class);
         }
-        else {
+        else if (Objects.equals(parent, SavedMoviesActivity.class.toString())){
             i = new Intent(this, SavedMoviesActivity.class);
         }
+        else {
+            i = new Intent(this, BoxOfficeAllTime.class);
+        }
+
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 
         return i;

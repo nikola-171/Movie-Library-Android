@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:id="@+id/CardView_Container"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:weightSum="6"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TextView_Title"
+                    android:textColor="@color/black"
+                    android:padding="8dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textAlignment="viewStart"/>
+
+                <TextView
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/TextView_Rank"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textAlignment="textEnd" />
+    </LinearLayout>
+
+        <TextView
+            android:layout_marginStart="8dp"
+            android:textSize="20sp"
+            android:id="@+id/TextView_LifetimeGrossTitle"
+            android:layout_weight="2"
+            android:text="@string/BoxOfficeAllTimeItem_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:weightSum="6"
+            android:padding="8dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/TextView_WorldwideLifetimeGrossTitle"
+                android:layout_weight="2"
+                android:text="@string/BoxOfficeAllTimeItem_Worldwide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/TextView_WorldwideLifetimeGross"
+                android:layout_weight="4"
+                android:textAlignment="textStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:weightSum="6"
+            android:padding="8dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/TextView_DomesticLifetimeGrossTitle"
+                android:layout_weight="2"
+                android:text="@string/BoxOfficeAllTimeItem_Domestic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/TextView_DomesticLifetimeGross"
+                android:layout_weight="2"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/TextView_Domestic"
+                android:layout_weight="2"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:weightSum="6"
+            android:padding="8dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/TextView_ForeignLifetimeGrossTitle"
+                android:layout_weight="2"
+                android:text="@string/BoxOfficeAllTimeItem_Foreign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/TextView_ForeignLifetimeGross"
+                android:layout_weight="2"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/TextView_Foreign"
+                android:layout_weight="2"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

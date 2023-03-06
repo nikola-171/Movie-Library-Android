@@ -65,4 +65,25 @@
     <string name="DetailsActivity_SimilarMovies">Similar Movies</string>
     <string name="DetailsActivity_Actors">Actors</string>
     <string name="DetailsActivity_Poster">Poster</string>
+    <string name="BoxOfficeAllTime_Title">Box Office All Time</string>
+    <string name="Common_Save">Save</string>
+    <string name="Settings_ApiKeyTitle">Imdb api key</string>
+    <string name="Settings_Title">Settings</string>
+    <string name="BoxOfficeAllTimeItem_Title">Lifetime Gross</string>
+    <string name="BoxOfficeAllTimeItem_Worldwide">Worldwide</string>
+    <string name="BoxOfficeAllTimeItem_Domestic">Domestic</string>
+    <string name="BoxOfficeAllTimeItem_Foreign">Foreign</string>
+    <string name="Settings_EmptyValue">Please enter a value</string>
+    <string name="Settings_ImdbKeyUpdateSuccess">Imdb key successfully updated</string>
+    <string name="Nav_MostPopular">Most popular</string>
+    <string name="Nav_Top250Tvs">Top 250 TVs</string>
+    <string name="Nav_MostPopularMovies">Most popular movies</string>
+    <string name="Nav_MostPopularTvs">Most popular TVs</string>
+    <string name="Nav_InTheaters">In theaters</string>
+    <string name="Nav_ComingSoon">Coming soon</string>
+    <string name="Nav_BoxOffice">Box office</string>
+    <string name="Nav_BoxOfficeAllTime">Box office all time</string>
+    <string name="Nav_Other">Other</string>
+    <string name="Nav_Settings">Settings</string>
+    <string name="Nav_About">About</string>
 </resources>

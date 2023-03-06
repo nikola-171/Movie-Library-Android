@@ -1,77 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MovieActivities.Settings">
 
-    <androidx.cardview.widget.CardView
+    <TextView
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="75dp"
+        android:background="@drawable/wave_small"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/searchPlaceholderAnimation"
+        android:layout_width="250dp"
+        android:layout_height="290dp"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/configuration" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/Settings_Title"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchPlaceholderAnimation" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="35dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="vertical">
+            android:layout_weight="2"
+            android:hint="@string/Settings_ApiKeyTitle"
+            app:endIconMode="clear_text">
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/searchPlaceholderAnimation"
-                android:layout_width="250dp"
-                android:layout_height="290dp"
-                android:layout_gravity="center"
-                app:lottie_autoPlay="true"
-                app:lottie_rawRes="@raw/config" />
-
-            <TextView
-                android:layout_gravity="center"
-                android:textSize="35sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Settings" />
-
-            <LinearLayout
-                android:layout_margin="35dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:weightSum="3"
-                android:orientation="vertical"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/TextInputEditText_ImdbApiKey"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_gravity="center"
-                    android:layout_weight="2"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:hint="Imdb api key"
-                    app:endIconMode="clear_text">
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/TextInputEditText_ImdbApiKey"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="66dp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <Button
-                    android:id="@+id/Button_SaveSettings"
-                    android:layout_marginTop="35dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:height="75dp"
-                    android:text="Save" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-
+        <Button
+            android:id="@+id/Button_SaveSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="@string/Common_Save" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

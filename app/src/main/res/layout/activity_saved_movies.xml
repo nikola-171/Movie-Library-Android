@@ -9,6 +9,7 @@
         tools:context="MovieActivities.SavedMoviesActivity">
 
         <androidx.cardview.widget.CardView
+
             android:id="@+id/CardView_noMoviesSaved"
             android:layout_width="300dp"
             android:layout_height="wrap_content"

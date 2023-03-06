@@ -86,6 +86,7 @@ public class TopMoviesListRecycleAdapter extends RecyclerView.Adapter<TopMoviesL
     public int getItemCount() {
         return list.size();
     }
+
 }
 
 class TopMoviesListViewHolder extends RecyclerView.ViewHolder {
@@ -108,3 +109,4 @@ class TopMoviesListViewHolder extends RecyclerView.ViewHolder {
         TextView_Crew.setSelected(true);
     }
 }
+

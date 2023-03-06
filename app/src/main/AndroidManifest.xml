@@ -13,6 +13,7 @@
         android:theme="@style/Theme.MovieLibrary">
         <activity
             android:name=".MovieActivities.Settings"
+            android:parentActivityName=".MovieActivities.MainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

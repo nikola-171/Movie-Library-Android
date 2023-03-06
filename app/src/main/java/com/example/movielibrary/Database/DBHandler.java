@@ -74,41 +74,34 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public void insertSetting(String name, String value) {
-        if(getSettingByName(name) == null){
-            SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
 
-            ContentValues values = new ContentValues();
+        ContentValues values = new ContentValues();
+
+        if(getSettingByName(name) == null){
+
             values.put(TABLE_NAME_SETTING_COL_NAME, name);
             values.put(TABLE_NAME_SETTING_COL_VALUE, value);
 
             db.insert(TABLE_NAME_SETTINGS, null, values);
 
-            db.close();
         }else{
-            SQLiteDatabase db = this.getWritableDatabase();
-
-            ContentValues values = new ContentValues();
-
             values.put(TABLE_NAME_SETTING_COL_VALUE, value);
 
             String[] args = new String[]{name};
 
             db.update(TABLE_NAME_SETTINGS, values, TABLE_NAME_SETTING_COL_NAME +"=?", args);
-
-            db.close();
         }
-
     }
 
     public String getSettingByName(String name) {
-        SQLiteDatabase db = getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         String selectString = "SELECT " + TABLE_NAME_SETTING_COL_VALUE + " FROM " + TABLE_NAME_SETTINGS + " WHERE " + TABLE_NAME_SETTING_COL_NAME + " =?";
 
         Cursor cursor = db.rawQuery(selectString, new String[] {name});
         String val = cursor.moveToFirst() ? cursor.getString(0) : null;
 
         cursor.close();
-        db.close();
         return val;
     }
 
@@ -147,5 +140,9 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, "movieId=?", new String[]{movieId});
         db.close();
+    }
+
+    public void closeConnection(){
+        this.getWritableDatabase().close();
     }
 }

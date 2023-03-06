@@ -8,9 +8,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.movielibrary.Database.DBHandler;
+import com.example.movielibrary.Listeners.BoxOfficeAllTimeListener;
 import com.example.movielibrary.Listeners.onMovieDetailsSearchListener;
 import com.example.movielibrary.Listeners.onSearchMoviesListener;
 import com.example.movielibrary.Listeners.OnTopListMovieSearchListener;
+import com.example.movielibrary.Models.SearchModels.BoxOfficeAllTimeResponseModel;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Models.SearchModels.TopListSearchResult;
@@ -248,13 +250,13 @@ public class RequestManager {
         });
     }
 
-    public void boxOfficeAllTime(OnTopListMovieSearchListener listener){
+    public void boxOfficeAllTime(BoxOfficeAllTimeListener listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<TopListSearchResult> call = searchMovies.boxOfficeAllTime(imdbApiKey);
+        Call<BoxOfficeAllTimeResponseModel> call = searchMovies.boxOfficeAllTime(imdbApiKey);
 
-        call.enqueue(new Callback<TopListSearchResult>() {
+        call.enqueue(new Callback<BoxOfficeAllTimeResponseModel>() {
             @Override
-            public void onResponse(@NonNull Call<TopListSearchResult> call, @NonNull Response<TopListSearchResult> response) {
+            public void onResponse(@NonNull Call<BoxOfficeAllTimeResponseModel> call, @NonNull Response<BoxOfficeAllTimeResponseModel> response) {
                 if(!response.isSuccessful()){
                     Toast.makeText(context, R.string.RequestManager_RequestFailed, Toast.LENGTH_LONG).show();
                     return;
@@ -263,7 +265,7 @@ public class RequestManager {
             }
 
             @Override
-            public void onFailure(@NonNull Call<TopListSearchResult> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<BoxOfficeAllTimeResponseModel> call, @NonNull Throwable t) {
                 listener.onError(t.getMessage());
             }
         });
