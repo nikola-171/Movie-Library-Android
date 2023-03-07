@@ -1,6 +1,7 @@
 package com.example.movielibrary.Utils.ImdbApi;
 
 import com.example.movielibrary.Models.SearchModels.BoxOfficeAllTimeResponseModel;
+import com.example.movielibrary.Models.SearchModels.BoxOfficeResponseModel;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Models.SearchModels.TopListSearchResult;
@@ -63,7 +64,7 @@ public interface SearchMovies {
     );
 
     @GET("en/API/BoxOffice/{api_key}")
-    Call<TopListSearchResult> boxOffice (
+    Call<BoxOfficeResponseModel> boxOffice (
             @Path("api_key") String api_key
     );
 

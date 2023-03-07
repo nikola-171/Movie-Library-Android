@@ -9,10 +9,12 @@ import androidx.annotation.NonNull;
 
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Listeners.BoxOfficeAllTimeListener;
+import com.example.movielibrary.Listeners.BoxOfficeListener;
 import com.example.movielibrary.Listeners.onMovieDetailsSearchListener;
 import com.example.movielibrary.Listeners.onSearchMoviesListener;
 import com.example.movielibrary.Listeners.OnTopListMovieSearchListener;
 import com.example.movielibrary.Models.SearchModels.BoxOfficeAllTimeResponseModel;
+import com.example.movielibrary.Models.SearchModels.BoxOfficeResponseModel;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Models.SearchModels.TopListSearchResult;
@@ -229,13 +231,13 @@ public class RequestManager {
         });
     }
 
-    public void boxOffice(OnTopListMovieSearchListener listener){
+    public void boxOffice(BoxOfficeListener listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<TopListSearchResult> call = searchMovies.boxOffice(imdbApiKey);
+        Call<BoxOfficeResponseModel> call = searchMovies.boxOffice(imdbApiKey);
 
-        call.enqueue(new Callback<TopListSearchResult>() {
+        call.enqueue(new Callback<BoxOfficeResponseModel>() {
             @Override
-            public void onResponse(@NonNull Call<TopListSearchResult> call, @NonNull Response<TopListSearchResult> response) {
+            public void onResponse(@NonNull Call<BoxOfficeResponseModel> call, @NonNull Response<BoxOfficeResponseModel> response) {
                 if(!response.isSuccessful()){
                     Toast.makeText(context, R.string.RequestManager_RequestFailed, Toast.LENGTH_LONG).show();
                     return;
@@ -244,7 +246,7 @@ public class RequestManager {
             }
 
             @Override
-            public void onFailure(@NonNull Call<TopListSearchResult> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<BoxOfficeResponseModel> call, @NonNull Throwable t) {
                 listener.onError(t.getMessage());
             }
         });

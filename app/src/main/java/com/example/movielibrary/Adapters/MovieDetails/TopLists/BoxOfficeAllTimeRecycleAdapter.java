@@ -16,7 +16,7 @@ import com.example.movielibrary.R;
 
 import java.util.List;
 
-public class BoxOfficeAllTimeRecycleAdapter extends RecyclerView.Adapter<BoxOfficeViewHolder>{
+public class BoxOfficeAllTimeRecycleAdapter extends RecyclerView.Adapter<BoxOfficeAllTimeViewHolder>{
 
         Context context;
         List<BoxOfficeAllTimeModel> list;
@@ -29,12 +29,12 @@ public class BoxOfficeAllTimeRecycleAdapter extends RecyclerView.Adapter<BoxOffi
         }
     @NonNull
     @Override
-    public BoxOfficeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new BoxOfficeViewHolder(LayoutInflater.from(context).inflate(R.layout.box_office_all_time_item, parent, false));
+    public BoxOfficeAllTimeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new BoxOfficeAllTimeViewHolder(LayoutInflater.from(context).inflate(R.layout.box_office_all_time_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BoxOfficeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BoxOfficeAllTimeViewHolder holder, int position) {
 
         holder.CardView_Container.setOnClickListener(view -> listener.onMovieClicked(list.get(position).getId()));
 
@@ -53,7 +53,7 @@ public class BoxOfficeAllTimeRecycleAdapter extends RecyclerView.Adapter<BoxOffi
     }
 }
 
-class BoxOfficeViewHolder extends RecyclerView.ViewHolder {
+class BoxOfficeAllTimeViewHolder extends RecyclerView.ViewHolder {
 
     TextView TextView_Title,
              TextView_Rank,
@@ -68,7 +68,7 @@ class BoxOfficeViewHolder extends RecyclerView.ViewHolder {
 
     CardView CardView_Container;
 
-    public BoxOfficeViewHolder(@NonNull View itemView) {
+    public BoxOfficeAllTimeViewHolder(@NonNull View itemView) {
         super(itemView);
 
         TextView_Title = itemView.findViewById(R.id.TextView_Title);
