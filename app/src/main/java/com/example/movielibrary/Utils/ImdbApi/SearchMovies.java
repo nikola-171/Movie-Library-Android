@@ -2,7 +2,9 @@ package com.example.movielibrary.Utils.ImdbApi;
 
 import com.example.movielibrary.Models.SearchModels.BoxOfficeAllTimeResponseModel;
 import com.example.movielibrary.Models.SearchModels.BoxOfficeResponseModel;
+import com.example.movielibrary.Models.SearchModels.ComingSoonResponseModel;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
+import com.example.movielibrary.Models.SearchModels.InTheatersResponseModel;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Models.SearchModels.TopListSearchResult;
 
@@ -54,12 +56,12 @@ public interface SearchMovies {
     );
 
     @GET("en/API/InTheaters/{api_key}")
-    Call<TopListSearchResult> inTheaters (
+    Call<InTheatersResponseModel> inTheaters (
             @Path("api_key") String api_key
     );
 
     @GET("en/API/ComingSoon/{api_key}")
-    Call<TopListSearchResult> comingSoon (
+    Call<ComingSoonResponseModel> comingSoon (
             @Path("api_key") String api_key
     );
 
