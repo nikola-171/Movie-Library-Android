@@ -2,15 +2,16 @@ package com.example.movielibrary.Models.SearchModels;
 
 import java.util.List;
 
-public class ComingSoonResponseModel {
-    List<ComingSoonModel> items;
+public class TopListMovieResponseModel<T> {
+
+    List<T> items;
     String errorMessage;
 
-    public List<ComingSoonModel> getItems() {
+    public List<T> getItems() {
         return items;
     }
 
-    public void setItems(List<ComingSoonModel> items) {
+    public void setItems(List<T> items) {
         this.items = items;
     }
 
@@ -19,11 +20,6 @@ public class ComingSoonResponseModel {
     }
 
     public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
-    public ComingSoonResponseModel(List<ComingSoonModel> items, String errorMessage) {
-        this.items = items;
         this.errorMessage = errorMessage;
     }
 }

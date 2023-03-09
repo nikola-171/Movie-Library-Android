@@ -1,4 +1,4 @@
-package com.example.movielibrary.Adapters.MovieDetails;
+package com.example.movielibrary.Adapters.MovieDetails.TopLists;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Models.SearchModels.TopListMovieModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.MostPopularTvsModel;
 import com.example.movielibrary.R;
 import com.squareup.picasso.Picasso;
 
@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class TopMoviesListRecycleAdapter extends RecyclerView.Adapter<TopMoviesListViewHolder>{
+public class MostPopularTvsRecycleAdapter extends RecyclerView.Adapter<MostPopularTvsViewHolder>{
 
     Context context;
-    List<TopListMovieModel> list;
+    List<MostPopularTvsModel> list;
     OnMovieClickListener listener;
 
-    public TopMoviesListRecycleAdapter(Context context, List<TopListMovieModel> list, OnMovieClickListener listener) {
+    public MostPopularTvsRecycleAdapter(Context context, List<MostPopularTvsModel> list, OnMovieClickListener listener) {
         this.context = context;
         this.list = list;
         this.listener = listener;
@@ -35,12 +35,12 @@ public class TopMoviesListRecycleAdapter extends RecyclerView.Adapter<TopMoviesL
 
     @NonNull
     @Override
-    public TopMoviesListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new TopMoviesListViewHolder(LayoutInflater.from(context).inflate(R.layout.top_list, parent, false));
+    public MostPopularTvsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MostPopularTvsViewHolder(LayoutInflater.from(context).inflate(R.layout.top_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TopMoviesListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MostPopularTvsViewHolder holder, int position) {
         NumberFormat formatter = NumberFormat.getInstance(new Locale("en_US"));
 
         holder.textView_movie.setText(list.get(position).getTitle());
@@ -89,13 +89,14 @@ public class TopMoviesListRecycleAdapter extends RecyclerView.Adapter<TopMoviesL
 
 }
 
-class TopMoviesListViewHolder extends RecyclerView.ViewHolder {
+class MostPopularTvsViewHolder extends RecyclerView.ViewHolder {
 
     ImageView imageView_poster;
-    TextView textView_movie, TextView_Place, TextView_Crew, TextView_Rating, TextView_Votes;
+    TextView textView_movie, TextView_Place, TextView_Crew, TextView_Rating, TextView_Votes, TextView_Plot,
+            TextView_Genres, TextView_ReleaseState, TextView_MetaCritic;
     CardView homeContainer;
 
-    public TopMoviesListViewHolder(@NonNull View itemView) {
+    public MostPopularTvsViewHolder(@NonNull View itemView) {
         super(itemView);
         TextView_Rating = itemView.findViewById(R.id.TextView_Rating);
         TextView_Crew = itemView.findViewById(R.id.TextView_Crew);
@@ -104,9 +105,12 @@ class TopMoviesListViewHolder extends RecyclerView.ViewHolder {
         homeContainer = itemView.findViewById(R.id.home_container);
         TextView_Place = itemView.findViewById(R.id.TextView_Place);
         TextView_Votes = itemView.findViewById(R.id.TextView_Votes);
+        TextView_Plot = itemView.findViewById(R.id.TextView_Plot);
+        TextView_Genres = itemView.findViewById(R.id.TextView_Genres);
+        TextView_ReleaseState = itemView.findViewById(R.id.TextView_ReleaseState);
+        TextView_MetaCritic = itemView.findViewById(R.id.TextView_MetaCritic);
         TextView_Votes.setSelected(true);
         textView_movie.setSelected(true);
         TextView_Crew.setSelected(true);
     }
 }
-

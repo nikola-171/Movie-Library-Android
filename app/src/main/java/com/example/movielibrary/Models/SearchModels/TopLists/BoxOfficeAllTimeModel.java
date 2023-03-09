@@ -1,4 +1,4 @@
-package com.example.movielibrary.Models.SearchModels;
+package com.example.movielibrary.Models.SearchModels.TopLists;
 
 public class BoxOfficeAllTimeModel {
 

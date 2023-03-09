@@ -25,7 +25,7 @@ import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.onMovieDetailsSearchListener;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.MovieActivities.TopLists.BoxOfficeAllTime;
-import com.example.movielibrary.MovieActivities.TopLists.TopMoviesList;
+import com.example.movielibrary.MovieActivities.TopLists.Top250Movies;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
@@ -91,8 +91,8 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         if (Objects.equals(parent, MainActivity.class.toString())) {
             i = new Intent(this, MainActivity.class);
         }
-        else if(Objects.equals(parent, TopMoviesList.class.toString())){
-            i = new Intent(this, TopMoviesList.class);
+        else if(Objects.equals(parent, Top250Movies.class.toString())){
+            i = new Intent(this, Top250Movies.class);
         }
         else if(Objects.equals(parent, DetailsActivity.class.toString())){
             i = new Intent(this, DetailsActivity.class);

@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Models.SearchModels.BoxOfficeAllTimeModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeAllTimeModel;
 import com.example.movielibrary.R;
 
 import java.util.List;

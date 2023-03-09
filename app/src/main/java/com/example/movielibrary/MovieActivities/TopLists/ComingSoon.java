@@ -1,6 +1,5 @@
 package com.example.movielibrary.MovieActivities.TopLists;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +11,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.movielibrary.Adapters.MovieDetails.TopLists.BoxOfficeRecycleAdapter;
 import com.example.movielibrary.Adapters.MovieDetails.TopLists.ComingSoonRecycleAdapter;
-import com.example.movielibrary.Listeners.BoxOfficeListener;
-import com.example.movielibrary.Listeners.ComingSoonListener;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Models.SearchModels.BoxOfficeResponseModel;
-import com.example.movielibrary.Models.SearchModels.ComingSoonResponseModel;
+import com.example.movielibrary.Listeners.OnMovieResponseListener;
+import com.example.movielibrary.Models.SearchModels.TopLists.ComingSoonModel;
+import com.example.movielibrary.Models.SearchModels.TopListMovieResponseModel;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.MainActivity;
 import com.example.movielibrary.R;
@@ -27,7 +24,7 @@ import com.example.movielibrary.Utils.ImdbApi.RequestManager;
 
 import java.util.Objects;
 
-public class ComingSoon extends AppCompatActivity implements ComingSoonListener, OnMovieClickListener {
+public class ComingSoon extends AppCompatActivity implements OnMovieResponseListener<TopListMovieResponseModel<ComingSoonModel>>, OnMovieClickListener {
 
     RecyclerView recyclerView;
     ComingSoonRecycleAdapter adapter;
@@ -53,7 +50,7 @@ public class ComingSoon extends AppCompatActivity implements ComingSoonListener,
     }
 
     @Override
-    public void onResponse(ComingSoonResponseModel result) {
+    public void onResponse(TopListMovieResponseModel<ComingSoonModel> result) {
         if(!result.getErrorMessage().equals("")){
             Toast.makeText(ComingSoon.this, result.getErrorMessage(), Toast.LENGTH_SHORT).show();
             Intent i = new Intent(ComingSoon.this, MainActivity.class);
@@ -64,7 +61,7 @@ public class ComingSoon extends AppCompatActivity implements ComingSoonListener,
         }
     }
 
-    public void handleResult(ComingSoonResponseModel result) {
+    public void handleResult(TopListMovieResponseModel<ComingSoonModel> result) {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(ComingSoon.this, 1));
 

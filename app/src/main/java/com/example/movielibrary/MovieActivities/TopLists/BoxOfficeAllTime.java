@@ -1,10 +1,8 @@
 package com.example.movielibrary.MovieActivities.TopLists;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,9 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.movielibrary.Adapters.MovieDetails.TopLists.BoxOfficeAllTimeRecycleAdapter;
-import com.example.movielibrary.Listeners.BoxOfficeAllTimeListener;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Models.SearchModels.BoxOfficeAllTimeResponseModel;
+import com.example.movielibrary.Listeners.OnMovieResponseListener;
+import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeAllTimeModel;
+import com.example.movielibrary.Models.SearchModels.TopListMovieResponseModel;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.MainActivity;
 import com.example.movielibrary.R;
@@ -25,7 +24,7 @@ import com.example.movielibrary.Utils.ImdbApi.RequestManager;
 
 import java.util.Objects;
 
-public class BoxOfficeAllTime extends AppCompatActivity implements BoxOfficeAllTimeListener, OnMovieClickListener {
+public class BoxOfficeAllTime extends AppCompatActivity implements OnMovieResponseListener<TopListMovieResponseModel<BoxOfficeAllTimeModel>>, OnMovieClickListener {
 
     RecyclerView recyclerView;
     BoxOfficeAllTimeRecycleAdapter adapter;
@@ -51,7 +50,7 @@ public class BoxOfficeAllTime extends AppCompatActivity implements BoxOfficeAllT
     }
 
     @Override
-    public void onResponse(BoxOfficeAllTimeResponseModel result) {
+    public void onResponse(TopListMovieResponseModel<BoxOfficeAllTimeModel> result) {
         if(!result.getErrorMessage().equals("")){
             Toast.makeText(BoxOfficeAllTime.this, result.getErrorMessage(), Toast.LENGTH_SHORT).show();
             Intent i = new Intent(BoxOfficeAllTime.this, MainActivity.class);
@@ -62,7 +61,7 @@ public class BoxOfficeAllTime extends AppCompatActivity implements BoxOfficeAllT
         }
     }
 
-    public void handleResult(BoxOfficeAllTimeResponseModel result) {
+    public void handleResult(TopListMovieResponseModel<BoxOfficeAllTimeModel> result) {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(BoxOfficeAllTime.this, 1));
 

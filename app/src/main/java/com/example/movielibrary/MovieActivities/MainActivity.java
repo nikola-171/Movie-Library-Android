@@ -39,8 +39,8 @@ import com.example.movielibrary.MovieActivities.TopLists.ComingSoon;
 import com.example.movielibrary.MovieActivities.TopLists.InTheaters;
 import com.example.movielibrary.MovieActivities.TopLists.MostPopularMovies;
 import com.example.movielibrary.MovieActivities.TopLists.MostPopularTvs;
-import com.example.movielibrary.MovieActivities.TopLists.TopMoviesList;
-import com.example.movielibrary.MovieActivities.TopLists.TopTvsList;
+import com.example.movielibrary.MovieActivities.TopLists.Top250Movies;
+import com.example.movielibrary.MovieActivities.TopLists.Top250TvsList;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
 import com.example.movielibrary.Utils.ImdbApi.RequestManager;
@@ -237,12 +237,12 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     }
 
     private void displayTop250Movies() {
-        Intent intent = new Intent(MainActivity.this, TopMoviesList.class);
+        Intent intent = new Intent(MainActivity.this, Top250Movies.class);
         startActivity(intent);
     }
 
     private void displayTopTvs() {
-        Intent intent = new Intent(MainActivity.this, TopTvsList.class);
+        Intent intent = new Intent(MainActivity.this, Top250TvsList.class);
         startActivity(intent);
     }
 

@@ -6,14 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Models.SearchModels.BoxOfficeModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeModel;
 import com.example.movielibrary.R;
 import com.squareup.picasso.Picasso;
 

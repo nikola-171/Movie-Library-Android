@@ -1,26 +1,16 @@
-package com.example.movielibrary.Models.SearchModels;
+package com.example.movielibrary.Models.SearchModels.TopLists;
 
-public class TopListMovieModel {
-
+public class Top250TvsModel {
     String id;
     String rank;
+    String rankUpDown;
     String title;
+    String fullTitle;
     String year;
     String image;
     String crew;
     String imDbRating;
     String imDbRatingCount;
-
-    public TopListMovieModel(String id, String rank, String title, String year, String image, String crew, String imDbRating, String imDbRatingCount) {
-        this.id = id;
-        this.rank = rank;
-        this.title = title;
-        this.year = year;
-        this.image = image;
-        this.crew = crew;
-        this.imDbRating = imDbRating;
-        this.imDbRatingCount = imDbRatingCount;
-    }
 
     public String getId() {
         return id;
@@ -38,12 +28,28 @@ public class TopListMovieModel {
         this.rank = rank;
     }
 
+    public String getRankUpDown() {
+        return rankUpDown;
+    }
+
+    public void setRankUpDown(String rankUpDown) {
+        this.rankUpDown = rankUpDown;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getFullTitle() {
+        return fullTitle;
+    }
+
+    public void setFullTitle(String fullTitle) {
+        this.fullTitle = fullTitle;
     }
 
     public String getYear() {
@@ -83,6 +89,19 @@ public class TopListMovieModel {
     }
 
     public void setImDbRatingCount(String imDbRatingCount) {
+        this.imDbRatingCount = imDbRatingCount;
+    }
+
+    public Top250TvsModel(String id, String rank, String rankUpDown, String title, String fullTitle, String year, String image, String crew, String imDbRating, String imDbRatingCount) {
+        this.id = id;
+        this.rank = rank;
+        this.rankUpDown = rankUpDown;
+        this.title = title;
+        this.fullTitle = fullTitle;
+        this.year = year;
+        this.image = image;
+        this.crew = crew;
+        this.imDbRating = imDbRating;
         this.imDbRatingCount = imDbRatingCount;
     }
 }

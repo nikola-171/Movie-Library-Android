@@ -1,6 +1,5 @@
 package com.example.movielibrary.MovieActivities.TopLists;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +11,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.movielibrary.Adapters.MovieDetails.TopLists.ComingSoonRecycleAdapter;
 import com.example.movielibrary.Adapters.MovieDetails.TopLists.InTheatersRecycleAdapter;
-import com.example.movielibrary.Listeners.InTheatersListener;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Models.SearchModels.ComingSoonResponseModel;
-import com.example.movielibrary.Models.SearchModels.InTheatersResponseModel;
+import com.example.movielibrary.Listeners.OnMovieResponseListener;
+import com.example.movielibrary.Models.SearchModels.TopLists.InTheatersModel;
+import com.example.movielibrary.Models.SearchModels.TopListMovieResponseModel;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.MainActivity;
 import com.example.movielibrary.R;
@@ -26,7 +24,7 @@ import com.example.movielibrary.Utils.ImdbApi.RequestManager;
 
 import java.util.Objects;
 
-public class InTheaters extends AppCompatActivity implements InTheatersListener, OnMovieClickListener {
+public class InTheaters extends AppCompatActivity implements OnMovieResponseListener<TopListMovieResponseModel<InTheatersModel>>, OnMovieClickListener {
 
     RecyclerView recyclerView;
     InTheatersRecycleAdapter adapter;
@@ -52,7 +50,7 @@ public class InTheaters extends AppCompatActivity implements InTheatersListener,
     }
 
     @Override
-    public void onResponse(InTheatersResponseModel result) {
+    public void onResponse(TopListMovieResponseModel<InTheatersModel> result) {
         if (!result.getErrorMessage().equals("")) {
             Toast.makeText(InTheaters.this, result.getErrorMessage(), Toast.LENGTH_SHORT).show();
             Intent i = new Intent(InTheaters.this, MainActivity.class);
@@ -63,7 +61,7 @@ public class InTheaters extends AppCompatActivity implements InTheatersListener,
         }
     }
 
-    public void handleResult(InTheatersResponseModel result) {
+    public void handleResult(TopListMovieResponseModel<InTheatersModel> result) {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(InTheaters.this, 1));
 
