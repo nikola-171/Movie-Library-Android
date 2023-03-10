@@ -23,6 +23,7 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.util.Pair;
@@ -57,6 +58,7 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_advanced_filter_form);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setElevation(0);

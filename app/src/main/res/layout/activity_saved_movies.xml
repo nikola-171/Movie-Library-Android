@@ -73,7 +73,8 @@
                         android:layout_weight="1"
                         android:src="@drawable/camera_icon"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/common_poster" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_view_saved_movies"

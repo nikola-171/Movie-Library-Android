@@ -23,7 +23,8 @@
                 android:id="@+id/ImageView_Image"
                 android:scaleType="centerCrop"
                 android:layout_width="130dp"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:contentDescription="@string/common_poster" />
 
             <LinearLayout
                 android:orientation="vertical"
@@ -40,14 +41,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/TextView_Rating"
-                        android:text="7/10"
-                        android:drawableStart="@drawable/ic_baseline_star_24"
                         android:textColor="@color/black"
                         android:padding="8dp"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:textAlignment="textStart"
-                        />
+                        app:drawableStartCompat="@drawable/ic_baseline_star_24" />
                     <TextView
                         android:layout_weight="2"
                         android:layout_width="match_parent"
@@ -64,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/TextView_Movie"
-                    android:text="Movie name"
+                    android:text="@string/inTheaterItem_movieTitle"
                     android:textColor="@color/black"
                     android:padding="8dp"
                     android:textSize="20sp"
@@ -129,7 +128,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/TextView_Plot"
-            android:text="Movie name"
             android:textColor="@color/black"
             android:padding="8dp"
             android:textSize="16sp"

@@ -24,7 +24,8 @@
                 android:id="@+id/ImageView_Poster"
                 android:scaleType="centerCrop"
                 android:layout_width="130dp"
-                android:layout_height="200dp"/>
+                android:layout_height="200dp"
+                android:contentDescription="@string/common_poster" />
 
             <LinearLayout
                 android:layout_gravity="center"
@@ -36,7 +37,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/TextView_Title"
-                    android:text="Movie name"
                     android:textColor="@color/black"
                     android:padding="8dp"
                     android:textSize="20sp"

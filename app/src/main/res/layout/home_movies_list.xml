@@ -18,13 +18,13 @@
             android:id="@+id/ImageView_Image"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
-            android:layout_height="300dp" />
+            android:layout_height="300dp"
+            android:contentDescription="@string/common_poster" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/TextView_Movie"
-            android:text="Movie name"
             android:textColor="@color/white"
             android:padding="8dp"
             android:textSize="20sp"
