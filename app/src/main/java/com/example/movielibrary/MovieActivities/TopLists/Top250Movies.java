@@ -15,7 +15,7 @@ import com.example.movielibrary.Adapters.MovieDetails.TopLists.Top250MoviesRecyc
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250MoviesModel;
-import com.example.movielibrary.Models.SearchModels.TopListMovieResponseModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.MainActivity;
 import com.example.movielibrary.R;
@@ -34,7 +34,7 @@ public class Top250Movies extends AppCompatActivity implements OnMovieResponseLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_movies_list);
+        setContentView(R.layout.activity_top_250_movies);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -67,7 +67,7 @@ public class Top250Movies extends AppCompatActivity implements OnMovieResponseLi
 
         adapter = new Top250MoviesRecycleAdapter(this, result.getItems(), this);
         recyclerView.setAdapter(adapter);
-        LottieAnimationView_AnimationLoadingView.setVisibility(View.GONE);
+        ConstrainLayout_LoadingAnimation.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
 

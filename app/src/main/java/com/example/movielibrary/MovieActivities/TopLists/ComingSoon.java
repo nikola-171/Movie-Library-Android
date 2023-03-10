@@ -15,7 +15,7 @@ import com.example.movielibrary.Adapters.MovieDetails.TopLists.ComingSoonRecycle
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.SearchModels.TopLists.ComingSoonModel;
-import com.example.movielibrary.Models.SearchModels.TopListMovieResponseModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.MainActivity;
 import com.example.movielibrary.R;

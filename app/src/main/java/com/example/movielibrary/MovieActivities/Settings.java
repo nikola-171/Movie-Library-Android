@@ -47,10 +47,10 @@ public class Settings extends AppCompatActivity {
             String newImdbApiKey = String.valueOf(TextInputEditText_ImdbApiKey.getText());
             if(!newImdbApiKey.equals("")){
                 db.insertSetting(IMDB_API_KEY, newImdbApiKey);
-                Toast.makeText(Settings.this, R.string.Settings_ImdbKeyUpdateSuccess, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Settings.this, R.string.settings_imdbKeyUpdateSuccess, Toast.LENGTH_SHORT).show();
 
             }else{
-                Toast.makeText(Settings.this, R.string.Settings_EmptyValue, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Settings.this, R.string.settings_emptyValue, Toast.LENGTH_SHORT).show();
             }
 
         });

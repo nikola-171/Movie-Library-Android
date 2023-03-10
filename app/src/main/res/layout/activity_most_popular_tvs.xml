@@ -45,7 +45,7 @@
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_weight="1"
                 android:id="@+id/LottieAnimationView_AnimationMoney"
-                app:lottie_rawRes="@raw/money"
+                app:lottie_rawRes="@raw/cinema_awards"
                 android:layout_width="match_parent"
                 app:lottie_autoPlay="true"
                 android:layout_height="100dp" />
@@ -54,7 +54,7 @@
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="@string/boxOfficeAllTime_title"
+                android:text="Most Popular TVs"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>

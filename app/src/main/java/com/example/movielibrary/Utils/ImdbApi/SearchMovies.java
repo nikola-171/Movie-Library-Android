@@ -10,7 +10,7 @@ import com.example.movielibrary.Models.SearchModels.TopLists.MostPopularTvsModel
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250MoviesModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250TvsModel;
-import com.example.movielibrary.Models.SearchModels.TopListMovieResponseModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
 
 import java.util.Map;
 

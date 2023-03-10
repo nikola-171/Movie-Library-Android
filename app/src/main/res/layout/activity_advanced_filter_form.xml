@@ -12,7 +12,7 @@
     tools:context=".MovieActivities.AdvancedFilterForm">
 
     <TextView
-        android:text="@string/AdvancedFilterForm_Title"
+        android:text="@string/advancedFilterForm_title"
         android:paddingTop="10dp"
         android:textAlignment="center"
         android:textSize="22sp"
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="@string/AdvancedFilterForm_TitleInput"
+            android:hint="@string/advancedFilterForm_titleInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="@string/AdvancedFilterForm_GenreInput"
+            android:hint="@string/advancedFilterForm_genreInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="@string/AdvancedFilterForm_TitleTypeInput"
+            android:hint="@string/advancedFilterForm_titleTypeInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
-                android:hint="@string/AdvancedFilterForm_RatingFromInput"
+                android:hint="@string/advancedFilterForm_ratingFromInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -106,7 +106,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
-                android:contentDescription="@string/AdvancedFilterForm_Divider"
+                android:contentDescription="@string/advancedFilterForm_divider"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/AdvancedFilterForm_RatingToInput"
+                android:hint="@string/advancedFilterForm_ratingToInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -138,7 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="@string/AdvancedFilterForm_KeywordsInput"
+            android:hint="@string/advancedFilterForm_keywordsInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
-                android:hint="@string/AdvancedFilterForm_VotesFromInput"
+                android:hint="@string/advancedFilterForm_votesFromInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -173,7 +173,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
-                android:contentDescription="@string/AdvancedFilterForm_Divider"
+                android:contentDescription="@string/advancedFilterForm_divider"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -186,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/AdvancedFilterForm_VotesToInput"
+                android:hint="@string/advancedFilterForm_votesToInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -205,7 +205,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="@string/AdvancedFilterForm_PlotInput"
+            android:hint="@string/advancedFilterForm_plotInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -228,7 +228,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
-                android:hint="@string/AdvancedFilterForm_RuntimeFromInput"
+                android:hint="@string/advancedFilterForm_runtimeFromInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -246,7 +246,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_linear_scale_24"
-                android:contentDescription="@string/AdvancedFilterForm_Divider" />
+                android:contentDescription="@string/advancedFilterForm_divider" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_weight="1"
@@ -254,7 +254,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/AdvancedFilterForm_RuntimeToInput"
+                android:hint="@string/advancedFilterForm_runtimeToInput"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -272,7 +272,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:hint="@string/AdvancedFilterForm_FilmingLocationInput"
+            android:hint="@string/advancedFilterForm_filmingLocationInput"
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -293,7 +293,7 @@
                 android:id="@+id/Button_Cancel"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
-                android:text="@string/AdvancedFilterForm_CancelButton"
+                android:text="@string/advancedFilterForm_cancelButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton" >
@@ -302,7 +302,7 @@
                 android:id="@+id/Button_Submit"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="@string/AdvancedFilterForm_SearchButton"
+                android:text="@string/advancedFilterForm_searchButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </Button>

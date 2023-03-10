@@ -15,7 +15,7 @@ import com.example.movielibrary.Adapters.MovieDetails.TopLists.MostPopularTvsRec
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.SearchModels.TopLists.MostPopularTvsModel;
-import com.example.movielibrary.Models.SearchModels.TopListMovieResponseModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.MainActivity;
 import com.example.movielibrary.R;
@@ -34,7 +34,7 @@ public class MostPopularTvs extends AppCompatActivity implements OnMovieResponse
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_in_theaters);
+        setContentView(R.layout.activity_most_popular_tvs);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

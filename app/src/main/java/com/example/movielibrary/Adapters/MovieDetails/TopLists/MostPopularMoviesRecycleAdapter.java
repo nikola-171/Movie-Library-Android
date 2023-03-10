@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movielibrary.Listeners.OnMovieClickListener;
@@ -36,7 +37,7 @@ public class MostPopularMoviesRecycleAdapter extends RecyclerView.Adapter<MostPo
     @NonNull
     @Override
     public MostPopularMoviesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MostPopularMoviesViewHolder(LayoutInflater.from(context).inflate(R.layout.top_list, parent, false));
+        return new MostPopularMoviesViewHolder(LayoutInflater.from(context).inflate(R.layout.most_popular_movies_item, parent, false));
     }
 
     @Override
@@ -61,11 +62,7 @@ public class MostPopularMoviesRecycleAdapter extends RecyclerView.Adapter<MostPo
 
         String rating = list.get(position).getImDbRating();
 
-        if(rating != null && !rating.equals("")){
-            holder.TextView_Rating.setText(String.format("%s/10", rating));
-        }else{
-            holder.TextView_Rating.setVisibility(View.GONE);
-        }
+        holder.TextView_Rating.setText(String.format("%s/10", rating != null && !rating.equals("") ? rating : "?"));
 
         String rank = list.get(position).getRank();
 
@@ -80,6 +77,16 @@ public class MostPopularMoviesRecycleAdapter extends RecyclerView.Adapter<MostPo
 
         holder.homeContainer.setOnClickListener(view -> listener.onMovieClicked(list.get(position).getId()));
 
+        String rankUpDown = list.get(position).getRankUpDown();
+
+        holder.TextView_RankChange.setText(rankUpDown);
+        if(rankUpDown.contains("-")){
+            holder.TextView_RankChange.setTextColor(ContextCompat.getColor(context, R.color.red));
+        }else if(rankUpDown.contains("+")){
+            holder.TextView_RankChange.setTextColor(ContextCompat.getColor(context, R.color.green));
+
+        }
+
     }
 
     @Override
@@ -93,22 +100,23 @@ class MostPopularMoviesViewHolder extends RecyclerView.ViewHolder {
 
     ImageView imageView_poster;
     TextView textView_movie, TextView_Place, TextView_Crew, TextView_Rating, TextView_Votes, TextView_Plot,
-            TextView_Genres, TextView_ReleaseState, TextView_MetaCritic;
+            TextView_Genres, TextView_ReleaseState, TextView_MetaCritic, TextView_RankChange;
     CardView homeContainer;
 
     public MostPopularMoviesViewHolder(@NonNull View itemView) {
         super(itemView);
         TextView_Rating = itemView.findViewById(R.id.TextView_Rating);
         TextView_Crew = itemView.findViewById(R.id.TextView_Crew);
-        imageView_poster = itemView.findViewById(R.id.imageView_poster);
-        textView_movie = itemView.findViewById(R.id.textView_movie);
-        homeContainer = itemView.findViewById(R.id.home_container);
+        imageView_poster = itemView.findViewById(R.id.ImageView_Image);
+        textView_movie = itemView.findViewById(R.id.TextView_Movie);
+        homeContainer = itemView.findViewById(R.id.CardView_Home_container);
         TextView_Place = itemView.findViewById(R.id.TextView_Place);
         TextView_Votes = itemView.findViewById(R.id.TextView_Votes);
         TextView_Plot = itemView.findViewById(R.id.TextView_Plot);
         TextView_Genres = itemView.findViewById(R.id.TextView_Genres);
         TextView_ReleaseState = itemView.findViewById(R.id.TextView_ReleaseState);
         TextView_MetaCritic = itemView.findViewById(R.id.TextView_MetaCritic);
+        TextView_RankChange = itemView.findViewById(R.id.TextView_RankChange);
         TextView_Votes.setSelected(true);
         textView_movie.setSelected(true);
         TextView_Crew.setSelected(true);

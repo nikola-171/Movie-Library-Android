@@ -30,7 +30,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
 import com.example.movielibrary.Adapters.MovieDetails.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Listeners.onSearchMoviesListener;
+import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.MovieActivities.TopLists.BoxOffice;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     private void initViewElements(){
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.navigationView);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.Menu_Open, R.string.Menu_Close);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.menu_open, R.string.menu_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         });
 
         EditText txtSearch = (searchView.findViewById(androidx.appcompat.R.id.search_src_text));
-        txtSearch.setHint(R.string.MainActivity_SearchMoviesHint);
+        txtSearch.setHint(R.string.mainActivity_searchMoviesHint);
         txtSearch.setHintTextColor(Color.WHITE);
         txtSearch.setTextColor(Color.WHITE);
 
@@ -179,12 +179,12 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         activityResult.launch(i);
     }
 
-    private final onSearchMoviesListener listener = new onSearchMoviesListener() {
+    private final OnSearchMoviesListener listener = new OnSearchMoviesListener() {
         @Override
         public void onResponse(SearchResult result) {
             if(result == null || (result.getItems() != null && result.getItems().size() <= 0)){
                 hideLoadingAnimation();
-                Toast.makeText(MainActivity.this, R.string.HomePage_NoDataFound, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, R.string.homePage_noDataFound, Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
             if(result.getItems() == null){
                 hideLoadingAnimation();
-                Toast.makeText(MainActivity.this, R.string.Common_ApiErrorResponse, Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, R.string.common_apiErrorResponse, Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         @Override
         public void onError(String error) {
             hideLoadingAnimation();
-            Toast.makeText(MainActivity.this, R.string.Common_ApiErrorResponse, Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, R.string.common_apiErrorResponse, Toast.LENGTH_LONG).show();
         }
     };
 

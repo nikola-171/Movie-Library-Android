@@ -15,7 +15,7 @@ import com.example.movielibrary.Adapters.MovieDetails.TopLists.Top250TvsRecycleA
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250TvsModel;
-import com.example.movielibrary.Models.SearchModels.TopListMovieResponseModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.MainActivity;
 import com.example.movielibrary.R;
@@ -24,7 +24,8 @@ import com.example.movielibrary.Utils.ImdbApi.RequestManager;
 
 import java.util.Objects;
 
-public class Top250TvsList extends AppCompatActivity implements OnMovieResponseListener<TopListMovieResponseModel<Top250TvsModel>>, OnMovieClickListener {
+public class Top250TvsList extends AppCompatActivity implements OnMovieResponseListener<TopListMovieResponseModel<Top250TvsModel>>,
+                                                                OnMovieClickListener {
 
     RecyclerView recyclerView;
     Top250TvsRecycleAdapter adapter;
@@ -34,7 +35,7 @@ public class Top250TvsList extends AppCompatActivity implements OnMovieResponseL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_movies_list);
+        setContentView(R.layout.activity_top_250_tvs);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -46,7 +47,6 @@ public class Top250TvsList extends AppCompatActivity implements OnMovieResponseL
         RequestManager requestManager = new RequestManager(this);
 
         requestManager.top250TvsSearch(this);
-
     }
 
     @Override
@@ -67,7 +67,7 @@ public class Top250TvsList extends AppCompatActivity implements OnMovieResponseL
 
         adapter = new Top250TvsRecycleAdapter(this, result.getItems(), this);
         recyclerView.setAdapter(adapter);
-        LottieAnimationView_AnimationLoadingView.setVisibility(View.GONE);
+        ConstrainLayout_LoadingAnimation.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
 

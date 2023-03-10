@@ -29,8 +29,6 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.movielibrary.Filters.DecimalDigitsInputFilter;
@@ -112,13 +110,13 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
 
         textInputEditText_TitleType.setOnClickListener(view -> {
 
-            DialogFragment dialog = new MultiChoiceDialogFragment(titleTypeTags, titleTypeVales, textInputEditText_TitleType, getString(string.AdvancedFilterForm_DialogTitleType), titleFeature);
+            DialogFragment dialog = new MultiChoiceDialogFragment(titleTypeTags, titleTypeVales, textInputEditText_TitleType, getString(string.advancedFilterForm_dialogTitleType), titleFeature);
 
             dialog.show(getSupportFragmentManager(), MovieActivitiesDefaults.DIALOG_TAG);
         });
 
         TextInputEditText_Genres.setOnClickListener(view -> {
-            DialogFragment dialog = new MultiChoiceDialogFragment(genresTags, genresValues, TextInputEditText_Genres, getString(string.AdvancedFilterForm_GenresDialogTitle), genres);
+            DialogFragment dialog = new MultiChoiceDialogFragment(genresTags, genresValues, TextInputEditText_Genres, getString(string.advancedFilterForm_genresDialogTitle), genres);
 
             dialog.show(getSupportFragmentManager(), MovieActivitiesDefaults.DIALOG_TAG);
         });
@@ -246,29 +244,29 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         String maxRuntimeValue = String.valueOf(TextInputEditText_RuntimeMax.getText());
 
         if(!minValue.equals("") && Float.parseFloat(minValue) > ratingLimit){
-            Toast.makeText(AdvancedFilterForm.this, R.string.Common_Validation_RatingMinValue, Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdvancedFilterForm.this, R.string.common_validation_ratingMinValue, Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(!maxValue.equals("") && Float.parseFloat(maxValue) > ratingLimit){
-            Toast.makeText(AdvancedFilterForm.this, R.string.Common_Validation_RatingMaxValue, Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdvancedFilterForm.this, R.string.common_validation_ratingMaxValue, Toast.LENGTH_SHORT).show();
             return false;
         }
 
         if(!minValue.equals("") && !maxValue.equals("") && Float.parseFloat(minValue) > Float.parseFloat( maxValue)){
-            Toast.makeText(AdvancedFilterForm.this, R.string.Common_Validation_RatingMinGreaterThanMax, Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdvancedFilterForm.this, R.string.common_validation_ratingMinGreaterThanMax, Toast.LENGTH_SHORT).show();
 
             return false;
         }
 
         if(!minVotesValue.equals("") && !maxVotesValue.equals("") && Float.parseFloat(minVotesValue) > Float.parseFloat(maxVotesValue)){
-            Toast.makeText(AdvancedFilterForm.this, R.string.Common_Validation_VotesMinGreaterThanMax, Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdvancedFilterForm.this, R.string.common_validation_votesMinGreaterThanMax, Toast.LENGTH_SHORT).show();
 
             return false;
         }
 
         if(!minRuntimeValue.equals("") && !maxRuntimeValue.equals("") && Float.parseFloat(minRuntimeValue) > Float.parseFloat(maxRuntimeValue)){
-            Toast.makeText(AdvancedFilterForm.this, R.string.Common_Validation_RuntimeMinGreaterThanMax, Toast.LENGTH_SHORT).show();
+            Toast.makeText(AdvancedFilterForm.this, R.string.common_validation_runtimeMinGreaterThanMax, Toast.LENGTH_SHORT).show();
 
             return false;
         }

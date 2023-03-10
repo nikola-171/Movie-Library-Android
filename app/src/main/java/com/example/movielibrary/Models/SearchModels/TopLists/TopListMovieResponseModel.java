@@ -1,4 +1,4 @@
-package com.example.movielibrary.Models.SearchModels;
+package com.example.movielibrary.Models.SearchModels.TopLists;
 
 import java.util.List;
 

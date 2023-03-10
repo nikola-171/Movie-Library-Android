@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.example.movielibrary.Adapters.MovieDetails.CastRecyclerAdapter;
 import com.example.movielibrary.Adapters.MovieDetails.SimilarMoviesRecycleAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Listeners.onMovieDetailsSearchListener;
+import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.MovieActivities.TopLists.BoxOfficeAllTime;
 import com.example.movielibrary.MovieActivities.TopLists.Top250Movies;
@@ -147,12 +147,12 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
     }
 
 
-    private final onMovieDetailsSearchListener _listener = new onMovieDetailsSearchListener() {
+    private final OnMovieDetailsSearchListener _listener = new OnMovieDetailsSearchListener() {
         @Override
         public void onResponse(DetailsMovieResponse response) {
 
             if (response == null) {
-                Toast.makeText(DetailsActivity.this, R.string.Common_ApiErrorResponse, Toast.LENGTH_LONG).show();
+                Toast.makeText(DetailsActivity.this, R.string.common_apiErrorResponse, Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -170,22 +170,22 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         @Override
         public void onError(String message) {
 
-            Toast.makeText(DetailsActivity.this, R.string.Common_ApiErrorResponse, Toast.LENGTH_LONG).show();
+            Toast.makeText(DetailsActivity.this, R.string.common_apiErrorResponse, Toast.LENGTH_LONG).show();
         }
     };
 
     private void showResults(DetailsMovieResponse response) {
         textView_movie_title.setText(response.getTitle());
-        textView_movie_released.setText(String.format("%s %s", getString(R.string.MovieDetails_ReleaseDate), response.getReleaseDate()));
-        textView_movie_runtime.setText(String.format("%s %s", getString(R.string.MovieDetails_Runtime), response.getRuntimeStr()));
-        textView_movie_rating.setText(String.format("%s %s", getString(R.string.MovieDetails_Rating), response.getImDbRating()));
-        textView_movie_votes.setText(String.format("%s %s", getString(R.string.MovieDetails_Votes), response.getImDbRatingVotes()));
-        textView_awards.setText(String.format("%s %s", getString(R.string.DetailsActivity_awards), response.getAwards()));
-        textView_genres.setText(String.format("%s %s", getString(R.string.DetailsActivity_genres), response.getGenres()));
+        textView_movie_released.setText(String.format("%s %s", getString(R.string.movieDetails_releaseDate), response.getReleaseDate()));
+        textView_movie_runtime.setText(String.format("%s %s", getString(R.string.movieDetails_runtime), response.getRuntimeStr()));
+        textView_movie_rating.setText(String.format("%s %s", getString(R.string.movieDetails_rating), response.getImDbRating()));
+        textView_movie_votes.setText(String.format("%s %s", getString(R.string.movieDetails_votes), response.getImDbRatingVotes()));
+        textView_awards.setText(String.format("%s %s", getString(R.string.detailsActivity_awards), response.getAwards()));
+        textView_genres.setText(String.format("%s %s", getString(R.string.detailsActivity_genres), response.getGenres()));
         textView_movie_plot.setText(response.getPlot());
-        textView_companies.setText(String.format("%s %s", getString(R.string.DetailsActivity_companies), response.getCompanies()));
-        textView_languages.setText(String.format("%s %s", getString(R.string.DetailsActivity_languages), response.getLanguages()));
-        textView_keywords.setText(String.format("%s %s", getString(R.string.DetailsActivity_keywords), response.getKeywords()));
+        textView_companies.setText(String.format("%s %s", getString(R.string.detailsActivity_companies), response.getCompanies()));
+        textView_languages.setText(String.format("%s %s", getString(R.string.detailsActivity_languages), response.getLanguages()));
+        textView_keywords.setText(String.format("%s %s", getString(R.string.detailsActivity_keywords), response.getKeywords()));
 
         title = response.getTitle();
         poster = response.getImage();
@@ -200,12 +200,12 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
 
                 @Override
                 public void onError(Exception e) {
-                    Toast.makeText(DetailsActivity.this, R.string.Common_ApiErrorResponse, Toast.LENGTH_LONG).show();
+                    Toast.makeText(DetailsActivity.this, R.string.common_apiErrorResponse, Toast.LENGTH_LONG).show();
                     displayMovieDetails(response);
                 }
             });
         } catch (Exception e) {
-            Toast.makeText(DetailsActivity.this, R.string.Common_ApiException, Toast.LENGTH_LONG).show();
+            Toast.makeText(DetailsActivity.this, R.string.common_apiException, Toast.LENGTH_LONG).show();
             startActivity(getParentActivityIntent());
         }
 
@@ -215,20 +215,20 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
             imageButton.setOnClickListener(view -> {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
-                builder.setTitle(R.string.MovieDetails_SaveMovieTitle);
-                builder.setMessage(R.string.MovieDetails_SaveMovieMessage);
+                builder.setTitle(R.string.movieDetails_saveMovieTitle);
+                builder.setMessage(R.string.movieDetails_saveMovieMessage);
                 builder.setCancelable(false);
-                builder.setPositiveButton(R.string.Common_Yes, (dialogInterface, i) -> {
+                builder.setPositiveButton(R.string.common_yes, (dialogInterface, i) -> {
                     if(dbHandler.isMovieInDatabase(movieId)){
-                        Toast.makeText(DetailsActivity.this, R.string.MovieDetails_MovieAlreadySaved, Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailsActivity.this, R.string.movieDetails_movieAlreadySaved, Toast.LENGTH_LONG).show();
                     }else {
                         dbHandler.addNewMovie(title, poster, movieId);
-                        Toast.makeText(DetailsActivity.this, R.string.MovieDetails_MovieSavedSuccess, Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailsActivity.this, R.string.movieDetails_movieSavedSuccess, Toast.LENGTH_LONG).show();
                         displaySavedMovies();
                     }
                     dialogInterface.dismiss();
                 });
-                builder.setNegativeButton(R.string.Common_No, (dialogInterface, i) -> dialogInterface.dismiss());
+                builder.setNegativeButton(R.string.common_no, (dialogInterface, i) -> dialogInterface.dismiss());
                 builder.show();
             });
         }else{
@@ -236,20 +236,20 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
             imageButton.setOnClickListener(view -> {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetailsActivity.this);
-                builder.setTitle(R.string.MovieDetails_DialogDeleteTitle);
-                builder.setMessage(R.string.MovieDetails_DialogDeleteMessage);
+                builder.setTitle(R.string.movieDetails_dialogDeleteTitle);
+                builder.setMessage(R.string.movieDetails_dialogDeleteMessage);
                 builder.setCancelable(false);
-                builder.setPositiveButton(R.string.Common_Yes, (dialogInterface, i) -> {
+                builder.setPositiveButton(R.string.common_yes, (dialogInterface, i) -> {
                     if(!dbHandler.isMovieInDatabase(movieId)){
-                        Toast.makeText(DetailsActivity.this, R.string.MovieDetails_MoveDeleted, Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailsActivity.this, R.string.movieDetails_moveDeleted, Toast.LENGTH_LONG).show();
                     }else{
                         dbHandler.deleteMovie(movieId);
-                        Toast.makeText(DetailsActivity.this, R.string.MovieDetails_MovieDeletedSuccess, Toast.LENGTH_LONG).show();
+                        Toast.makeText(DetailsActivity.this, R.string.movieDetails_movieDeletedSuccess, Toast.LENGTH_LONG).show();
                         displaySavedMovies();
                     }
                     dialogInterface.dismiss();
                 });
-                builder.setNegativeButton(R.string.Common_No, (dialogInterface, i) -> dialogInterface.dismiss());
+                builder.setNegativeButton(R.string.common_no, (dialogInterface, i) -> dialogInterface.dismiss());
                 builder.show();
             });
         }

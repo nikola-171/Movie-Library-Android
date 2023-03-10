@@ -15,7 +15,7 @@ import com.example.movielibrary.Adapters.MovieDetails.TopLists.MostPopularMovies
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.SearchModels.TopLists.MostPopularMoviesModel;
-import com.example.movielibrary.Models.SearchModels.TopListMovieResponseModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
 import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.MainActivity;
 import com.example.movielibrary.R;
@@ -34,7 +34,7 @@ public class MostPopularMovies extends AppCompatActivity implements OnMovieRespo
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_movies_list);
+        setContentView(R.layout.activity_most_popular_movies);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -67,7 +67,7 @@ public class MostPopularMovies extends AppCompatActivity implements OnMovieRespo
 
         adapter = new MostPopularMoviesRecycleAdapter(this, result.getItems(), this);
         recyclerView.setAdapter(adapter);
-        LottieAnimationView_AnimationLoadingView.setVisibility(View.GONE);
+        ConstrainLayout_LoadingAnimation.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
 

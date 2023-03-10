@@ -48,7 +48,7 @@
             android:textSize="20sp"
             android:id="@+id/TextView_LifetimeGrossTitle"
             android:layout_weight="2"
-            android:text="@string/BoxOfficeAllTimeItem_Title"
+            android:text="@string/boxOfficeAllTimeItem_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
@@ -62,7 +62,7 @@
             <TextView
                 android:id="@+id/TextView_WorldwideLifetimeGrossTitle"
                 android:layout_weight="2"
-                android:text="@string/BoxOfficeAllTimeItem_Worldwide"
+                android:text="@string/boxOfficeAllTimeItem_worldwide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -83,7 +83,7 @@
             <TextView
                 android:id="@+id/TextView_DomesticLifetimeGrossTitle"
                 android:layout_weight="2"
-                android:text="@string/BoxOfficeAllTimeItem_Domestic"
+                android:text="@string/boxOfficeAllTimeItem_domestic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -111,7 +111,7 @@
             <TextView
                 android:id="@+id/TextView_ForeignLifetimeGrossTitle"
                 android:layout_weight="2"
-                android:text="@string/BoxOfficeAllTimeItem_Foreign"
+                android:text="@string/boxOfficeAllTimeItem_foreign"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView

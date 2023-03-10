@@ -106,9 +106,9 @@ class InTheatersViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         TextView_Rating = itemView.findViewById(R.id.TextView_Rating);
         TextView_Crew = itemView.findViewById(R.id.TextView_Crew);
-        imageView_poster = itemView.findViewById(R.id.imageView_poster);
-        textView_movie = itemView.findViewById(R.id.textView_movie);
-        homeContainer = itemView.findViewById(R.id.home_container);
+        imageView_poster = itemView.findViewById(R.id.ImageView_Image);
+        textView_movie = itemView.findViewById(R.id.TextView_Movie);
+        homeContainer = itemView.findViewById(R.id.CardView_Home_container);
         TextView_Place = itemView.findViewById(R.id.TextView_Place);
         TextView_Votes = itemView.findViewById(R.id.TextView_Votes);
         TextView_Plot = itemView.findViewById(R.id.TextView_Plot);

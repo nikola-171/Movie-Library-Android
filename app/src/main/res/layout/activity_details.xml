@@ -65,7 +65,7 @@
                                 android:layout_height="wrap_content"
                                 android:maxWidth="150dp"
                                 android:padding="8dp"
-                                android:text="@string/MovieDetails_MovieTitle"
+                                android:text="@string/movieDetails_movieTitle"
                                 android:textAlignment="textStart"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
@@ -79,7 +79,7 @@
                                 android:layout_marginEnd="10dp"
                                 android:layout_width="20dp"
                                 android:layout_height="50dp"
-                                android:contentDescription="@string/MovieDetails_SaveMovieButtonMessage" />
+                                android:contentDescription="@string/movieDetails_saveMovieButtonMessage" />
 
                         </LinearLayout>
                         
@@ -95,7 +95,7 @@
                                 android:id="@+id/imageView_movie_poster"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:contentDescription="@string/DetailsActivity_Poster" />
+                                android:contentDescription="@string/detailsActivity_poster" />
                         </androidx.cardview.widget.CardView>
 
 
@@ -252,7 +252,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
                                 android:padding="8dp"
-                                android:text="@string/DetailsActivity_Actors"
+                                android:text="@string/detailsActivity_actors"
                                 android:textAlignment="center"
                                 android:textColor="@color/white"
                                 android:textSize="18sp"
@@ -282,7 +282,7 @@
                                 <TextView
                                     android:layout_height="wrap_content"
                                     android:padding="8dp"
-                                    android:text="@string/DetailsActivity_SimilarMovies"
+                                    android:text="@string/detailsActivity_similarMovies"
                                     android:textAlignment="center"
                                     android:textColor="@color/white"
                                     android:textSize="18sp"

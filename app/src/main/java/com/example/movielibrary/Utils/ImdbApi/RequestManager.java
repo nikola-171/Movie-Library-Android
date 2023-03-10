@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
-import com.example.movielibrary.Listeners.onMovieDetailsSearchListener;
-import com.example.movielibrary.Listeners.onSearchMoviesListener;
+import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
+import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeAllTimeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.ComingSoonModel;
@@ -21,7 +21,7 @@ import com.example.movielibrary.Models.SearchModels.TopLists.MostPopularTvsModel
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250MoviesModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250TvsModel;
-import com.example.movielibrary.Models.SearchModels.TopListMovieResponseModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
 import com.example.movielibrary.R;
 
 import java.util.HashMap;
@@ -46,7 +46,7 @@ public class RequestManager {
 
     private String imdbApiKey;
 
-    public void searchMovies(onSearchMoviesListener listener, String movie_title){
+    public void searchMovies(OnSearchMoviesListener listener, String movie_title){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
         Call<SearchResult> call = searchMovies.searchMovies(movie_title, imdbApiKey);
 
@@ -54,7 +54,7 @@ public class RequestManager {
             @Override
             public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(context, R.string.RequestManager_RequestFailed, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.requestManager_requestFailed, Toast.LENGTH_LONG).show();
                     return;
                 }
                 listener.onResponse(response.body());
@@ -67,7 +67,7 @@ public class RequestManager {
         });
     }
 
-    public void advancedSearchMovies(onSearchMoviesListener listener, HashMap<String, Object> data){
+    public void advancedSearchMovies(OnSearchMoviesListener listener, HashMap<String, Object> data){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
         Call<SearchResult> call = searchMovies.advancedSearch(imdbApiKey, data);
 
@@ -75,7 +75,7 @@ public class RequestManager {
             @Override
             public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(context, R.string.RequestManager_RequestFailed, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.requestManager_requestFailed, Toast.LENGTH_LONG).show();
                     return;
                 }
                 listener.onResponse(response.body());
@@ -88,7 +88,7 @@ public class RequestManager {
         });
     }
 
-    public void searchMovieDetails(onMovieDetailsSearchListener listener, String movie_id){
+    public void searchMovieDetails(OnMovieDetailsSearchListener listener, String movie_id){
         SearchMovies getMovieDetails = retrofit.create(SearchMovies.class);
         Call<DetailsMovieResponse> call = getMovieDetails.getMovieDetails(movie_id, imdbApiKey);
 
@@ -96,7 +96,7 @@ public class RequestManager {
             @Override
             public void onResponse(Call<DetailsMovieResponse> call, Response<DetailsMovieResponse> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(context, R.string.RequestManager_RequestFailed, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.requestManager_requestFailed, Toast.LENGTH_LONG).show();
                     return;
                 }
                 listener.onResponse(response.body());
@@ -171,7 +171,7 @@ public class RequestManager {
             @Override
             public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(context, R.string.RequestManager_RequestFailed, Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, R.string.requestManager_requestFailed, Toast.LENGTH_LONG).show();
                     return;
                 }
                 listener.onResponse(response.body());
