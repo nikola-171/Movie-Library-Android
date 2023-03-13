@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
-    android:id="@+id/CardView_Home_container"
+    android:id="@+id/cardView_home_container"
     android:layout_margin="8dp">
 
     <LinearLayout
@@ -20,7 +20,7 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/ImageView_Image"
+                android:id="@+id/imageView_image"
                 android:scaleType="centerCrop"
                 android:layout_width="100dp"
                 android:layout_height="130dp"/>

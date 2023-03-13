@@ -13,14 +13,15 @@
 
     <TextView
         android:text="@string/advancedFilterForm_title"
-        android:paddingTop="10dp"
+        android:padding="30dp"
         android:textAlignment="center"
         android:textSize="22sp"
         android:textColor="@color/white"
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@drawable/wave_small" />
+        android:background="@color/purple_500"
+        android:layout_height="wrap_content"
+        />
 
     <LinearLayout
         android:layout_marginLeft="15dp"
@@ -38,7 +39,7 @@
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/TextInputEditText_Title"
+                android:id="@+id/textInputEditText_title"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -54,13 +55,11 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:focusable="false"
-                android:id="@+id/TextInputEditText_Genres"
+                android:id="@+id/textInputEditText_genres"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
-
-
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -73,12 +72,11 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:focusable="false"
-                android:id="@+id/textInputEditText_TitleType"
+                android:id="@+id/textInputEditText_titleType"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
-
 
 
         <LinearLayout
@@ -98,7 +96,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TextInputEditText_RatingMin"
+                    android:id="@+id/textInputEditText_ratingMin"
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -123,7 +121,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TextInputEditText_RatingMax"
+                    android:id="@+id/textInputEditText_ratingMax"
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -142,7 +140,7 @@
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_Keywords"
+                android:id="@+id/textInputEditText_keywords"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -165,7 +163,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TextInputEditText_VotesMin"
+                    android:id="@+id/textInputEditText_votesMin"
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -190,7 +188,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TextInputEditText_VotesMax"
+                    android:id="@+id/textInputEditText_votesMax"
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -209,7 +207,7 @@
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_Plot"
+                android:id="@+id/textInputEditText_plot"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -232,7 +230,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TextInputEditText_RuntimeMin"
+                    android:id="@+id/textInputEditText_runtimeMin"
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -258,7 +256,7 @@
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/TextInputEditText_RuntimeMax"
+                    android:id="@+id/textInputEditText_runtimeMax"
                     android:inputType="numberDecimal"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -276,7 +274,7 @@
             app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInputEditText_FilmingLocation"
+                android:id="@+id/textInputEditText_filmingLocation"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -290,7 +288,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
-                android:id="@+id/Button_Cancel"
+                android:id="@+id/button_cancel"
                 android:layout_marginEnd="5dp"
                 android:layout_weight="1"
                 android:text="@string/advancedFilterForm_cancelButton"
@@ -299,7 +297,7 @@
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton" >
             </Button>
             <Button
-                android:id="@+id/Button_Submit"
+                android:id="@+id/button_submit"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="@string/advancedFilterForm_searchButton"

@@ -72,12 +72,12 @@ class ComingSoonViewHolder extends RecyclerView.ViewHolder {
     public ComingSoonViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        ImageView_Poster = itemView.findViewById(R.id.ImageView_Poster);
-        TextView_Title = itemView.findViewById(R.id.TextView_Title);
-        TextView_ReleaseState = itemView.findViewById(R.id.TextView_ReleaseState);
-        TextView_Genres = itemView.findViewById(R.id.TextView_Genres);
-        TextView_Stars = itemView.findViewById(R.id.TextView_Stars);
-        CardView_Container = itemView.findViewById(R.id.CardView_Container);
+        ImageView_Poster = itemView.findViewById(R.id.imageView_poster);
+        TextView_Title = itemView.findViewById(R.id.textView_comingSoonTitle);
+        TextView_ReleaseState = itemView.findViewById(R.id.textView_releaseState);
+        TextView_Genres = itemView.findViewById(R.id.textView_comingSoonGenres);
+        TextView_Stars = itemView.findViewById(R.id.textView_stars);
+        CardView_Container = itemView.findViewById(R.id.cardView_container);
 
     }
 }

@@ -30,7 +30,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
 import com.example.movielibrary.Adapters.MovieDetails.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Listeners.OnSearchMoviesListener;
+import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.MovieActivities.TopLists.BoxOffice;
@@ -55,15 +55,15 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     RecyclerView recyclerView;
     HomeRecyclerAdapter adapter;
     RequestManager requestManager;
-    CardView CardView_search_placeholder;
+    CardView cardView_searchPlaceholder;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
     DBHandler dbHandler;
     LottieAnimationView loadingAnimation, searchPlaceholderAnimation;
     CardView loadingAnimationCard, displayMoviesCardView;
-    ImageView ImageView_advancedSearch;
-    ConstraintLayout ConstraintLayout_searchAnimation;
+    ImageView imageView_advancedSearch;
+    ConstraintLayout constraintLayout_searchAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,14 +90,14 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         loadingAnimationCard.setVisibility(View.GONE);
         searchPlaceholderAnimation = findViewById(R.id.searchPlaceholderAnimation);
 
-        CardView_search_placeholder = findViewById(R.id.CardView_search_placeholder);
+        cardView_searchPlaceholder = findViewById(R.id.cardView_searchPlaceholder);
         searchView = findViewById(R.id.search_view);
-        recyclerView = findViewById(R.id.recycler_view_home);
+        recyclerView = findViewById(R.id.recyclerView_home);
         requestManager = new RequestManager(this);
         recyclerView.setVisibility(View.GONE);
-        ConstraintLayout_searchAnimation = findViewById(R.id.ConstraintLayout_searchAnimation);
-        ImageView_advancedSearch = findViewById(R.id.ImageView_advancedSearch);
-        ImageView_advancedSearch.setOnClickListener(this::openAdvancedSearchForm);
+        constraintLayout_searchAnimation = findViewById(R.id.constraintLayout_searchAnimation);
+        imageView_advancedSearch = findViewById(R.id.ImageView_advancedSearch);
+        imageView_advancedSearch.setOnClickListener(this::openAdvancedSearchForm);
 
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(item -> {
@@ -160,8 +160,8 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
                 requestManager.searchMovies(listener, query);
-                CardView_search_placeholder.setVisibility(View.VISIBLE);
-                ConstraintLayout_searchAnimation.setVisibility(View.VISIBLE);
+                cardView_searchPlaceholder.setVisibility(View.VISIBLE);
+                constraintLayout_searchAnimation.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
 
                 return true;
@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         activityResult.launch(i);
     }
 
-    private final OnSearchMoviesListener listener = new OnSearchMoviesListener() {
+    private final OnMovieResponseListener<SearchResult> listener = new OnMovieResponseListener<SearchResult>() {
         @Override
         public void onResponse(SearchResult result) {
             if(result == null || (result.getItems() != null && result.getItems().size() <= 0)){
@@ -217,8 +217,8 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
         adapter = new HomeRecyclerAdapter(this, result.getItems(), this);
         recyclerView.setAdapter(adapter);
-        CardView_search_placeholder.setVisibility(View.GONE);
-        ConstraintLayout_searchAnimation.setVisibility(View.GONE);
+        cardView_searchPlaceholder.setVisibility(View.GONE);
+        constraintLayout_searchAnimation.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
         toggleInputFields(true);
     }
@@ -303,7 +303,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
 
     private void toggleInputFields(boolean val){
         searchView.setFocusable(val);
-        ImageView_advancedSearch.setEnabled(val);
+        imageView_advancedSearch.setEnabled(val);
     }
 
     ActivityResultLauncher<Intent> activityResult = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
@@ -320,8 +320,8 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
                         imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
                         requestManager.advancedSearchMovies(listener, args);
-                        CardView_search_placeholder.setVisibility(View.VISIBLE);
-                        ConstraintLayout_searchAnimation.setVisibility(View.VISIBLE);
+                        cardView_searchPlaceholder.setVisibility(View.VISIBLE);
+                        constraintLayout_searchAnimation.setVisibility(View.VISIBLE);
                         recyclerView.setVisibility(View.GONE);
 
                     }

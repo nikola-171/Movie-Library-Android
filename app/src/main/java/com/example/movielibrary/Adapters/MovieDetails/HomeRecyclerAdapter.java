@@ -65,9 +65,9 @@ class HomeViewHolder extends RecyclerView.ViewHolder {
     public HomeViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        imageView_poster = itemView.findViewById(R.id.ImageView_Image);
+        imageView_poster = itemView.findViewById(R.id.imageView_image);
         textView_movie = itemView.findViewById(R.id.TextView_Movie);
-        homeContainer = itemView.findViewById(R.id.CardView_Home_container);
+        homeContainer = itemView.findViewById(R.id.cardView_home_container);
 
         textView_movie.setSelected(true);
     }

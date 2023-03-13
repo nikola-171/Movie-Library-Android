@@ -29,8 +29,8 @@ public class BoxOffice extends AppCompatActivity implements OnMovieResponseListe
 
     RecyclerView recyclerView;
     BoxOfficeRecycleAdapter adapter;
-    ConstraintLayout ConstrainLayout_LoadingAnimation;
-    LottieAnimationView LottieAnimationView_AnimationLoadingView;
+    ConstraintLayout constrainLayout_loadingAnimation;
+    LottieAnimationView lottieAnimationView_animationLoadingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,10 @@ public class BoxOffice extends AppCompatActivity implements OnMovieResponseListe
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        LottieAnimationView_AnimationLoadingView = findViewById(R.id.LottieAnimationView_AnimationLoadingView);
-        ConstrainLayout_LoadingAnimation = findViewById(R.id.ConstrainLayout_LoadingAnimation);
+        lottieAnimationView_animationLoadingView = findViewById(R.id.lottieAnimationView_animationLoadingView);
+        constrainLayout_loadingAnimation = findViewById(R.id.constrainLayout_loadingAnimation);
 
-        recyclerView = findViewById(R.id.RecycleView_TopList);
+        recyclerView = findViewById(R.id.recycleView_topList);
 
         RequestManager requestManager = new RequestManager(this);
 
@@ -68,8 +68,8 @@ public class BoxOffice extends AppCompatActivity implements OnMovieResponseListe
 
         adapter = new BoxOfficeRecycleAdapter(this, result.getItems(), this);
         recyclerView.setAdapter(adapter);
-        LottieAnimationView_AnimationLoadingView.setVisibility(View.GONE);
-        ConstrainLayout_LoadingAnimation.setVisibility(View.GONE);
+        lottieAnimationView_animationLoadingView.setVisibility(View.GONE);
+        constrainLayout_loadingAnimation.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
 

@@ -18,8 +18,8 @@ import java.util.Objects;
 public class Settings extends AppCompatActivity {
 
     DBHandler db;
-    TextInputEditText TextInputEditText_ImdbApiKey;
-    Button Button_SaveSettings;
+    TextInputEditText textInputEditText_imdbApiKey;
+    Button button_saveSettings;
 
     @Override
     protected void onStop() {
@@ -40,11 +40,11 @@ public class Settings extends AppCompatActivity {
 
         String imdbApiKey = db.getSettingByName(IMDB_API_KEY);
 
-        TextInputEditText_ImdbApiKey = findViewById(R.id.TextInputEditText_ImdbApiKey);
-        Button_SaveSettings = findViewById(R.id.Button_SaveSettings);
+        textInputEditText_imdbApiKey = findViewById(R.id.TextInputEditText_ImdbApiKey);
+        button_saveSettings = findViewById(R.id.button_saveSettings);
 
-        Button_SaveSettings.setOnClickListener(view -> {
-            String newImdbApiKey = String.valueOf(TextInputEditText_ImdbApiKey.getText());
+        button_saveSettings.setOnClickListener(view -> {
+            String newImdbApiKey = String.valueOf(textInputEditText_imdbApiKey.getText());
             if(!newImdbApiKey.equals("")){
                 db.insertSetting(IMDB_API_KEY, newImdbApiKey);
                 Toast.makeText(Settings.this, R.string.settings_imdbKeyUpdateSuccess, Toast.LENGTH_SHORT).show();
@@ -55,7 +55,7 @@ public class Settings extends AppCompatActivity {
 
         });
         if(imdbApiKey != null){
-            TextInputEditText_ImdbApiKey.setText(imdbApiKey);
+            textInputEditText_imdbApiKey.setText(imdbApiKey);
         }
 
     }

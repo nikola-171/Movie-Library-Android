@@ -74,14 +74,14 @@ class BoxOfficeViewHolder extends RecyclerView.ViewHolder {
     public BoxOfficeViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        TextView_Title = itemView.findViewById(R.id.TextView_Title);
+        TextView_Title = itemView.findViewById(R.id.textView_comingSoonTitle);
         TextView_Rank = itemView.findViewById(R.id.TextView_Rank);
 
         TextView_Weekend = itemView.findViewById(R.id.TextView_Weekend);
         TextView_Weeks = itemView.findViewById(R.id.TextView_Weeks);
         TextView_Gross = itemView.findViewById(R.id.TextView_Gross);
-        ImageView_Poster = itemView.findViewById(R.id.ImageView_Poster);
+        ImageView_Poster = itemView.findViewById(R.id.imageView_poster);
 
-        CardView_Container = itemView.findViewById(R.id.CardView_Container);
+        CardView_Container = itemView.findViewById(R.id.cardView_container);
     }
 }

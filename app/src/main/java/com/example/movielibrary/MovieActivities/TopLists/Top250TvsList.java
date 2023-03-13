@@ -30,8 +30,8 @@ public class Top250TvsList extends AppCompatActivity implements OnMovieResponseL
 
     RecyclerView recyclerView;
     Top250TvsRecycleAdapter adapter;
-    ConstraintLayout ConstrainLayout_LoadingAnimation;
-    LottieAnimationView LottieAnimationView_AnimationLoadingView;
+    ConstraintLayout constrainLayout_loadingAnimation;
+    LottieAnimationView lottieAnimationView_animationLoadingView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +40,10 @@ public class Top250TvsList extends AppCompatActivity implements OnMovieResponseL
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        LottieAnimationView_AnimationLoadingView = findViewById(R.id.LottieAnimationView_AnimationLoadingView);
-        ConstrainLayout_LoadingAnimation = findViewById(R.id.ConstrainLayout_LoadingAnimation);
+        lottieAnimationView_animationLoadingView = findViewById(R.id.lottieAnimationView_animationLoadingView);
+        constrainLayout_loadingAnimation = findViewById(R.id.constrainLayout_loadingAnimation);
 
-        recyclerView = findViewById(R.id.RecycleView_TopList);
+        recyclerView = findViewById(R.id.recycleView_topList);
 
         RequestManager requestManager = new RequestManager(this);
 
@@ -68,7 +68,7 @@ public class Top250TvsList extends AppCompatActivity implements OnMovieResponseL
 
         adapter = new Top250TvsRecycleAdapter(this, result.getItems(), this);
         recyclerView.setAdapter(adapter);
-        ConstrainLayout_LoadingAnimation.setVisibility(View.GONE);
+        constrainLayout_loadingAnimation.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
     }
 

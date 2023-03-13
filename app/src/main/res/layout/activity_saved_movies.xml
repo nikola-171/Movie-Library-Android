@@ -9,8 +9,7 @@
         tools:context="MovieActivities.SavedMoviesActivity">
 
         <androidx.cardview.widget.CardView
-
-            android:id="@+id/CardView_noMoviesSaved"
+            android:id="@+id/cardView_noMoviesSaved"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -32,6 +31,7 @@
                     android:textSize="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/searchPlaceholderAnimation"
                     android:layout_width="250dp"
@@ -44,7 +44,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/CardView_savedMovies"
+            android:id="@+id/cardView_savedMovies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -77,7 +77,7 @@
                         android:contentDescription="@string/common_poster" />
                 </LinearLayout>
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_saved_movies"
+                    android:id="@+id/recyclerView_savedMovies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"

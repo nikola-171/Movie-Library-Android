@@ -49,10 +49,10 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
 
     Button Button_Submit, Button_Cancel;
 
-    TextInputEditText textInputEditText_TitleType, TextInputEditText_Genres, TextInputEditText_RatingMax, TextInputEditText_RatingMin,
-                      TextInputEditText_Title, textInputEditText_Keywords,
-                      TextInputEditText_VotesMax, TextInputEditText_VotesMin, textInputEditText_Plot,
-                      TextInputEditText_RuntimeMin, TextInputEditText_RuntimeMax, textInputEditText_FilmingLocation;
+    TextInputEditText textInputEditText_titleType, textInputEditText_genres, textInputEditText_ratingMax, textInputEditText_ratingMin,
+            textInputEditText_title, textInputEditText_keywords,
+            textInputEditText_votesMax, textInputEditText_votesMin, textInputEditText_plot,
+            textInputEditText_runtimeMin, textInputEditText_runtimeMax, textInputEditText_filmingLocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,18 +63,18 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         ActionBar actionBar = getSupportActionBar();
         actionBar.setElevation(0);
 
-        Button_Submit = findViewById(id.Button_Submit);
-        Button_Cancel = findViewById(R.id.Button_Cancel);
+        Button_Submit = findViewById(id.button_submit);
+        Button_Cancel = findViewById(R.id.button_cancel);
         Button_Cancel.setOnClickListener(this::cancelSearch);
 
-        TextInputEditText_Title = findViewById(id.TextInputEditText_Title);
-        textInputEditText_Keywords = findViewById(R.id.textInputEditText_Keywords);
-        TextInputEditText_VotesMax = findViewById(R.id.TextInputEditText_VotesMax);
-        TextInputEditText_VotesMin = findViewById(R.id.TextInputEditText_VotesMin);
-        textInputEditText_Plot = findViewById(R.id.textInputEditText_Plot);
-        TextInputEditText_RuntimeMin = findViewById(R.id.TextInputEditText_RuntimeMin);
-        TextInputEditText_RuntimeMax = findViewById(R.id.TextInputEditText_RuntimeMax);
-        textInputEditText_FilmingLocation = findViewById(R.id.textInputEditText_FilmingLocation);
+        textInputEditText_title = findViewById(id.textInputEditText_title);
+        textInputEditText_keywords = findViewById(R.id.textInputEditText_keywords);
+        textInputEditText_votesMax = findViewById(R.id.textInputEditText_votesMax);
+        textInputEditText_votesMin = findViewById(R.id.textInputEditText_votesMin);
+        textInputEditText_plot = findViewById(R.id.textInputEditText_plot);
+        textInputEditText_runtimeMin = findViewById(R.id.textInputEditText_runtimeMin);
+        textInputEditText_runtimeMax = findViewById(R.id.textInputEditText_runtimeMax);
+        textInputEditText_filmingLocation = findViewById(R.id.textInputEditText_filmingLocation);
 
         Button_Submit.setOnClickListener(view -> {
 
@@ -101,24 +101,24 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
             finish();
         });
 
-        textInputEditText_TitleType = findViewById(id.textInputEditText_TitleType);
-        TextInputEditText_Genres = findViewById(id.TextInputEditText_Genres);
+        textInputEditText_titleType = findViewById(id.textInputEditText_titleType);
+        textInputEditText_genres = findViewById(id.textInputEditText_genres);
 
-        TextInputEditText_RatingMax = findViewById(id.TextInputEditText_RatingMax);
-        TextInputEditText_RatingMin = findViewById(id.TextInputEditText_RatingMin);
+        textInputEditText_ratingMax = findViewById(id.textInputEditText_ratingMax);
+        textInputEditText_ratingMin = findViewById(id.textInputEditText_ratingMin);
 
-        TextInputEditText_RatingMin.setFilters(new InputFilter[] {new DecimalDigitsInputFilter()});
-        TextInputEditText_RatingMax.setFilters(new InputFilter[] {new DecimalDigitsInputFilter()});
+        textInputEditText_ratingMin.setFilters(new InputFilter[] {new DecimalDigitsInputFilter()});
+        textInputEditText_ratingMax.setFilters(new InputFilter[] {new DecimalDigitsInputFilter()});
 
-        textInputEditText_TitleType.setOnClickListener(view -> {
+        textInputEditText_titleType.setOnClickListener(view -> {
 
-            DialogFragment dialog = new MultiChoiceDialogFragment(titleTypeTags, titleTypeVales, textInputEditText_TitleType, getString(string.advancedFilterForm_dialogTitleType), titleFeature);
+            DialogFragment dialog = new MultiChoiceDialogFragment(titleTypeTags, titleTypeVales, textInputEditText_titleType, getString(string.advancedFilterForm_dialogTitleType), titleFeature);
 
             dialog.show(getSupportFragmentManager(), MovieActivitiesDefaults.DIALOG_TAG);
         });
 
-        TextInputEditText_Genres.setOnClickListener(view -> {
-            DialogFragment dialog = new MultiChoiceDialogFragment(genresTags, genresValues, TextInputEditText_Genres, getString(string.advancedFilterForm_genresDialogTitle), genres);
+        textInputEditText_genres.setOnClickListener(view -> {
+            DialogFragment dialog = new MultiChoiceDialogFragment(genresTags, genresValues, textInputEditText_genres, getString(string.advancedFilterForm_genresDialogTitle), genres);
 
             dialog.show(getSupportFragmentManager(), MovieActivitiesDefaults.DIALOG_TAG);
         });
@@ -133,14 +133,14 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
     }
 
     private void addTitle(){
-        if(!Objects.requireNonNull(TextInputEditText_Title.getText()).toString().trim().equals("")){
-            filterData.put(title, TextInputEditText_Title.getText().toString().trim());
+        if(!Objects.requireNonNull(textInputEditText_title.getText()).toString().trim().equals("")){
+            filterData.put(title, textInputEditText_title.getText().toString().trim());
         }
     }
 
     private void addPlot(){
-        if(!Objects.requireNonNull(textInputEditText_Plot.getText()).toString().trim().equals("")){
-            filterData.put(plot, textInputEditText_Plot.getText().toString().trim());
+        if(!Objects.requireNonNull(textInputEditText_plot.getText()).toString().trim().equals("")){
+            filterData.put(plot, textInputEditText_plot.getText().toString().trim());
         }
     }
 
@@ -152,8 +152,8 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
     private void addUserRating(){
         StringBuilder b = new StringBuilder();
 
-        String minValue = String.valueOf(TextInputEditText_RatingMin.getText());
-        String maxValue = String.valueOf(TextInputEditText_RatingMax.getText());
+        String minValue = String.valueOf(textInputEditText_ratingMin.getText());
+        String maxValue = String.valueOf(textInputEditText_ratingMax.getText());
 
         if(!minValue.equals("")){
             b.append(minValue);
@@ -175,8 +175,8 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
     private void addUserVotes(){
         StringBuilder votes = new StringBuilder();
 
-        String minVotesValue = String.valueOf(TextInputEditText_VotesMin.getText());
-        String maxVotesValue = String.valueOf(TextInputEditText_VotesMax.getText());
+        String minVotesValue = String.valueOf(textInputEditText_votesMin.getText());
+        String maxVotesValue = String.valueOf(textInputEditText_votesMax.getText());
 
         if(!minVotesValue.equals("")){
             votes.append(minVotesValue).append(",");
@@ -192,7 +192,7 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
     }
 
     private void addFilmingLocation(){
-        String filmingLocation = Objects.requireNonNull(textInputEditText_FilmingLocation.getText()).toString();
+        String filmingLocation = Objects.requireNonNull(textInputEditText_filmingLocation.getText()).toString();
 
         if(!filmingLocation.equals("")){
             filterData.put(locations, filmingLocation);
@@ -200,7 +200,7 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
     }
 
     private void addKeywordValues(){
-        String keywords = Objects.requireNonNull(textInputEditText_Keywords.getText()).toString();
+        String keywords = Objects.requireNonNull(textInputEditText_keywords.getText()).toString();
 
         if(!keywords.equals("")){
             filterData.put(keywordList, keywords);
@@ -210,8 +210,8 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
     private void addRuntimeValues(){
         StringBuilder votes = new StringBuilder();
 
-        String minValue = String.valueOf(TextInputEditText_RuntimeMin.getText());
-        String maxValue = String.valueOf(TextInputEditText_RuntimeMax.getText());
+        String minValue = String.valueOf(textInputEditText_runtimeMin.getText());
+        String maxValue = String.valueOf(textInputEditText_runtimeMax.getText());
 
         if(!minValue.equals("")){
             votes.append(minValue).append(",");
@@ -236,14 +236,14 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
 
     private boolean validateForm(){
 
-        String minValue = String.valueOf(TextInputEditText_RatingMin.getText());
-        String maxValue = String.valueOf(TextInputEditText_RatingMax.getText());
+        String minValue = String.valueOf(textInputEditText_ratingMin.getText());
+        String maxValue = String.valueOf(textInputEditText_ratingMax.getText());
 
-        String minVotesValue = String.valueOf(TextInputEditText_VotesMin.getText());
-        String maxVotesValue = String.valueOf(TextInputEditText_VotesMax.getText());
+        String minVotesValue = String.valueOf(textInputEditText_votesMin.getText());
+        String maxVotesValue = String.valueOf(textInputEditText_votesMax.getText());
 
-        String minRuntimeValue = String.valueOf(TextInputEditText_RuntimeMin.getText());
-        String maxRuntimeValue = String.valueOf(TextInputEditText_RuntimeMax.getText());
+        String minRuntimeValue = String.valueOf(textInputEditText_runtimeMin.getText());
+        String maxRuntimeValue = String.valueOf(textInputEditText_runtimeMax.getText());
 
         if(!minValue.equals("") && Float.parseFloat(minValue) > ratingLimit){
             Toast.makeText(AdvancedFilterForm.this, R.string.common_validation_ratingMinValue, Toast.LENGTH_SHORT).show();

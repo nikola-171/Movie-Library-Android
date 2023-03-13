@@ -6,7 +6,7 @@
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
     app:cardBackgroundColor="@color/black"
-    android:id="@+id/CardView_Home_container"
+    android:id="@+id/cardView_home_container"
     android:layout_margin="8dp">
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/ImageView_Image"
+            android:id="@+id/imageView_image"
             android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="300dp"

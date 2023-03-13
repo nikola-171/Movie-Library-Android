@@ -100,14 +100,14 @@ class Top250TvsViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         TextView_Rating = itemView.findViewById(R.id.TextView_Rating);
         TextView_Crew = itemView.findViewById(R.id.TextView_Crew);
-        imageView_poster = itemView.findViewById(R.id.ImageView_Image);
+        imageView_poster = itemView.findViewById(R.id.imageView_image);
         textView_movie = itemView.findViewById(R.id.TextView_Movie);
-        homeContainer = itemView.findViewById(R.id.CardView_Home_container);
+        homeContainer = itemView.findViewById(R.id.cardView_home_container);
         TextView_Place = itemView.findViewById(R.id.TextView_Place);
         TextView_Votes = itemView.findViewById(R.id.TextView_Votes);
         TextView_Plot = itemView.findViewById(R.id.TextView_Plot);
-        TextView_Genres = itemView.findViewById(R.id.TextView_Genres);
-        TextView_ReleaseState = itemView.findViewById(R.id.TextView_ReleaseState);
+        TextView_Genres = itemView.findViewById(R.id.textView_comingSoonGenres);
+        TextView_ReleaseState = itemView.findViewById(R.id.textView_releaseState);
         TextView_MetaCritic = itemView.findViewById(R.id.TextView_MetaCritic);
         TextView_Votes.setSelected(true);
         textView_movie.setSelected(true);

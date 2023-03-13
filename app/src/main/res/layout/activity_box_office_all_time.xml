@@ -8,12 +8,12 @@
     android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ConstrainLayout_LoadingAnimation"
+            android:id="@+id/constrainLayout_loadingAnimation"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/LottieAnimationView_AnimationLoadingView"
+                    android:id="@+id/lottieAnimationView_animationLoadingView"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,7 @@
                 </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecycleView_TopList"
+            android:id="@+id/recycleView_topList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 </LinearLayout>

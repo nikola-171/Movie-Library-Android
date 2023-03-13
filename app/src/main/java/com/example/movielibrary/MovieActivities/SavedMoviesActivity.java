@@ -25,7 +25,7 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
     DBHandler dbHandler;
     RecyclerView recyclerView;
     HomeRecyclerAdapter adapter;
-    CardView CardView_displayMovies, CardView_noMoviesSaved;
+    CardView cardView_displayMovies, cardView_noMoviesSaved;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,14 +37,14 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
 
     private void initViewElements() {
         dbHandler = new DBHandler(SavedMoviesActivity.this);
-        CardView_displayMovies = findViewById(R.id.CardView_savedMovies);
-        CardView_noMoviesSaved = findViewById(R.id.CardView_noMoviesSaved);
+        cardView_displayMovies = findViewById(R.id.cardView_savedMovies);
+        cardView_noMoviesSaved = findViewById(R.id.cardView_noMoviesSaved);
 
         ArrayList<MovieDetails> movies = dbHandler.readAllMovies();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        recyclerView = findViewById(R.id.recycler_view_saved_movies);
+        recyclerView = findViewById(R.id.recyclerView_savedMovies);
         showResult(movies);
 
     }
@@ -69,11 +69,11 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
             recyclerView.setAdapter(adapter);
             recyclerView.setVisibility(View.VISIBLE);
 
-            CardView_displayMovies.setVisibility(View.VISIBLE);
-            CardView_noMoviesSaved.setVisibility(View.GONE);
+            cardView_displayMovies.setVisibility(View.VISIBLE);
+            cardView_noMoviesSaved.setVisibility(View.GONE);
         }else{
-            CardView_displayMovies.setVisibility(View.GONE);
-            CardView_noMoviesSaved.setVisibility(View.VISIBLE);
+            cardView_displayMovies.setVisibility(View.GONE);
+            cardView_noMoviesSaved.setVisibility(View.VISIBLE);
         }
     }
 

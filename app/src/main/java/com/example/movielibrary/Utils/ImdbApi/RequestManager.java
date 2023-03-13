@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
-import com.example.movielibrary.Listeners.OnSearchMoviesListener;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeAllTimeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.ComingSoonModel;
@@ -33,80 +32,42 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RequestManager {
-    Context context;
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://imdb-api.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
+    private final String imdbApiKey;
+
+    private final Context context;
+
+    private final Retrofit retrofit;
 
     public RequestManager(Context context) {
         this.context = context;
+
         imdbApiKey = new DBHandler(context).getSettingByName(IMDB_API_KEY);
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("https://imdb-api.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
-    private String imdbApiKey;
-
-    public void searchMovies(OnSearchMoviesListener listener, String movie_title){
+    public void searchMovies(OnMovieResponseListener<SearchResult> listener, String movie_title){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
         Call<SearchResult> call = searchMovies.searchMovies(movie_title, imdbApiKey);
 
-        call.enqueue(new Callback<SearchResult>() {
-            @Override
-            public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
-                if(!response.isSuccessful()){
-                    Toast.makeText(context, R.string.requestManager_requestFailed, Toast.LENGTH_LONG).show();
-                    return;
-                }
-                listener.onResponse(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<SearchResult> call, Throwable t) {
-                listener.onError(t.getMessage());
-            }
-        });
+        setCallbackFunction(call, listener);
     }
 
-    public void advancedSearchMovies(OnSearchMoviesListener listener, HashMap<String, Object> data){
+    public void advancedSearchMovies(OnMovieResponseListener<SearchResult> listener, HashMap<String, Object> data){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
         Call<SearchResult> call = searchMovies.advancedSearch(imdbApiKey, data);
 
-        call.enqueue(new Callback<SearchResult>() {
-            @Override
-            public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
-                if(!response.isSuccessful()){
-                    Toast.makeText(context, R.string.requestManager_requestFailed, Toast.LENGTH_LONG).show();
-                    return;
-                }
-                listener.onResponse(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<SearchResult> call, Throwable t) {
-                listener.onError(t.getMessage());
-            }
-        });
+        setCallbackFunction(call, listener);
     }
 
-    public void searchMovieDetails(OnMovieDetailsSearchListener listener, String movie_id){
+    public void searchMovieDetails(OnMovieResponseListener<DetailsMovieResponse> listener, String movie_id){
         SearchMovies getMovieDetails = retrofit.create(SearchMovies.class);
         Call<DetailsMovieResponse> call = getMovieDetails.getMovieDetails(movie_id, imdbApiKey);
 
-        call.enqueue(new Callback<DetailsMovieResponse>() {
-            @Override
-            public void onResponse(Call<DetailsMovieResponse> call, Response<DetailsMovieResponse> response) {
-                if(!response.isSuccessful()){
-                    Toast.makeText(context, R.string.requestManager_requestFailed, Toast.LENGTH_LONG).show();
-                    return;
-                }
-                listener.onResponse(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<DetailsMovieResponse> call, Throwable t) {
-                listener.onError(t.getMessage());
-            }
-        });
+        setCallbackFunction(call, listener);
     }
 
     public void top250MoviesSearch(OnMovieResponseListener<TopListMovieResponseModel<Top250MoviesModel>> listener){
@@ -136,7 +97,6 @@ public class RequestManager {
 
         setCallbackFunction(call, listener);
     }
-
 
     public void inTheaters(OnMovieResponseListener<TopListMovieResponseModel<InTheatersModel>> listener){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);

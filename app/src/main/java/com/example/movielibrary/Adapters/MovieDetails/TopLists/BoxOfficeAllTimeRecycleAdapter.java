@@ -71,7 +71,7 @@ class BoxOfficeAllTimeViewHolder extends RecyclerView.ViewHolder {
     public BoxOfficeAllTimeViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        TextView_Title = itemView.findViewById(R.id.TextView_Title);
+        TextView_Title = itemView.findViewById(R.id.textView_comingSoonTitle);
         TextView_Rank = itemView.findViewById(R.id.TextView_Rank);
         TextView_WorldwideLifetimeGrossTitle = itemView.findViewById(R.id.TextView_WorldwideLifetimeGrossTitle);
         TextView_WorldwideLifetimeGross = itemView.findViewById(R.id.TextView_WorldwideLifetimeGross);
@@ -81,6 +81,6 @@ class BoxOfficeAllTimeViewHolder extends RecyclerView.ViewHolder {
         TextView_ForeignLifetimeGross = itemView.findViewById(R.id.TextView_ForeignLifetimeGross);
         TextView_Foreign = itemView.findViewById(R.id.TextView_Foreign);
         TextView_Domestic = itemView.findViewById(R.id.TextView_Domestic);
-        CardView_Container = itemView.findViewById(R.id.CardView_Container);
+        CardView_Container = itemView.findViewById(R.id.cardView_container);
     }
 }

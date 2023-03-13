@@ -10,7 +10,9 @@
         tools:context=".MovieActivities.DetailsActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ConstrainLayout_LoadingWrapper"
+            android:visibility="gone"
+
+            android:id="@+id/constrainLayout_loadingWrapper"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -60,7 +62,7 @@
 
                             <TextView
                                 android:layout_weight="4"
-                                android:id="@+id/textView_movie_name"
+                                android:id="@+id/textView_movieName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:maxWidth="150dp"
@@ -73,7 +75,7 @@
 
                             <ImageButton
                                 android:background="@android:color/transparent"
-                                android:id="@+id/ImageButton_action"
+                                android:id="@+id/imageButton_action"
                                 android:layout_weight="1"
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="10dp"
@@ -82,17 +84,18 @@
                                 android:contentDescription="@string/movieDetails_saveMovieButtonMessage" />
 
                         </LinearLayout>
-                        
+
                         <androidx.cardview.widget.CardView
                             android:layout_marginTop="15dp"
                             android:layout_height="wrap_content"
                             app:cardBackgroundColor="@color/purple_500"
-                            app:cardCornerRadius="8dp" android:layout_width="wrap_content">
+                            app:cardCornerRadius="8dp"
+                            android:layout_width="wrap_content">
 
                             <ImageView
                                 android:src="@drawable/icon"
                                 android:layout_gravity="center"
-                                android:id="@+id/imageView_movie_poster"
+                                android:id="@+id/imageView_moviePoster"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:contentDescription="@string/detailsActivity_poster" />
@@ -100,7 +103,7 @@
 
 
                         <TextView
-                            android:id="@+id/textView_movie_plot"
+                            android:id="@+id/textView_moviePlot"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textAlignment="textStart"
@@ -128,7 +131,7 @@
 
                         <TextView
                             android:textColor="@color/white"
-                            android:id="@+id/textView_movie_released"
+                            android:id="@+id/textView_movieReleased"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dp"
@@ -138,7 +141,7 @@
                             android:textStyle="normal" />
 
                         <TextView
-                            android:id="@+id/textView_movie_runtime"
+                            android:id="@+id/textView_movieRuntime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dp"
@@ -149,7 +152,7 @@
                             android:textStyle="normal" />
 
                         <TextView
-                            android:id="@+id/textView_movie_rating"
+                            android:id="@+id/textView_movieRating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dp"
@@ -160,7 +163,7 @@
                             android:textStyle="normal" />
 
                         <TextView
-                            android:id="@+id/textView_movie_votes"
+                            android:id="@+id/textView_movieVotes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:padding="8dp"
@@ -261,7 +264,7 @@
                         </LinearLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerView_movie_cast"
+                            android:id="@+id/recyclerView_movieCast"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:nestedScrollingEnabled="false">

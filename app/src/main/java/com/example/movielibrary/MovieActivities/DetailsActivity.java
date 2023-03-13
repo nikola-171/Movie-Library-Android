@@ -23,6 +23,7 @@ import com.example.movielibrary.Adapters.MovieDetails.CastRecyclerAdapter;
 import com.example.movielibrary.Adapters.MovieDetails.SimilarMoviesRecycleAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
+import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.DetailsMovieResponse;
 import com.example.movielibrary.MovieActivities.TopLists.BoxOfficeAllTime;
 import com.example.movielibrary.MovieActivities.TopLists.Top250Movies;
@@ -53,13 +54,13 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
     RecyclerView recyclerView_similarMovies;
     CastRecyclerAdapter adapter;
     SimilarMoviesRecycleAdapter similarMoviesAdapter;
-    ConstraintLayout ConstrainLayout_LoadingWrapper;
+    ConstraintLayout constrainLayout_loadingWrapper;
     RequestManager requestManager;
     DBHandler dbHandler;
     ImageButton imageButton;
     ScrollView detailsPageContent;
-    CardView CardView_search_placeholder;
-    String title = "", poster = "", movieId = "", parent = "";
+    CardView cardView_searchPlaceholder;
+    String title, poster, movieId , parent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +112,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
 
     private void initViewElements(){
         dbHandler = new DBHandler(DetailsActivity.this);
-        imageButton = findViewById(R.id.ImageButton_action);
+        imageButton = findViewById(R.id.imageButton_action);
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -120,17 +121,17 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        ConstrainLayout_LoadingWrapper = findViewById(R.id.ConstrainLayout_LoadingWrapper);
+        constrainLayout_loadingWrapper = findViewById(R.id.constrainLayout_loadingWrapper);
         detailsPageContent = findViewById(R.id.detailsPageContent);
-        CardView_search_placeholder = findViewById(R.id.CardView_search_placeholder);
-        textView_movie_title = findViewById(R.id.textView_movie_name);
-        textView_movie_released = findViewById(R.id.textView_movie_released);
-        textView_movie_runtime = findViewById(R.id.textView_movie_runtime);
-        textView_movie_rating = findViewById(R.id.textView_movie_rating);
-        textView_movie_votes = findViewById(R.id.textView_movie_votes);
-        imageView_movie_poster = findViewById(R.id.imageView_movie_poster);
-        textView_movie_plot = findViewById(R.id.textView_movie_plot);
-        recyclerView_movie_cast = findViewById(R.id.recyclerView_movie_cast);
+        cardView_searchPlaceholder = findViewById(R.id.cardView_searchPlaceholder);
+        textView_movie_title = findViewById(R.id.textView_movieName);
+        textView_movie_released = findViewById(R.id.textView_movieReleased);
+        textView_movie_runtime = findViewById(R.id.textView_movieRuntime);
+        textView_movie_rating = findViewById(R.id.textView_movieRating);
+        textView_movie_votes = findViewById(R.id.textView_movieVotes);
+        imageView_movie_poster = findViewById(R.id.imageView_moviePoster);
+        textView_movie_plot = findViewById(R.id.textView_moviePlot);
+        recyclerView_movie_cast = findViewById(R.id.recyclerView_movieCast);
         recyclerView_similarMovies = findViewById(R.id.recyclerView_similarMovies);
         textView_awards = findViewById(R.id.textView_awards);
         textView_genres = findViewById(R.id.textView_genres);
@@ -147,7 +148,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
     }
 
 
-    private final OnMovieDetailsSearchListener _listener = new OnMovieDetailsSearchListener() {
+    private final OnMovieResponseListener<DetailsMovieResponse> _listener = new OnMovieResponseListener<DetailsMovieResponse>() {
         @Override
         public void onResponse(DetailsMovieResponse response) {
 
@@ -266,7 +267,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         recyclerView_similarMovies.setLayoutManager(new LinearLayoutManager(DetailsActivity.this, LinearLayoutManager.HORIZONTAL, false));
         similarMoviesAdapter = new SimilarMoviesRecycleAdapter(DetailsActivity.this, response.getSimilars(), DetailsActivity.this);
         recyclerView_similarMovies.setAdapter(similarMoviesAdapter);
-        ConstrainLayout_LoadingWrapper.setVisibility(View.GONE);
+        constrainLayout_loadingWrapper.setVisibility(View.GONE);
         detailsPageContent.setVisibility(View.VISIBLE);
     }
 

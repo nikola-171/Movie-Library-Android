@@ -68,7 +68,7 @@ class SimilarMoviesViewHolder extends RecyclerView.ViewHolder {
 
         textView_title = itemView.findViewById(R.id.textView_title);
         textView_rating = itemView.findViewById(R.id.textView_rating);
-        imageView_poster = itemView.findViewById(R.id.ImageView_Image);
+        imageView_poster = itemView.findViewById(R.id.imageView_image);
         CardView_wrapper = itemView.findViewById(R.id.CardView_wrapper);
 
         textView_title.setSelected(true);
