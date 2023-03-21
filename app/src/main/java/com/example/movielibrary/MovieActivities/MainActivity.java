@@ -177,6 +177,8 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     private final OnMovieResponseListener<SearchResult> listener = new OnMovieResponseListener<SearchResult>() {
         @Override
         public void onResponse(SearchResult result) {
+            cardView_searchView.setVisibility(View.VISIBLE);
+
             if(result == null || (result.getItems() != null && result.getItems().size() <= 0)){
                 hideLoadingAnimation();
                 Toast.makeText(MainActivity.this, R.string.homePage_noDataFound, Toast.LENGTH_LONG).show();
@@ -288,7 +290,6 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         searchPlaceholderAnimation.setRepeatCount(LottieDrawable.INFINITE);
         searchPlaceholderAnimation.playAnimation();
         toggleInputFields(false);
-
 
     }
 
