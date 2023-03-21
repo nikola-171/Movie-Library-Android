@@ -2,7 +2,9 @@ package com.example.movielibrary.MovieActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -25,6 +27,7 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
     DBHandler dbHandler;
     RecyclerView recyclerView;
     HomeRecyclerAdapter adapter;
+    ConstraintLayout constrainLayout_loading;
     CardView cardView_displayMovies, cardView_noMoviesSaved;
 
     @Override
@@ -37,9 +40,8 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
 
     private void initViewElements() {
         dbHandler = new DBHandler(SavedMoviesActivity.this);
-        cardView_displayMovies = findViewById(R.id.cardView_savedMovies);
         cardView_noMoviesSaved = findViewById(R.id.cardView_noMoviesSaved);
-
+        constrainLayout_loading = findViewById(R.id.constrainLayout_loading);
         ArrayList<MovieDetails> movies = dbHandler.readAllMovies();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -69,11 +71,10 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
             recyclerView.setAdapter(adapter);
             recyclerView.setVisibility(View.VISIBLE);
 
-            cardView_displayMovies.setVisibility(View.VISIBLE);
-            cardView_noMoviesSaved.setVisibility(View.GONE);
+            constrainLayout_loading.setVisibility(View.VISIBLE);
+            constrainLayout_loading.setVisibility(View.GONE);
         }else{
-            cardView_displayMovies.setVisibility(View.GONE);
-            cardView_noMoviesSaved.setVisibility(View.VISIBLE);
+            constrainLayout_loading.setVisibility(View.VISIBLE);
         }
     }
 

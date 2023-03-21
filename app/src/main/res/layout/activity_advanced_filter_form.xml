@@ -19,7 +19,7 @@
         android:textColor="@color/white"
         android:id="@+id/view"
         android:layout_width="match_parent"
-        android:background="@color/purple_500"
+        android:background="@color/primaryColor"
         android:layout_height="wrap_content"
         />
 

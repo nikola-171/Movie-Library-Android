@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="NavigationView">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">start</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="headerLayout">@layout/header_menu</item>
+        <item name="menu">@menu/main_menu</item>
+    </style>
+
+    <style name="RecycleView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">8dp</item>
+    </style>
+
+    <style name="LottieAnimation">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">25dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="lottie_autoPlay">true</item>
+        <item name="lottie_rawRes">@raw/watch</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+    </style>
+
+    <style name="HeaderLottieAnimation">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="lottie_autoPlay">true</item>
+    </style>
+
+    <style name="SearchViewCard">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:contentDescription">@string/homePage_plusIcon</item>
+        <item name="android:src">@drawable/ic_baseline_add_circle_white_50</item>
+    </style>
+
+    <style name="SearchView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_weight">5</item>
+        <item name="android:backgroundTint">@color/primaryColor</item>
+        <item name="android:padding">8dp</item>
+        <item name="iconifiedByDefault">false</item>
+        <item name="closeIcon">@drawable/ic_baseline_close_24</item>
+        <item name="queryHint">"Search movies..."</item>
+        <item name="searchIcon">@drawable/ic_baseline_manage_search_50</item>
+    </style>
+
+    <style name="SearchCardView" parent="CardView.Light">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="cardBackgroundColor">@color/primaryColor</item>
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardElevation">8dp</item>
+    </style>
+
+    <style name="CardItemTitle">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="CardHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_margin">25dp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardElevation">25dp</item>
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+    </style>
+
+    <style name="LinearLayoutHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">15dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">3</item>
+    </style>
+
+    <style name="LinearLayoutTopListsHeader">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">2</item>
+    </style>
+
+    <style name="CardItem">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="TopListTitleText">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CardItemWarning" parent="CardItem">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="CardItemItalic" parent="CardItem">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="Card">
+        <item name="android:layout_margin">8dp</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">8dp</item>
+    </style>
+</resources>
