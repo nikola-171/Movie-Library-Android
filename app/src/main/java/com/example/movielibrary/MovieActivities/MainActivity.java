@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
-import com.example.movielibrary.Adapters.MovieDetails.HomeRecyclerAdapter;
+import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.SearchModels.SearchResult;

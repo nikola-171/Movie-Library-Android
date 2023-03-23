@@ -8,6 +8,8 @@ import java.util.Locale;
 public class Helper {
 
     private static final int ITEM_BREAKPOINT = 400;
+    private static final int ITEM_BREAKPOINT_CAST_MEMBERS = 480;
+    private static final int MOBILE_BREAKPOINT = 1080;
 
     private static final NumberFormat formatter = NumberFormat.getInstance(new Locale("en_US"));
 
@@ -21,6 +23,12 @@ public class Helper {
 
     public static int getGridItemsCount() {
         return (Resources.getSystem().getDisplayMetrics().widthPixels ) / ITEM_BREAKPOINT;
+    }
+
+    public static int getGridItemsCountForCastMembers() {
+        int currentWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+
+        return currentWidth <= MOBILE_BREAKPOINT ? 1 : currentWidth / ITEM_BREAKPOINT_CAST_MEMBERS;
     }
 
     public static String formatNumber(Double number) {

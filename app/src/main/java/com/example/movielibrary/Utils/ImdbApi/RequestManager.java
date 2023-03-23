@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
+import com.example.movielibrary.Models.FaqModels.FaqResponseModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeAllTimeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.ComingSoonModel;
@@ -47,6 +48,14 @@ public class RequestManager {
                 .baseUrl("https://imdb-api.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+
+    public void getFaqList(OnMovieResponseListener<FaqResponseModel> listener, String item_id){
+        SearchMovies searchMovies = retrofit.create(SearchMovies.class);
+
+        Call<FaqResponseModel> call = searchMovies.getFaqList(imdbApiKey, item_id);
+
+        setCallbackFunction(call, listener);
     }
 
     public void searchMovies(OnMovieResponseListener<SearchResult> listener, String movie_title){

@@ -5,6 +5,8 @@ public class MovieActivitiesDefaults {
 
     public static final String DATA = "data";
 
+    public static final String IMAGE = "image";
+
     public static final String DIALOG_TAG = "dialog";
 
 }

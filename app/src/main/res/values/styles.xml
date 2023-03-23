@@ -23,6 +23,7 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:scaleType">fitCenter</item>
         <item name="lottie_autoPlay">true</item>
+        <item name="lottie_loop">true</item>
         <item name="lottie_rawRes">@raw/watch</item>
         <item name="layout_constraintBottom_toBottomOf">parent</item>
         <item name="layout_constraintEnd_toEndOf">parent</item>

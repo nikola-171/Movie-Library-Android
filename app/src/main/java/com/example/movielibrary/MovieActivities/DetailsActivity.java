@@ -14,15 +14,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.movielibrary.Adapters.MovieDetails.CastRecyclerAdapter;
-import com.example.movielibrary.Adapters.MovieDetails.SimilarMoviesRecycleAdapter;
+import com.example.movielibrary.Adapters.CastRecyclerAdapter;
+import com.example.movielibrary.Adapters.SimilarMoviesRecycleAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.SearchModels.DetailsSearch.BoxOffice;
@@ -219,7 +217,6 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         requestManager.searchMovieDetails(_listener, movie_id);
     }
 
-
     private final OnMovieResponseListener<DetailsMovieResponse> _listener = new OnMovieResponseListener<DetailsMovieResponse>() {
         @Override
         public void onResponse(DetailsMovieResponse response) {
@@ -327,7 +324,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         }
 
         recyclerView_movie_cast.setHasFixedSize(true);
-        recyclerView_movie_cast.setLayoutManager(new GridLayoutManager(DetailsActivity.this, 1));
+        recyclerView_movie_cast.setLayoutManager(new GridLayoutManager(DetailsActivity.this, Helper.getGridItemsCountForCastMembers()));
         adapter = new CastRecyclerAdapter(DetailsActivity.this, response.getActorList());
         recyclerView_movie_cast.setAdapter(adapter);
         recyclerView_similarMovies.setHasFixedSize(true);
@@ -340,7 +337,8 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
 
     private void showFaqPage(View view) {
         startActivity(new Intent(DetailsActivity.this, FaqActivity.class)
-                .putExtra(MovieActivitiesDefaults.DATA, movieId).putExtra(MovieActivitiesDefaults.PARENT, DetailsActivity.class.toString()));
+                .putExtra(MovieActivitiesDefaults.DATA, movieId).putExtra(MovieActivitiesDefaults.PARENT, DetailsActivity.class.toString())
+                .putExtra(MovieActivitiesDefaults.IMAGE, poster));
     }
 
     @Override

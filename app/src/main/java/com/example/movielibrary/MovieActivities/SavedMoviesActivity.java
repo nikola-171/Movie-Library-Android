@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -18,7 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
 
-import com.example.movielibrary.Adapters.MovieDetails.HomeRecyclerAdapter;
+import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Database.Entities.MovieDetails;
 import com.example.movielibrary.Models.SearchModels.MovieSearchResult;
@@ -28,8 +26,6 @@ import com.example.movielibrary.Shared.Helper;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 

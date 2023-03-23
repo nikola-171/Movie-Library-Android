@@ -1,4 +1,4 @@
-package com.example.movielibrary.Adapters.MovieDetails;
+package com.example.movielibrary.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -14,7 +14,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Models.SearchModels.DetailsSearch.Actor;
 import com.example.movielibrary.Models.SearchModels.MovieSearchResult;
 import com.example.movielibrary.R;
 import com.squareup.picasso.Picasso;
