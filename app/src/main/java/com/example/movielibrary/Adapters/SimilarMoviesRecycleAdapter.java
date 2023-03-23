@@ -1,4 +1,4 @@
-package com.example.movielibrary.Adapters.MovieDetails;
+package com.example.movielibrary.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -42,7 +42,7 @@ public class SimilarMoviesRecycleAdapter extends RecyclerView.Adapter<SimilarMov
         holder.textView_rating.setText(String.format("%s/10", list.get(position).getImDbRating()));
 
         try {
-            Picasso.get().load(list.get(position).getImage()).resize(500, 600).placeholder(R.drawable.loading_anim_300x400).into(holder.imageView_poster);
+            Picasso.get().load(list.get(position).getImage()).resize(500, 600).placeholder(R.drawable.ic_baseline_image_500x600).into(holder.imageView_poster);
         } catch (Exception e) {
             e.printStackTrace();
         }

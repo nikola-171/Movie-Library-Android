@@ -1,4 +1,4 @@
-package com.example.movielibrary.Adapters.MovieDetails.TopLists;
+package com.example.movielibrary.Adapters.TopLists;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,10 +9,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Models.SearchModels.TopLists.Top250MoviesModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.MostPopularMoviesModel;
 import com.example.movielibrary.R;
 import com.squareup.picasso.Picasso;
 
@@ -21,13 +22,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class Top250MoviesRecycleAdapter extends RecyclerView.Adapter<Top250MoviesViewHolder>{
+public class MostPopularMoviesRecycleAdapter extends RecyclerView.Adapter<MostPopularMoviesViewHolder>{
 
     Context context;
-    List<Top250MoviesModel> list;
+    List<MostPopularMoviesModel> list;
     OnMovieClickListener listener;
 
-    public Top250MoviesRecycleAdapter(Context context, List<Top250MoviesModel> list, OnMovieClickListener listener) {
+    public MostPopularMoviesRecycleAdapter(Context context, List<MostPopularMoviesModel> list, OnMovieClickListener listener) {
         this.context = context;
         this.list = list;
         this.listener = listener;
@@ -35,12 +36,12 @@ public class Top250MoviesRecycleAdapter extends RecyclerView.Adapter<Top250Movie
 
     @NonNull
     @Override
-    public Top250MoviesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new Top250MoviesViewHolder(LayoutInflater.from(context).inflate(R.layout.top_list, parent, false));
+    public MostPopularMoviesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MostPopularMoviesViewHolder(LayoutInflater.from(context).inflate(R.layout.most_popular_movies_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Top250MoviesViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MostPopularMoviesViewHolder holder, int position) {
         NumberFormat formatter = NumberFormat.getInstance(new Locale("en_US"));
 
         holder.textView_movie.setText(list.get(position).getTitle());
@@ -61,11 +62,7 @@ public class Top250MoviesRecycleAdapter extends RecyclerView.Adapter<Top250Movie
 
         String rating = list.get(position).getImDbRating();
 
-        if(rating != null && !rating.equals("")){
-            holder.TextView_Rating.setText(String.format("%s/10", rating));
-        }else{
-            holder.TextView_Rating.setVisibility(View.GONE);
-        }
+        holder.TextView_Rating.setText(String.format("%s/10", rating != null && !rating.equals("") ? rating : "?"));
 
         String rank = list.get(position).getRank();
 
@@ -80,6 +77,16 @@ public class Top250MoviesRecycleAdapter extends RecyclerView.Adapter<Top250Movie
 
         holder.homeContainer.setOnClickListener(view -> listener.onMovieClicked(list.get(position).getId()));
 
+        String rankUpDown = list.get(position).getRankUpDown();
+
+        holder.TextView_RankChange.setText(rankUpDown);
+        if(rankUpDown.contains("-")){
+            holder.TextView_RankChange.setTextColor(ContextCompat.getColor(context, R.color.red));
+        }else if(rankUpDown.contains("+")){
+            holder.TextView_RankChange.setTextColor(ContextCompat.getColor(context, R.color.green));
+
+        }
+
     }
 
     @Override
@@ -89,14 +96,14 @@ public class Top250MoviesRecycleAdapter extends RecyclerView.Adapter<Top250Movie
 
 }
 
-class Top250MoviesViewHolder extends RecyclerView.ViewHolder {
+class MostPopularMoviesViewHolder extends RecyclerView.ViewHolder {
 
     ImageView imageView_poster;
     TextView textView_movie, TextView_Place, TextView_Crew, TextView_Rating, TextView_Votes, TextView_Plot,
-            TextView_Genres, TextView_ReleaseState, TextView_MetaCritic;
+            TextView_Genres, TextView_ReleaseState, TextView_MetaCritic, TextView_RankChange;
     CardView homeContainer;
 
-    public Top250MoviesViewHolder(@NonNull View itemView) {
+    public MostPopularMoviesViewHolder(@NonNull View itemView) {
         super(itemView);
         TextView_Rating = itemView.findViewById(R.id.TextView_Rating);
         TextView_Crew = itemView.findViewById(R.id.TextView_Crew);
@@ -109,6 +116,7 @@ class Top250MoviesViewHolder extends RecyclerView.ViewHolder {
         TextView_Genres = itemView.findViewById(R.id.textView_comingSoonGenres);
         TextView_ReleaseState = itemView.findViewById(R.id.textView_releaseState);
         TextView_MetaCritic = itemView.findViewById(R.id.TextView_MetaCritic);
+        TextView_RankChange = itemView.findViewById(R.id.TextView_RankChange);
         TextView_Votes.setSelected(true);
         textView_movie.setSelected(true);
         TextView_Crew.setSelected(true);

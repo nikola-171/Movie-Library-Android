@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.movielibrary.Adapters.MovieDetails.TopLists.InTheatersRecycleAdapter;
+import com.example.movielibrary.Adapters.TopLists.InTheatersRecycleAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.SearchModels.TopLists.InTheatersModel;

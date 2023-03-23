@@ -64,17 +64,17 @@ public class AdvancedFilterForm extends AppCompatActivity implements MultiChoice
         actionBar.setElevation(0);
 
         Button_Submit = findViewById(id.button_submit);
-        Button_Cancel = findViewById(R.id.button_cancel);
+        Button_Cancel = findViewById(id.button_cancel);
         Button_Cancel.setOnClickListener(this::cancelSearch);
 
         textInputEditText_title = findViewById(id.textInputEditText_title);
-        textInputEditText_keywords = findViewById(R.id.textInputEditText_keywords);
-        textInputEditText_votesMax = findViewById(R.id.textInputEditText_votesMax);
-        textInputEditText_votesMin = findViewById(R.id.textInputEditText_votesMin);
-        textInputEditText_plot = findViewById(R.id.textInputEditText_plot);
-        textInputEditText_runtimeMin = findViewById(R.id.textInputEditText_runtimeMin);
-        textInputEditText_runtimeMax = findViewById(R.id.textInputEditText_runtimeMax);
-        textInputEditText_filmingLocation = findViewById(R.id.textInputEditText_filmingLocation);
+        textInputEditText_keywords = findViewById(id.textInputEditText_keywords);
+        textInputEditText_votesMax = findViewById(id.textInputEditText_votesMax);
+        textInputEditText_votesMin = findViewById(id.textInputEditText_votesMin);
+        textInputEditText_plot = findViewById(id.textInputEditText_plot);
+        textInputEditText_runtimeMin = findViewById(id.textInputEditText_runtimeMin);
+        textInputEditText_runtimeMax = findViewById(id.textInputEditText_runtimeMax);
+        textInputEditText_filmingLocation = findViewById(id.textInputEditText_filmingLocation);
 
         Button_Submit.setOnClickListener(view -> {
 

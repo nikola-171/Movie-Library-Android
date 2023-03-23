@@ -1,6 +1,7 @@
 package com.example.movielibrary.Models.SearchModels.DetailsSearch;
 
 import com.example.movielibrary.Models.SearchModels.SimilarMovieModel;
+import com.example.movielibrary.Models.SearchModels.TvSeriesInfo;
 
 import java.util.List;
 
@@ -27,6 +28,42 @@ public class DetailsMovieResponse {
     String genres = "";
     String companies = "";
     String languages = "";
+    String contentRating = "";
+    String metacriticRating = "";
+    BoxOffice boxOffice;
+    TvSeriesInfo tvSeriesInfo;
+
+    public TvSeriesInfo getTvSeriesInfo() {
+        return tvSeriesInfo;
+    }
+
+    public void setTvSeriesInfo(TvSeriesInfo tvSeriesInfo) {
+        this.tvSeriesInfo = tvSeriesInfo;
+    }
+
+    public BoxOffice getBoxOffice() {
+        return boxOffice;
+    }
+
+    public void setBoxOffice(BoxOffice boxOffice) {
+        this.boxOffice = boxOffice;
+    }
+
+    public String getMetacriticRating() {
+        return metacriticRating;
+    }
+
+    public void setMetacriticRating(String metacriticRating) {
+        this.metacriticRating = metacriticRating;
+    }
+
+    public String getContentRating() {
+        return contentRating;
+    }
+
+    public void setContentRating(String contentRating) {
+        this.contentRating = contentRating;
+    }
 
     public String getKeywords() {
         return keywords;

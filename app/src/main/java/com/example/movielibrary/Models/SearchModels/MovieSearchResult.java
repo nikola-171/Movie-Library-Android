@@ -1,5 +1,7 @@
 package com.example.movielibrary.Models.SearchModels;
 
+import java.util.Comparator;
+
 public class MovieSearchResult {
 
     String id;
@@ -48,4 +50,8 @@ public class MovieSearchResult {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public static Comparator<MovieSearchResult> comparatorTitleAsc = Comparator.comparing(MovieSearchResult::getTitle);
+    public static Comparator<MovieSearchResult> comparatorTitleDesc = (t1, t2) -> t2.getTitle().compareTo(t1.getTitle());
+
 }

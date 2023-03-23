@@ -35,28 +35,17 @@
         android:layout_height="wrap_content">
         <LinearLayout
 
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            style="@style/LinearLayoutTopListsHeader"
+            >
 
             <com.airbnb.lottie.LottieAnimationView
-                android:layout_weight="1"
                 android:id="@+id/LottieAnimationView_AnimationMoney"
                 app:lottie_rawRes="@raw/cinema_awards"
-                android:layout_width="match_parent"
-                app:lottie_autoPlay="true"
-                android:layout_height="100dp" />
+                style="@style/HeaderLottieAnimation" />
 
             <TextView
-                android:textSize="20sp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:text="@string/activityMostPopularTvs_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                style="@style/TopListTitleText"
+                android:text="@string/activityMostPopularTvs_title" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

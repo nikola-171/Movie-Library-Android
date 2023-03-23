@@ -1,9 +1,11 @@
-package com.example.movielibrary.Adapters.MovieDetails;
+package com.example.movielibrary.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,11 +20,14 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
-public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeViewHolder>{
+public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeViewHolder> implements Filterable {
 
     Context context;
     List<MovieSearchResult> list;
+    List<MovieSearchResult> listFilter;
+
     OnMovieClickListener listener;
     private HomeViewHolder holder;
     private int position;
@@ -30,6 +35,7 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeViewHolder>{
     public HomeRecyclerAdapter(Context context, List<MovieSearchResult> list, OnMovieClickListener listener) {
         this.context = context;
         this.list = list;
+        this.listFilter = list;
         this.listener = listener;
     }
 
@@ -53,6 +59,35 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeViewHolder>{
     public int getItemCount() {
         return list.size();
     }
+
+
+        @Override
+        public Filter getFilter() {
+
+            return new Filter() {
+                @Override
+                protected FilterResults performFiltering(CharSequence charSequence) {
+                    FilterResults filterResults = new FilterResults();
+                    if(charSequence == null || charSequence.length() == 0){
+                        filterResults.values = listFilter;
+                        filterResults.count = listFilter.size();
+                    }else{
+                        List<MovieSearchResult> movies = listFilter.stream().filter(item -> item.getTitle().toLowerCase().contains(charSequence)).collect(Collectors.toList());
+
+                        filterResults.values = movies;
+                        filterResults.count = movies.size();
+                    }
+                    return filterResults;
+                }
+
+                @Override
+                protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                    list = (List<MovieSearchResult>) filterResults.values;
+                    notifyDataSetChanged();
+                }
+            };
+        }
+
 }
 
 

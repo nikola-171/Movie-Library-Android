@@ -1,314 +1,262 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:textColor="@color/black"
+    tools:context=".MovieActivities.DetailsActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrainLayout_loadingWrapper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".MovieActivities.DetailsActivity">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:visibility="gone"
-
-            android:id="@+id/constrainLayout_loadingWrapper"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_height="match_parent">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/searchPlaceholderAnimation"
-            android:layout_width="450dp"
-            android:layout_height="350dp"
-            android:layout_gravity="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
+            style="@style/LottieAnimation"
             app:lottie_rawRes="@raw/loading" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ScrollView
-            android:id="@+id/detailsPageContent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <ScrollView android:id="@+id/detailsPageContent" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    app:cardBackgroundColor="@color/purple_500"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
+            <ImageView android:id="@+id/imageView_moviePoster" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:layout_gravity="center"
+                android:contentDescription="@string/detailsActivity_poster"
+                android:src="@drawable/icon" />
+
+            <androidx.cardview.widget.CardView style="@style/Card"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:gravity="center"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:weightSum="5"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView android:id="@+id/textView_movieName" style="@style/CardItemTitle"
+                            android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:textAlignment="viewStart" />
+
+                        <TextView android:id="@+id/textView_contentRating"
+                            style="@style/CardItemWarning" android:layout_width="match_parent"
+                            android:layout_height="wrap_content" android:layout_weight="3"
+                            android:gravity="end" android:textAlignment="viewEnd" />
+                    </LinearLayout>
+
+                    <TextView android:id="@+id/textView_moviePlot" style="@style/CardItem"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:textAlignment="textStart" />
+
+
+                    <TextView android:id="@+id/textView_genres" style="@style/CardItemItalic"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textAlignment="viewStart" />
+
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:orientation="vertical">
+
+                        <TextView android:id="@+id/textView_movieVotes" style="@style/CardItem"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:gravity="center"
+                            app:drawableEndCompat="@drawable/ic_baseline_star_24" />
+
+                        <TextView android:id="@+id/textView_movieReleased" style="@style/CardItem"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content" />
 
-                            <TextView
-                                android:layout_weight="4"
-                                android:id="@+id/textView_movieName"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:maxWidth="150dp"
-                                android:padding="8dp"
-                                android:text="@string/movieDetails_movieTitle"
-                                android:textAlignment="textStart"
-                                android:textColor="@color/black"
-                                android:textSize="24sp"
-                                android:textStyle="bold"/>
+                        <TextView android:id="@+id/textView_awards" style="@style/CardItem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-                            <ImageButton
-                                android:background="@android:color/transparent"
-                                android:id="@+id/imageButton_action"
-                                android:layout_weight="1"
-                                android:layout_gravity="center"
-                                android:layout_marginEnd="10dp"
-                                android:layout_width="20dp"
-                                android:layout_height="50dp"
-                                android:contentDescription="@string/movieDetails_saveMovieButtonMessage" />
+                        <TextView android:id="@+id/textView_languages" style="@style/CardItem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-                        </LinearLayout>
+                        <TextView android:id="@+id/textView_companies" style="@style/CardItem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
-                        <androidx.cardview.widget.CardView
-                            android:layout_marginTop="15dp"
-                            android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/purple_500"
-                            app:cardCornerRadius="8dp"
-                            android:layout_width="wrap_content">
-
-                            <ImageView
-                                android:src="@drawable/icon"
-                                android:layout_gravity="center"
-                                android:id="@+id/imageView_moviePoster"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:contentDescription="@string/detailsActivity_poster" />
-                        </androidx.cardview.widget.CardView>
-
-
-                        <TextView
-                            android:id="@+id/textView_moviePlot"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="textStart"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:layout_margin="10dp"
-                            android:textStyle="normal"/>
+                        <TextView android:id="@+id/textView_keywords" style="@style/CardItem"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
-                </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView style="@style/Card"
+                android:layout_width="match_parent" android:layout_height="wrap_content">
+
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="vertical">
+
+                    <TextView style="@style/CardItemTitle" android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detailsActivity_boxOfficeTitle" />
+
+                    <TextView android:id="@+id/textView_openingWeekendUSA" style="@style/CardItem"
+                        android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+                    <TextView android:id="@+id/textView_grossUSA" style="@style/CardItem"
+                        android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+                    <TextView android:id="@+id/textView_budget" style="@style/CardItem"
+                        android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+                    <TextView android:id="@+id/textView_cumulativeWorldwideGross"
+                        style="@style/CardItem" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView android:id="@+id/cardView_tvSeries"
+                style="@style/Card" android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="vertical">
+
+                    <TextView style="@style/CardItemTitle" android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detailsActivity_tvSeriesTitle" />
+
+                    <TextView android:id="@+id/textView_creators" style="@style/CardItem"
+                        android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+                    <TextView android:id="@+id/textView_seasons" style="@style/CardItem"
+                        android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- Reviews Table -->
+            <LinearLayout
+                android:weightSum="2"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_faq"
+                    android:layout_weight="1"
                     android:layout_margin="8dp"
-                    app:cardBackgroundColor="@color/purple_500"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp"
+                    app:cardCornerRadius="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
+                    android:layout_height="wrap_content"
+                    >
                     <LinearLayout
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
+                        <com.airbnb.lottie.LottieAnimationView
+                            app:lottie_rawRes="@raw/faq"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"/>
                         <TextView
-                            android:textColor="@color/white"
-                            android:id="@+id/textView_movieReleased"
+                            android:layout_gravity="center"
+                            style="@style/CardItemTitle"
+                            android:text="FAQ"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text=""
-                            android:textAlignment="textStart"
-                            android:textSize="18sp"
-                            android:textStyle="normal" />
-
-                        <TextView
-                            android:id="@+id/textView_movieRuntime"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text=""
-                            android:textAlignment="textStart"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="normal" />
-
-                        <TextView
-                            android:id="@+id/textView_movieRating"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text=""
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="normal" />
-
-                        <TextView
-                            android:id="@+id/textView_movieVotes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text=""
-                            android:textAlignment="center"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="normal" />
-
-                        <TextView
-                            android:id="@+id/textView_awards"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text=""
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="normal" />
-
-                        <TextView
-                            android:id="@+id/textView_genres"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text=""
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="normal" />
-
-                        <TextView
-                            android:id="@+id/textView_companies"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text=""
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="normal" />
-
-                        <TextView
-                            android:id="@+id/textView_languages"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text=""
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="normal" />
-
-                        <TextView
-                            android:id="@+id/textView_keywords"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:text=""
-                            android:textAlignment="viewStart"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="normal" />
-
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
+
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:layout_margin="8dp"
-                    app:cardBackgroundColor="@color/purple_500"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
-
+                    app:cardCornerRadius="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
                     <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content">
 
-                        <LinearLayout
+                        <com.airbnb.lottie.LottieAnimationView
+                            app:lottie_rawRes="@raw/rating"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="3"
-                                android:padding="8dp"
-                                android:text="@string/detailsActivity_actors"
-                                android:textAlignment="center"
-                                android:textColor="@color/white"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerView_movieCast"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:nestedScrollingEnabled="false">
-
-                        </androidx.recyclerview.widget.RecyclerView>
-
-                        <androidx.cardview.widget.CardView
-                            app:cardBackgroundColor="@color/purple_500"
-                            android:layout_marginTop="10dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:orientation="vertical"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:padding="8dp"
-                                    android:text="@string/detailsActivity_similarMovies"
-                                    android:textAlignment="center"
-                                    android:textColor="@color/white"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"
-                                    android:layout_width="match_parent"/>
-
-                                <androidx.recyclerview.widget.RecyclerView
-                                    android:id="@+id/recyclerView_similarMovies"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:nestedScrollingEnabled="false" />
-
-                            </LinearLayout>
-
-                        </androidx.cardview.widget.CardView>
-
+                            android:layout_height="100dp"/>
+                        <TextView
+                            android:layout_gravity="center"
+                            style="@style/CardItemTitle"
+                            android:text="Reviews"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
                     </LinearLayout>
+
 
                 </androidx.cardview.widget.CardView>
 
+
+
+
             </LinearLayout>
 
-        </ScrollView>
 
-    </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal">
+
+                    <TextView android:layout_width="0dp"
+
+                        android:layout_height="wrap_content" android:layout_weight="3"
+                        android:padding="8dp" android:text="@string/detailsActivity_actors"
+                        android:textAlignment="center" android:textColor="@color/textColor"
+                        android:textSize="18sp" android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerView_movieCast"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:padding="8dp" android:text="@string/detailsActivity_similarMovies"
+                    android:textAlignment="center" android:textColor="@color/textColor"
+                    android:textSize="18sp" android:textStyle="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_similarMovies" android:layout_width="match_parent"
+                    android:layout_height="match_parent" android:nestedScrollingEnabled="false" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
 

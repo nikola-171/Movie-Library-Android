@@ -1,4 +1,4 @@
-package com.example.movielibrary.Adapters.MovieDetails.TopLists;
+package com.example.movielibrary.Adapters.TopLists;
 
 import android.content.Context;
 import android.view.LayoutInflater;

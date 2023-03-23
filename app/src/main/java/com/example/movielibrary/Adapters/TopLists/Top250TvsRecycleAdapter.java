@@ -1,4 +1,4 @@
-package com.example.movielibrary.Adapters.MovieDetails.TopLists;
+package com.example.movielibrary.Adapters.TopLists;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Models.SearchModels.TopLists.MostPopularTvsModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.Top250TvsModel;
 import com.example.movielibrary.R;
 import com.squareup.picasso.Picasso;
 
@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class MostPopularTvsRecycleAdapter extends RecyclerView.Adapter<MostPopularTvsViewHolder>{
+public class Top250TvsRecycleAdapter extends RecyclerView.Adapter<Top250TvsViewHolder>{
 
     Context context;
-    List<MostPopularTvsModel> list;
+    List<Top250TvsModel> list;
     OnMovieClickListener listener;
 
-    public MostPopularTvsRecycleAdapter(Context context, List<MostPopularTvsModel> list, OnMovieClickListener listener) {
+    public Top250TvsRecycleAdapter(Context context, List<Top250TvsModel> list, OnMovieClickListener listener) {
         this.context = context;
         this.list = list;
         this.listener = listener;
@@ -35,12 +35,12 @@ public class MostPopularTvsRecycleAdapter extends RecyclerView.Adapter<MostPopul
 
     @NonNull
     @Override
-    public MostPopularTvsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MostPopularTvsViewHolder(LayoutInflater.from(context).inflate(R.layout.top_list, parent, false));
+    public Top250TvsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new Top250TvsViewHolder(LayoutInflater.from(context).inflate(R.layout.top_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MostPopularTvsViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Top250TvsViewHolder holder, int position) {
         NumberFormat formatter = NumberFormat.getInstance(new Locale("en_US"));
 
         holder.textView_movie.setText(list.get(position).getTitle());
@@ -89,14 +89,14 @@ public class MostPopularTvsRecycleAdapter extends RecyclerView.Adapter<MostPopul
 
 }
 
-class MostPopularTvsViewHolder extends RecyclerView.ViewHolder {
+class Top250TvsViewHolder extends RecyclerView.ViewHolder {
 
     ImageView imageView_poster;
     TextView textView_movie, TextView_Place, TextView_Crew, TextView_Rating, TextView_Votes, TextView_Plot,
             TextView_Genres, TextView_ReleaseState, TextView_MetaCritic;
     CardView homeContainer;
 
-    public MostPopularTvsViewHolder(@NonNull View itemView) {
+    public Top250TvsViewHolder(@NonNull View itemView) {
         super(itemView);
         TextView_Rating = itemView.findViewById(R.id.TextView_Rating);
         TextView_Crew = itemView.findViewById(R.id.TextView_Crew);

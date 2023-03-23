@@ -1,4 +1,4 @@
-package com.example.movielibrary.Adapters.MovieDetails.TopLists;
+package com.example.movielibrary.Adapters.TopLists;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movielibrary.Listeners.OnMovieClickListener;
-import com.example.movielibrary.Models.SearchModels.TopLists.InTheatersModel;
+import com.example.movielibrary.Models.SearchModels.TopLists.MostPopularTvsModel;
 import com.example.movielibrary.R;
 import com.squareup.picasso.Picasso;
 
@@ -21,13 +21,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
-public class InTheatersRecycleAdapter extends RecyclerView.Adapter<InTheatersViewHolder>{
+public class MostPopularTvsRecycleAdapter extends RecyclerView.Adapter<MostPopularTvsViewHolder>{
 
     Context context;
-    List<InTheatersModel> list;
+    List<MostPopularTvsModel> list;
     OnMovieClickListener listener;
 
-    public InTheatersRecycleAdapter(Context context, List<InTheatersModel> list, OnMovieClickListener listener) {
+    public MostPopularTvsRecycleAdapter(Context context, List<MostPopularTvsModel> list, OnMovieClickListener listener) {
         this.context = context;
         this.list = list;
         this.listener = listener;
@@ -35,17 +35,17 @@ public class InTheatersRecycleAdapter extends RecyclerView.Adapter<InTheatersVie
 
     @NonNull
     @Override
-    public InTheatersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new InTheatersViewHolder(LayoutInflater.from(context).inflate(R.layout.in_theater_item, parent, false));
+    public MostPopularTvsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MostPopularTvsViewHolder(LayoutInflater.from(context).inflate(R.layout.top_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull InTheatersViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MostPopularTvsViewHolder holder, int position) {
         NumberFormat formatter = NumberFormat.getInstance(new Locale("en_US"));
 
-        holder.textView_movie.setText(list.get(position).getFullTitle());
+        holder.textView_movie.setText(list.get(position).getTitle());
 
-        String crew = list.get(position).getStars();
+        String crew = list.get(position).getCrew();
 
         if(crew != null && !crew.equals("")){
             holder.TextView_Crew.setText(crew);
@@ -67,17 +67,11 @@ public class InTheatersRecycleAdapter extends RecyclerView.Adapter<InTheatersVie
             holder.TextView_Rating.setVisibility(View.GONE);
         }
 
-        String rank = list.get(position).getContentRating();
+        String rank = list.get(position).getRank();
 
         if(rank != null && !rank.equals("")){
-            holder.TextView_Place.setText(rank);
+            holder.TextView_Place.setText(String.format("#%s", rank));
         }
-
-        holder.TextView_ReleaseState.setText(String.format("Released on: %s \n %s", list.get(position).getReleaseState() ,list.get(position).getRuntimeStr()));
-        holder.TextView_Genres.setText(list.get(position).getGenres());
-        holder.TextView_Plot.setText(list.get(position).getPlot());
-
-        holder.TextView_MetaCritic.setText(String.format("Metacritic rating: %s", list.get(position).getMetacriticRating()));
 
         if(list.get(position).getImage() != null && !Objects.equals(list.get(position).getImage(), "")){
             Picasso.get().load(list.get(position).getImage()).fit().into(holder.imageView_poster);
@@ -95,14 +89,14 @@ public class InTheatersRecycleAdapter extends RecyclerView.Adapter<InTheatersVie
 
 }
 
-class InTheatersViewHolder extends RecyclerView.ViewHolder {
+class MostPopularTvsViewHolder extends RecyclerView.ViewHolder {
 
     ImageView imageView_poster;
     TextView textView_movie, TextView_Place, TextView_Crew, TextView_Rating, TextView_Votes, TextView_Plot,
-             TextView_Genres, TextView_ReleaseState, TextView_MetaCritic;
+            TextView_Genres, TextView_ReleaseState, TextView_MetaCritic;
     CardView homeContainer;
 
-    public InTheatersViewHolder(@NonNull View itemView) {
+    public MostPopularTvsViewHolder(@NonNull View itemView) {
         super(itemView);
         TextView_Rating = itemView.findViewById(R.id.TextView_Rating);
         TextView_Crew = itemView.findViewById(R.id.TextView_Crew);

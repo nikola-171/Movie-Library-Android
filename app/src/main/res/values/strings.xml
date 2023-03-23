@@ -19,14 +19,14 @@
     <string name="movieDetails_dialogDeleteTitle">Deleting?</string>
     <string name="movieDetails_dialogDeleteMessage">Are you sure you want to remove the movie?</string>
     <string name="movieDetails_pleaseWait">Please wait…</string>
-    <string name="movieDetails_releaseDate">Released date: </string>
+    <string name="movieDetails_releaseDate">Released date</string>
     <string name="movieDetails_unknown">unknown</string>
-    <string name="movieDetails_runtime">Runtime: </string>
-    <string name="movieDetails_rating">Rating: </string>
-    <string name="movieDetails_votes">Number of votes: </string>
+    <string name="movieDetails_runtime">runtime</string>
+    <string name="movieDetails_rating">rating</string>
+    <string name="movieDetails_votes">IMDB votes</string>
     <string name="common_apiErrorResponse">Could not fetch data, please try again later.</string>
     <string name="homePage_noDataFound">No data available!</string>
-    <string name="savedMovies_title">Saved movies</string>
+    <string name="savedMovies_title">Saved Movies</string>
     <string name="savedMovies_noDataTitle">No movies? Quick go and search some!</string>
     <string name="requestManager_requestFailed">Could\'t fetch the data</string>
     <string name="detailsActivity_awards">Awards:</string>
@@ -34,7 +34,7 @@
     <string name="detailsActivity_companies">Companies:</string>
     <string name="detailsActivity_languages">Language(s):</string>
     <string name="detailsActivity_keywords">Keyword(s):</string>
-    <string name="mainActivity_searchMoviesHint">Search movies…</string>
+    <string name="mainActivity_searchMoviesHint">Search Movies…</string>
     <string name="nav_top250Movies">Top 250 movies</string>
     <string name="advancedFilterForm_title">Advanced Filter Form</string>
     <string name="advancedFilterForm_titleInput">Title</string>
@@ -96,4 +96,17 @@
     <string name="activity_mostPopularMovies_title">Most Popular Movies</string>
     <string name="activityInTheaters_title">In Theaters</string>
     <string name="activityComingSoon_title">Coming Soon</string>
+    <string name="common_questionMark">\?</string>
+    <string name="detailsActivity_boxOfficeTitle">Box Office</string>
+    <string name="detailsActivity_budget">Budget</string>
+    <string name="detailsActivity_openingWeekendUsa">Opening Weekend USA</string>
+    <string name="detailsActivity_usaGross">USA Gross</string>
+    <string name="detailsActivity_cumulativeWorldwideGross">Cumulative Worldwide Gross</string>
+    <string name="common_notAvailable">n/a</string>
+    <string name="detailsActivity_tvSeriesCreators">Creators: %s</string>
+    <string name="detailsActivity_tvSeriesSeasons">Seasons: %s</string>
+    <string name="detailsActivity_tvSeriesTitle">Tv Series Info</string>
+    <string name="activityTop250Tvs_title">Top 250 TVs</string>
+    <string name="searchMenu_title">Search</string>
+    <string name="savedMoviesActivity_filterMovies">Filter movies…</string>
 </resources>
