@@ -13,5 +13,6 @@
     <color name="grey">#CCC</color>
 
     <color name="textColor">#FF000000</color>
-    <color name="primaryColor">#FF000000</color>
+    <color name="primaryColor">#62AEEB</color>
+    <color name="secondaryColor">#80BEEF</color>
 </resources>

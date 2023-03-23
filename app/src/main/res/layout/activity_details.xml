@@ -11,6 +11,7 @@
     tools:context=".MovieActivities.DetailsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:visibility="gone"
         android:id="@+id/constrainLayout_loadingWrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -144,6 +145,76 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
+
+
+            <!-- Reviews Table -->
+            <LinearLayout
+                android:weightSum="2"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_faq"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            app:lottie_rawRes="@raw/faq"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"/>
+                        <TextView
+                            android:layout_gravity="center"
+                            style="@style/CardItemTitle"
+                            android:text="FAQ"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            app:lottie_rawRes="@raw/rating"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"/>
+                        <TextView
+                            android:layout_gravity="center"
+                            style="@style/CardItemTitle"
+                            android:text="Reviews"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+
+
+
+            </LinearLayout>
+
 
 
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"

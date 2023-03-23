@@ -107,4 +107,6 @@
     <string name="detailsActivity_tvSeriesSeasons">Seasons: %s</string>
     <string name="detailsActivity_tvSeriesTitle">Tv Series Info</string>
     <string name="activityTop250Tvs_title">Top 250 TVs</string>
+    <string name="searchMenu_title">Search</string>
+    <string name="savedMoviesActivity_filterMovies">Filter movies…</string>
 </resources>

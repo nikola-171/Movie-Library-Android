@@ -44,8 +44,6 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
 
     TextView textView_movie_title,
              textView_movie_released,
-             textView_movie_runtime,
-             textView_movie_rating,
              textView_movie_votes,
              textView_awards,
              textView_genres,
@@ -69,10 +67,9 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
     RequestManager requestManager;
     DBHandler dbHandler;
     ScrollView detailsPageContent;
-    CardView cardView_searchPlaceholder, cardView_tvSeries;
+    CardView cardView_faq, cardView_tvSeries;
     String title, poster, movieId , parent;
     Menu menu;
-    ListView listView_seasons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,7 +211,8 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         textView_seasons = findViewById(R.id.textView_seasons);
         textView_creators = findViewById(R.id.textView_creators);
         cardView_tvSeries = findViewById(R.id.cardView_tvSeries);
-
+        cardView_faq = findViewById(R.id.cardView_faq);
+        cardView_faq.setOnClickListener(this::showFaqPage);
         requestManager = new RequestManager(this);
         String movie_id = getIntent().getStringExtra(MovieActivitiesDefaults.DATA);
 
@@ -338,6 +336,11 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         recyclerView_similarMovies.setAdapter(similarMoviesAdapter);
         constrainLayout_loadingWrapper.setVisibility(View.GONE);
         detailsPageContent.setVisibility(View.VISIBLE);
+    }
+
+    private void showFaqPage(View view) {
+        startActivity(new Intent(DetailsActivity.this, FaqActivity.class)
+                .putExtra(MovieActivitiesDefaults.DATA, movieId).putExtra(MovieActivitiesDefaults.PARENT, DetailsActivity.class.toString()));
     }
 
     @Override
