@@ -43,7 +43,7 @@ import com.example.movielibrary.MovieActivities.TopLists.Top250Movies;
 import com.example.movielibrary.MovieActivities.TopLists.Top250TvsList;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
-import com.example.movielibrary.Utils.ImdbApi.RequestManager;
+import com.example.movielibrary.Utils.RequestManager;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;

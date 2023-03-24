@@ -1,4 +1,4 @@
-package com.example.movielibrary.Utils.ImdbApi;
+package com.example.movielibrary.Utils;
 
 import static com.example.movielibrary.Shared.Settings.IMDB_API_KEY;
 
@@ -11,6 +11,7 @@ import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
 import com.example.movielibrary.Models.FaqModels.FaqResponseModel;
+import com.example.movielibrary.Models.ReviewsModel.ReviewsResponseModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeAllTimeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.ComingSoonModel;
@@ -23,6 +24,7 @@ import com.example.movielibrary.Models.SearchModels.TopLists.Top250MoviesModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250TvsModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
 import com.example.movielibrary.R;
+import com.example.movielibrary.Utils.ImdbApi.SearchMovies;
 
 import java.util.HashMap;
 
@@ -48,6 +50,14 @@ public class RequestManager {
                 .baseUrl("https://imdb-api.com/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+
+    public void getReviewsList(OnMovieResponseListener<ReviewsResponseModel> listener, String item_id){
+        SearchMovies searchMovies = retrofit.create(SearchMovies.class);
+
+        Call<ReviewsResponseModel> call = searchMovies.getReviewsList(imdbApiKey, item_id);
+
+        setCallbackFunction(call, listener);
     }
 
     public void getFaqList(OnMovieResponseListener<FaqResponseModel> listener, String item_id){

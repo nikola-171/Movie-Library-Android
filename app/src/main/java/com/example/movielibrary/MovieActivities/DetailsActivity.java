@@ -32,7 +32,7 @@ import com.example.movielibrary.R;
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Shared.Helper;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
-import com.example.movielibrary.Utils.ImdbApi.RequestManager;
+import com.example.movielibrary.Utils.RequestManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -65,7 +65,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
     RequestManager requestManager;
     DBHandler dbHandler;
     ScrollView detailsPageContent;
-    CardView cardView_faq, cardView_tvSeries;
+    CardView cardView_faq, cardView_tvSeries, cardView_reviews;
     String title, poster, movieId , parent;
     Menu menu;
 
@@ -210,7 +210,10 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         textView_creators = findViewById(R.id.textView_creators);
         cardView_tvSeries = findViewById(R.id.cardView_tvSeries);
         cardView_faq = findViewById(R.id.cardView_faq);
+        cardView_reviews = findViewById(R.id.cardView_reviews);
+
         cardView_faq.setOnClickListener(this::showFaqPage);
+        cardView_reviews.setOnClickListener(this::showReviewsPage);
         requestManager = new RequestManager(this);
         String movie_id = getIntent().getStringExtra(MovieActivitiesDefaults.DATA);
 
@@ -337,6 +340,12 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
 
     private void showFaqPage(View view) {
         startActivity(new Intent(DetailsActivity.this, FaqActivity.class)
+                .putExtra(MovieActivitiesDefaults.DATA, movieId).putExtra(MovieActivitiesDefaults.PARENT, DetailsActivity.class.toString())
+                .putExtra(MovieActivitiesDefaults.IMAGE, poster));
+    }
+
+    private void showReviewsPage(View view) {
+        startActivity(new Intent(DetailsActivity.this, ReviewsActivity.class)
                 .putExtra(MovieActivitiesDefaults.DATA, movieId).putExtra(MovieActivitiesDefaults.PARENT, DetailsActivity.class.toString())
                 .putExtra(MovieActivitiesDefaults.IMAGE, poster));
     }

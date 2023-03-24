@@ -1,6 +1,7 @@
 package com.example.movielibrary.Utils.ImdbApi;
 
 import com.example.movielibrary.Models.FaqModels.FaqResponseModel;
+import com.example.movielibrary.Models.ReviewsModel.ReviewsResponseModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeAllTimeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.ComingSoonModel;
@@ -82,6 +83,12 @@ public interface SearchMovies {
 
     @GET("en/API/FAQ/{api_key}/{item_id}")
     Call<FaqResponseModel> getFaqList (
+            @Path("api_key") String api_key,
+            @Path("item_id") String item_id
+    );
+
+    @GET("en/API/Reviews/{api_key}/{item_id}")
+    Call<ReviewsResponseModel> getReviewsList (
             @Path("api_key") String api_key,
             @Path("item_id") String item_id
     );

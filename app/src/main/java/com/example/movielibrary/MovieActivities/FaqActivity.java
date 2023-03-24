@@ -18,7 +18,7 @@ import com.example.movielibrary.Models.FaqModels.FaqResponseModel;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Shared.Helper;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
-import com.example.movielibrary.Utils.ImdbApi.RequestManager;
+import com.example.movielibrary.Utils.RequestManager;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 

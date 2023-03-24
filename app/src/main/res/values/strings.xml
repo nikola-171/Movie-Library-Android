@@ -109,4 +109,5 @@
     <string name="activityTop250Tvs_title">Top 250 TVs</string>
     <string name="searchMenu_title">Search</string>
     <string name="savedMoviesActivity_filterMovies">Filter movies…</string>
+    <string name="reviewsActivity_spoilerAlert">SPOILER ALERT!</string>
 </resources>

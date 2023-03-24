@@ -21,7 +21,7 @@ import com.example.movielibrary.MovieActivities.DetailsActivity;
 import com.example.movielibrary.MovieActivities.MainActivity;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
-import com.example.movielibrary.Utils.ImdbApi.RequestManager;
+import com.example.movielibrary.Utils.RequestManager;
 
 import java.util.Objects;
 

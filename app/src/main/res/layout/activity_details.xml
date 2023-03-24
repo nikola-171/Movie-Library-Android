@@ -184,6 +184,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_reviews"
                     android:layout_weight="1"
                     android:layout_margin="8dp"
                     app:cardCornerRadius="20dp"
