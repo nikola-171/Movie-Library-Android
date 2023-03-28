@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -265,6 +266,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         }else{
             textView_awards.setVisibility(View.GONE);
         }
+
         textView_genres.setText(response.getGenres());
         textView_movie_plot.setText(response.getPlot());
         textView_companies.setText(String.format("%s %s", getString(R.string.detailsActivity_companies), response.getCompanies()));
@@ -286,7 +288,6 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         title = response.getTitle();
         poster = response.getImage();
         movieId = response.getId();
-
 
         if(response.getTvSeriesInfo() != null){
             TvSeriesInfo tvSeriesInfo = response.getTvSeriesInfo();
@@ -336,6 +337,20 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         recyclerView_similarMovies.setAdapter(similarMoviesAdapter);
         constrainLayout_loadingWrapper.setVisibility(View.GONE);
         detailsPageContent.setVisibility(View.VISIBLE);
+
+        imageView_movie_poster.setOnClickListener(view -> {
+            final Dialog dialog = new Dialog(DetailsActivity.this, android.R.style.Theme_Holo_NoActionBar_Fullscreen);
+            dialog.setContentView(R.layout.image_dialog);
+
+            ImageView imageView = dialog.findViewById(R.id.imageView_imageDialog);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            imageView.setImageDrawable(imageView_movie_poster.getDrawable());
+
+            TextView close = dialog.findViewById(R.id.textView_closeImageFullscreen);
+            close.setOnClickListener(view1 -> dialog.dismiss());
+
+            dialog.show();
+        });
     }
 
     private void showFaqPage(View view) {

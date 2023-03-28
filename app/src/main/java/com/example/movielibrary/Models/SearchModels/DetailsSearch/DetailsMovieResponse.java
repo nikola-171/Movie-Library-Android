@@ -1,11 +1,15 @@
 package com.example.movielibrary.Models.SearchModels.DetailsSearch;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.example.movielibrary.Models.SearchModels.SimilarMovieModel;
 import com.example.movielibrary.Models.SearchModels.TvSeriesInfo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class DetailsMovieResponse {
+public class DetailsMovieResponse implements Serializable {
 
     String id = "";
     String title = "";
