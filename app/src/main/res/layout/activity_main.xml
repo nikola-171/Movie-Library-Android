@@ -42,6 +42,7 @@
             android:layout_height="match_parent">
 
             <com.airbnb.lottie.LottieAnimationView
+                app:lottie_loop="false"
                 android:id="@+id/searchPlaceholderAnimation"
                 style="@style/LottieAnimation" />
         </androidx.constraintlayout.widget.ConstraintLayout>

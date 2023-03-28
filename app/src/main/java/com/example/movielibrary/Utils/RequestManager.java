@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
-import com.example.movielibrary.Listeners.OnMovieDetailsSearchListener;
 import com.example.movielibrary.Models.FaqModels.FaqResponseModel;
 import com.example.movielibrary.Models.ReviewsModel.ReviewsResponseModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeAllTimeModel;
@@ -24,6 +23,7 @@ import com.example.movielibrary.Models.SearchModels.TopLists.Top250MoviesModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250TvsModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
 import com.example.movielibrary.R;
+import com.example.movielibrary.Shared.SearchType;
 import com.example.movielibrary.Utils.ImdbApi.SearchMovies;
 
 import java.util.HashMap;
@@ -68,9 +68,37 @@ public class RequestManager {
         setCallbackFunction(call, listener);
     }
 
-    public void searchMovies(OnMovieResponseListener<SearchResult> listener, String movie_title){
+    public void searchMovies(OnMovieResponseListener<SearchResult> listener, String title, SearchType searchType){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);
-        Call<SearchResult> call = searchMovies.searchMovies(movie_title, imdbApiKey);
+        Call<SearchResult> call;
+
+        switch (searchType){
+            case SEARCH_COMPANY:
+                call = searchMovies.searchCompany(title, imdbApiKey);
+                break;
+            case SEARCH_SERIES:
+                call = searchMovies.searchSeries(title, imdbApiKey);
+                break;
+            case SEARCH_MOVIES:
+                call = searchMovies.searchMovies(title, imdbApiKey);
+                break;
+            case SEARCH_ALL:
+                call = searchMovies.searchAll(title, imdbApiKey);
+                break;
+            case SEARCH_EPISODES:
+                call = searchMovies.searchEpisodes(title, imdbApiKey);
+                break;
+            case SEARCH_NAMES:
+                call = searchMovies.searchNames(title, imdbApiKey);
+                break;
+            case SEARCH_KEYWORD:
+                call = searchMovies.searchKeywords(title, imdbApiKey);
+                break;
+            default:
+                call = searchMovies.defaultSearch(title, imdbApiKey);
+                break;
+        }
+
 
         setCallbackFunction(call, listener);
     }

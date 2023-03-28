@@ -23,9 +23,51 @@ import retrofit2.http.QueryMap;
 
 public interface SearchMovies {
 
-    @GET("en/API/Search/{api_key}/{movie_title}")
+    @GET("en/API/Search/{api_key}/{title}")
+    Call<SearchResult> defaultSearch(
+            @Path("title") String title,
+            @Path("api_key") String api_key
+    );
+
+    @GET("en/API/SearchMovie/{api_key}/{title}")
     Call<SearchResult> searchMovies(
-            @Path("movie_title") String movie_title,
+            @Path("title") String title,
+            @Path("api_key") String api_key
+    );
+
+    @GET("en/API/SearchSeries/{api_key}/{title}")
+    Call<SearchResult> searchSeries(
+            @Path("title") String title,
+            @Path("api_key") String api_key
+    );
+
+    @GET("en/API/SearchCompany/{api_key}/{title}")
+    Call<SearchResult> searchCompany(
+            @Path("title") String title,
+            @Path("api_key") String api_key
+    );
+
+    @GET("en/API/SearchKeyword/{api_key}/{title}")
+    Call<SearchResult> searchKeywords(
+            @Path("title") String title,
+            @Path("api_key") String api_key
+    );
+
+    @GET("en/API/SearchEpisode/{api_key}/{title}")
+    Call<SearchResult> searchEpisodes(
+            @Path("title") String title,
+            @Path("api_key") String api_key
+    );
+
+    @GET("en/API/SearchAll/{api_key}/{title}")
+    Call<SearchResult> searchAll(
+            @Path("title") String title,
+            @Path("api_key") String api_key
+    );
+
+    @GET("en/API/SearchName/{api_key}/{title}")
+    Call<SearchResult> searchNames(
+            @Path("title") String title,
             @Path("api_key") String api_key
     );
 

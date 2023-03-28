@@ -34,7 +34,6 @@
     <string name="detailsActivity_companies">Companies:</string>
     <string name="detailsActivity_languages">Language(s):</string>
     <string name="detailsActivity_keywords">Keyword(s):</string>
-    <string name="mainActivity_searchMoviesHint">Search Movies…</string>
     <string name="nav_top250Movies">Top 250 movies</string>
     <string name="advancedFilterForm_title">Advanced Filter Form</string>
     <string name="advancedFilterForm_titleInput">Title</string>
@@ -110,4 +109,12 @@
     <string name="searchMenu_title">Search</string>
     <string name="savedMoviesActivity_filterMovies">Filter movies…</string>
     <string name="reviewsActivity_spoilerAlert">SPOILER ALERT!</string>
+    <string name="mainActivity_searchMovies">Search Movies…</string>
+    <string name="mainActivity_searchSeries">Search Series…</string>
+    <string name="mainActivity_searchCompanies">Search Companies…</string>
+    <string name="mainActivity_searchEpisodes">Search Episodes…</string>
+    <string name="mainActivity_searchNames">Search Names…</string>
+    <string name="mainActivity_searchAll">Search All…</string>
+    <string name="mainActivity_searchKeywords">Search Keywords…</string>
+    <string name="mainActivity_searchDefault">Search…</string>
 </resources>

@@ -55,7 +55,7 @@
         <item name="android:padding">8dp</item>
         <item name="iconifiedByDefault">false</item>
         <item name="closeIcon">@drawable/ic_baseline_close_24</item>
-        <item name="queryHint">"Search movies..."</item>
+        <item name="queryHint">@string/mainActivity_searchDefault</item>
         <item name="searchIcon">@drawable/ic_baseline_manage_search_50</item>
     </style>
 

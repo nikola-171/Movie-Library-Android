@@ -254,10 +254,10 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         textView_movie_released.setText(String.format("%s %s %s %s", getString(R.string.movieDetails_releaseDate), response.getReleaseDate(),
                                                         getString(R.string.movieDetails_runtime), runtime));
 
-        String imdbVotes = response.getImDbRatingVotes();
-
+        String imdbVotes = response.getImDbRatingVotes() != null ? response.getImDbRatingVotes() : "0";
+        String imdbRating = response.getImDbRating() != null ? response.getImDbRating() : "";
         textView_movie_votes.setText(String.format("%s %s %s %s/%s", getString(R.string.movieDetails_votes), Helper.formatNumber(Double.parseDouble(imdbVotes)),
-                                     getString(R.string.movieDetails_rating), response.getImDbRating(), "10"));
+                                     getString(R.string.movieDetails_rating), imdbRating, "10"));
 
         String awards = response.getAwards();
         if(!Objects.equals(awards, "")){

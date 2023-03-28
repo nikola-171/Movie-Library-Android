@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/defaultSearch"
+        android:title="Default Search" />
+    <item
+        android:id="@+id/searchMovies"
+        android:title="Search Movies" />
+    <item
+        android:id="@+id/searchSeries"
+        android:title="Search Series" />
+    <item
+        android:id="@+id/searchNames"
+        android:title="Search Names" />
+    <item
+        android:id="@+id/searchEpisodes"
+        android:title="Search Episodes" />
+    <item
+        android:id="@+id/searchCompany"
+        android:title="Search Company" />
+    <item
+        android:id="@+id/searchKeyword"
+        android:title="Search Keyword" />
+    <item
+        android:id="@+id/searchAll"
+        android:title="Search All" />
+</menu>

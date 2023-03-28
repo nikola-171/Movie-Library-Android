@@ -19,11 +19,14 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -31,6 +34,7 @@ import com.airbnb.lottie.LottieDrawable;
 import com.example.movielibrary.Adapters.HomeRecyclerAdapter;
 import com.example.movielibrary.Listeners.OnMovieClickListener;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
+import com.example.movielibrary.Models.SearchModels.MovieSearchResult;
 import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.MovieActivities.TopLists.BoxOffice;
@@ -43,11 +47,13 @@ import com.example.movielibrary.MovieActivities.TopLists.Top250Movies;
 import com.example.movielibrary.MovieActivities.TopLists.Top250TvsList;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
+import com.example.movielibrary.Shared.SearchType;
 import com.example.movielibrary.Utils.RequestManager;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity implements OnMovieClickListener {
 
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     CardView cardView_searchView;
     ImageView imageView_advancedSearch;
     ConstraintLayout constraintLayout_searchAnimation;
+    SearchType searchType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +99,8 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         constraintLayout_searchAnimation = findViewById(R.id.constraintLayout_searchAnimation);
         imageView_advancedSearch = findViewById(R.id.ImageView_advancedSearch);
         imageView_advancedSearch.setOnClickListener(this::openAdvancedSearchForm);
+
+        searchType = SearchType.SEARCH_DEFAULT;
 
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(item -> {
@@ -140,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         });
 
         EditText txtSearch = (searchView.findViewById(androidx.appcompat.R.id.search_src_text));
-        txtSearch.setHint(R.string.mainActivity_searchMoviesHint);
+        txtSearch.setHint(R.string.mainActivity_searchDefault);
         txtSearch.setHintTextColor(Color.WHITE);
         txtSearch.setTextColor(Color.WHITE);
 
@@ -155,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
                 InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
-                requestManager.searchMovies(listener, query);
+                requestManager.searchMovies(listener, query, searchType);
                 constraintLayout_searchAnimation.setVisibility(View.VISIBLE);
                 recyclerView.setVisibility(View.GONE);
 
@@ -226,7 +235,65 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
         if(actionBarDrawerToggle.onOptionsItemSelected(item)){
             return true;
         }
-        return super.onOptionsItemSelected(item);
+
+        switch (item.getItemId()) {
+            case R.id.searchMovies:
+                this.searchType = SearchType.SEARCH_MOVIES;
+                this.searchView.setQueryHint(getString(R.string.mainActivity_searchMovies));
+                return true;
+
+            case R.id.searchSeries:
+                this.searchType = SearchType.SEARCH_SERIES;
+                this.searchView.setQueryHint(getString(R.string.mainActivity_searchSeries));
+
+                return true;
+
+            case R.id.searchNames:
+                this.searchType = SearchType.SEARCH_NAMES;
+                this.searchView.setQueryHint(getString(R.string.mainActivity_searchNames));
+
+                return true;
+
+            case R.id.searchKeyword:
+                this.searchType = SearchType.SEARCH_KEYWORD;
+                this.searchView.setQueryHint(getString(R.string.mainActivity_searchKeywords));
+
+                return true;
+
+            case R.id.searchCompany:
+                this.searchType = SearchType.SEARCH_COMPANY;
+                this.searchView.setQueryHint(getString(R.string.mainActivity_searchCompanies));
+
+                return true;
+
+            case R.id.searchAll:
+                this.searchView.setQueryHint(getString(R.string.mainActivity_searchAll));
+
+                this.searchType = SearchType.SEARCH_ALL;
+                return true;
+
+            case R.id.searchEpisodes:
+                this.searchView.setQueryHint(getString(R.string.mainActivity_searchEpisodes));
+
+                this.searchType = SearchType.SEARCH_EPISODES;
+                return true;
+
+            default:
+                this.searchType = SearchType.SEARCH_DEFAULT;
+                this.searchView.setQueryHint(getString(R.string.mainActivity_searchDefault));
+
+                return super.onOptionsItemSelected(item);
+
+
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_options_menu, menu);
+
+        return true;
     }
 
     private void displaySavedMovies() {
