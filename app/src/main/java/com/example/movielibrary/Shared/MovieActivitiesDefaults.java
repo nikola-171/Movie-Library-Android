@@ -9,4 +9,6 @@ public class MovieActivitiesDefaults {
 
     public static final String DIALOG_TAG = "dialog";
 
+    public static final String ID = "id";
+
 }

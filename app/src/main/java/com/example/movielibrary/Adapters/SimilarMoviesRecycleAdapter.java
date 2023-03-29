@@ -43,8 +43,7 @@ public class SimilarMoviesRecycleAdapter extends RecyclerView.Adapter<SimilarMov
 
         try {
             Picasso.get().load(list.get(position).getImage()).resize(500, 600).placeholder(R.drawable.ic_baseline_image_500x600).into(holder.imageView_poster);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ignored) {
         }
 
         holder.CardView_wrapper.setOnClickListener(view -> listener.onMovieClicked(list.get(position).getId()));

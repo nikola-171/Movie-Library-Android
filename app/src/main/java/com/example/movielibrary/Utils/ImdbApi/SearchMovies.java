@@ -1,6 +1,7 @@
 package com.example.movielibrary.Utils.ImdbApi;
 
 import com.example.movielibrary.Models.FaqModels.FaqResponseModel;
+import com.example.movielibrary.Models.Images.ImagesResponseModel;
 import com.example.movielibrary.Models.ReviewsModel.ReviewsResponseModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeAllTimeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeModel;
@@ -16,12 +17,20 @@ import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieRespons
 
 import java.util.Map;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface SearchMovies {
+
+    @GET("en/API/Images/{api_key}/{id}/Full")
+    Call<ImagesResponseModel> getImages(
+            @Path("api_key") String api_key,
+            @Path("id") String id
+    );
 
     @GET("en/API/Search/{api_key}/{title}")
     Call<SearchResult> defaultSearch(

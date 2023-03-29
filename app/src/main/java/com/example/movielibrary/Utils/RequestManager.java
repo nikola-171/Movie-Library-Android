@@ -1,15 +1,13 @@
 package com.example.movielibrary.Utils;
 
-import static com.example.movielibrary.Shared.Settings.IMDB_API_KEY;
-
 import android.content.Context;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.movielibrary.Database.DBHandler;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.FaqModels.FaqResponseModel;
+import com.example.movielibrary.Models.Images.ImagesResponseModel;
 import com.example.movielibrary.Models.ReviewsModel.ReviewsResponseModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeAllTimeModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.BoxOfficeModel;
@@ -26,30 +24,27 @@ import com.example.movielibrary.R;
 import com.example.movielibrary.Shared.SearchType;
 import com.example.movielibrary.Utils.ImdbApi.SearchMovies;
 
+import java.io.IOException;
 import java.util.HashMap;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RequestManager {
-    private final String imdbApiKey;
-
-    private final Context context;
-
-    private final Retrofit retrofit;
+public class RequestManager extends BaseRequestManager {
 
     public RequestManager(Context context) {
-        this.context = context;
+        super(context);
+    }
 
-        imdbApiKey = new DBHandler(context).getSettingByName(IMDB_API_KEY);
 
-        retrofit = new Retrofit.Builder()
-                .baseUrl("https://imdb-api.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+    public void getImages(OnMovieResponseListener<ImagesResponseModel> listener, String item_id){
+        SearchMovies searchMovies = retrofit.create(SearchMovies.class);
+
+        Call<ImagesResponseModel> call = searchMovies.getImages(imdbApiKey, item_id);
+
+        setCallbackFunction(call, listener);
     }
 
     public void getReviewsList(OnMovieResponseListener<ReviewsResponseModel> listener, String item_id){

@@ -117,4 +117,7 @@
     <string name="mainActivity_searchAll">Search All…</string>
     <string name="mainActivity_searchKeywords">Search Keywords…</string>
     <string name="mainActivity_searchDefault">Search…</string>
+    <string name="detailsActivity_reviewsText">Reviews</string>
+    <string name="detailsActivity_faqText">FAQ</string>
+    <string name="detailsActivity_imagesText">Images</string>
 </resources>

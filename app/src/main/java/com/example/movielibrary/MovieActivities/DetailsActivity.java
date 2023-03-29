@@ -66,7 +66,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
     RequestManager requestManager;
     DBHandler dbHandler;
     ScrollView detailsPageContent;
-    CardView cardView_faq, cardView_tvSeries, cardView_reviews;
+    CardView cardView_faq, cardView_tvSeries, cardView_reviews, cardView_imagesGallery, cardView_postersGallery;
     String title, poster, movieId , parent;
     Menu menu;
 
@@ -124,7 +124,6 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         this.menu = menu;
         return true;
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -212,12 +211,14 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         cardView_tvSeries = findViewById(R.id.cardView_tvSeries);
         cardView_faq = findViewById(R.id.cardView_faq);
         cardView_reviews = findViewById(R.id.cardView_reviews);
+        cardView_imagesGallery = findViewById(R.id.cardView_imagesGallery);
 
+        cardView_imagesGallery.setOnClickListener(this::showImageGalleryPage);
         cardView_faq.setOnClickListener(this::showFaqPage);
         cardView_reviews.setOnClickListener(this::showReviewsPage);
+
         requestManager = new RequestManager(this);
         String movie_id = getIntent().getStringExtra(MovieActivitiesDefaults.DATA);
-
         requestManager.searchMovieDetails(_listener, movie_id);
     }
 
@@ -363,6 +364,12 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         startActivity(new Intent(DetailsActivity.this, ReviewsActivity.class)
                 .putExtra(MovieActivitiesDefaults.DATA, movieId).putExtra(MovieActivitiesDefaults.PARENT, DetailsActivity.class.toString())
                 .putExtra(MovieActivitiesDefaults.IMAGE, poster));
+    }
+
+    private void showImageGalleryPage(View view) {
+        startActivity(new Intent(DetailsActivity.this, ImageGalleryActivity.class)
+                .putExtra(MovieActivitiesDefaults.ID, movieId)
+                .putExtra(MovieActivitiesDefaults.PARENT, DetailsActivity.class.toString()));
     }
 
     @Override
