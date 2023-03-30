@@ -171,8 +171,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.airbnb.lottie.LottieAnimationView
-                            app:lottie_rawRes="@raw/faq"
+                        <ImageView
+                            android:src="@drawable/faq"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"/>
                         <TextView
@@ -198,8 +198,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.airbnb.lottie.LottieAnimationView
-                            app:lottie_rawRes="@raw/rating"
+                        <ImageView
+                            android:src="@drawable/review"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"/>
                         <TextView
@@ -214,21 +214,72 @@
 
             </LinearLayout>
 
+
             <!-- Images -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView_imagesGallery"
-                style="@style/Card"
+            <LinearLayout
+                android:weightSum="2"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:gravity="center|start"
-                    style="@style/CardItemTitle"
-                    android:text="@string/detailsActivity_imagesText"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_imagesGallery"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:drawableStartCompat="@drawable/ic_baseline_keyboard_double_arrow_right_50" />
-            </androidx.cardview.widget.CardView>
+                    >
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:src="@drawable/image"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"/>
+                        <TextView
+                            android:layout_gravity="center"
+                            style="@style/CardItemTitle"
+                            android:text="@string/detailsActivity_imagesText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView_userRatings"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    app:cardCornerRadius="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:src="@drawable/user_rating"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"/>
+                        <TextView
+                            android:layout_gravity="center"
+                            style="@style/CardItemTitle"
+                            android:text="@string/detailsActivity_userRatingText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
 
 
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"

@@ -120,4 +120,5 @@
     <string name="detailsActivity_reviewsText">Reviews</string>
     <string name="detailsActivity_faqText">FAQ</string>
     <string name="detailsActivity_imagesText">Images</string>
+    <string name="detailsActivity_userRatingText">User Rating</string>
 </resources>

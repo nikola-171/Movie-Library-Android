@@ -7,7 +7,7 @@
 
 
 
-        <ImageView
+        <com.ortiz.touchview.TouchImageView
 
             android:adjustViewBounds="true"
             android:id="@+id/imageView_imageDialog"
