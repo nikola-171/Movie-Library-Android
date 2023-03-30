@@ -121,4 +121,15 @@
     <string name="detailsActivity_faqText">FAQ</string>
     <string name="detailsActivity_imagesText">Images</string>
     <string name="detailsActivity_userRatingText">User Rating</string>
+    <string name="activityUserRatings_demographicAll">Demographic All</string>
+    <string name="Common_allAges">All ages:</string>
+    <string name="common_under18">Under 18:</string>
+    <string name="common_ages18to29">Ages 18 to 29:</string>
+    <string name="common_ages30to44">Ages 30 to 44:</string>
+    <string name="common_agesOver45">Ages over 45:</string>
+    <string name="activityUserRatings_demographicMale">Demographic Male</string>
+    <string name="activityUserRatings_demographicFemale">Demographic Female</string>
+    <string name="activityUserRatings_top1000Voters">Top 1000 Voters</string>
+    <string name="activityUserRatings_usVoters">US Voters</string>
+    <string name="activityUserRatings_nonUsVoters">Non US Voters</string>
 </resources>

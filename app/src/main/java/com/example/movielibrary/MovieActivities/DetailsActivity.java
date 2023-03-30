@@ -66,7 +66,7 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
     RequestManager requestManager;
     DBHandler dbHandler;
     ScrollView detailsPageContent;
-    CardView cardView_faq, cardView_tvSeries, cardView_reviews, cardView_imagesGallery, cardView_postersGallery;
+    CardView cardView_faq, cardView_tvSeries, cardView_reviews, cardView_imagesGallery, cardView_userRatings;
     String title, poster, movieId , parent;
     Menu menu;
 
@@ -212,10 +212,12 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
         cardView_faq = findViewById(R.id.cardView_faq);
         cardView_reviews = findViewById(R.id.cardView_reviews);
         cardView_imagesGallery = findViewById(R.id.cardView_imagesGallery);
+        cardView_userRatings = findViewById(R.id.cardView_userRatings);
 
         cardView_imagesGallery.setOnClickListener(this::showImageGalleryPage);
         cardView_faq.setOnClickListener(this::showFaqPage);
         cardView_reviews.setOnClickListener(this::showReviewsPage);
+        cardView_userRatings.setOnClickListener(this::showUsersRatingPage);
 
         requestManager = new RequestManager(this);
         String movie_id = getIntent().getStringExtra(MovieActivitiesDefaults.DATA);
@@ -368,6 +370,12 @@ public class DetailsActivity extends AppCompatActivity implements OnMovieClickLi
 
     private void showImageGalleryPage(View view) {
         startActivity(new Intent(DetailsActivity.this, ImageGalleryActivity.class)
+                .putExtra(MovieActivitiesDefaults.ID, movieId)
+                .putExtra(MovieActivitiesDefaults.PARENT, DetailsActivity.class.toString()));
+    }
+
+    private void showUsersRatingPage(View view) {
+        startActivity(new Intent(DetailsActivity.this, UserRatingsActivity.class)
                 .putExtra(MovieActivitiesDefaults.ID, movieId)
                 .putExtra(MovieActivitiesDefaults.PARENT, DetailsActivity.class.toString()));
     }

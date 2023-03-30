@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieLibrary">
         <activity
+            android:name=".MovieActivities.UserRatingsActivity"
+            android:exported="false"
+            android:parentActivityName=".MovieActivities.DetailsActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MovieActivities.ImageGalleryActivity"
             android:exported="false"
             android:parentActivityName=".MovieActivities.DetailsActivity">

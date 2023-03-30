@@ -20,6 +20,7 @@ import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250MoviesModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250TvsModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
+import com.example.movielibrary.Models.UserRatings.UsersRatingResponseModel;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Shared.SearchType;
 import com.example.movielibrary.Utils.ImdbApi.SearchMovies;
@@ -38,6 +39,13 @@ public class RequestManager extends BaseRequestManager {
         super(context);
     }
 
+    public void getUsersRatings(OnMovieResponseListener<UsersRatingResponseModel> listener, String item_id){
+        SearchMovies searchMovies = retrofit.create(SearchMovies.class);
+
+        Call<UsersRatingResponseModel> call = searchMovies.getUsersRatings(imdbApiKey, item_id);
+
+        setCallbackFunction(call, listener);
+    }
 
     public void getImages(OnMovieResponseListener<ImagesResponseModel> listener, String item_id){
         SearchMovies searchMovies = retrofit.create(SearchMovies.class);

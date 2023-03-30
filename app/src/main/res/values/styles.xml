@@ -138,4 +138,9 @@
         <item name="cardCornerRadius">8dp</item>
         <item name="cardElevation">8dp</item>
     </style>
+
+    <style name="UserRatingText">
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 </resources>

@@ -14,17 +14,22 @@ import com.example.movielibrary.Models.SearchModels.SearchResult;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250MoviesModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.Top250TvsModel;
 import com.example.movielibrary.Models.SearchModels.TopLists.TopListMovieResponseModel;
+import com.example.movielibrary.Models.UserRatings.UsersRatingResponseModel;
 
 import java.util.Map;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 
 public interface SearchMovies {
+
+    @GET("en/API/UserRatings/{api_key}/{id}")
+    Call<UsersRatingResponseModel> getUsersRatings(
+            @Path("api_key") String api_key,
+            @Path("id") String id
+    );
 
     @GET("en/API/Images/{api_key}/{id}/Full")
     Call<ImagesResponseModel> getImages(
