@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
-import com.example.movielibrary.Models.Images.ImagesResponseModel;
 import com.example.movielibrary.Models.UserRatings.UsersRatingResponseModel;
 import com.example.movielibrary.R;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
