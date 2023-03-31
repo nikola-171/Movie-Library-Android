@@ -6,6 +6,9 @@ public class AllRatingsItem {
     private String percent;
 
     public String getRating() {
+        if(rating == null)
+            return "/";
+
         return rating;
     }
 
@@ -14,6 +17,9 @@ public class AllRatingsItem {
     }
 
     public String getVotes() {
+        if(votes == null)
+            return "/";
+
         return votes;
     }
 
@@ -22,6 +28,9 @@ public class AllRatingsItem {
     }
 
     public String getPercent() {
+        if(percent == null)
+            return "/";
+
         return percent;
     }
 

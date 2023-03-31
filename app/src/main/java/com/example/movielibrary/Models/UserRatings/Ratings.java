@@ -5,7 +5,11 @@ public class Ratings {
     private String rating;
     private String votes;
 
-    public String getRating() {
+    public String getRating()
+    {
+        if(rating == null)
+            return "/";
+
         return rating;
     }
 
@@ -14,6 +18,9 @@ public class Ratings {
     }
 
     public String getVotes() {
+        if(votes == null)
+            return "/";
+
         return votes;
     }
 

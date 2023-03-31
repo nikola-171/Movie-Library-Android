@@ -93,7 +93,11 @@ public class UserRatingsActivity extends AppCompatActivity {
             textView_votersUs_rating,
 
     textView_votersNonUs_votes,
-            textView_votersNonUs_rating;
+            textView_votersNonUs_rating,
+
+    textView_votersOver1000_percent,
+            textView_votersUs_percent,
+            textView_votersNonUs_percent;
 
 
     @Override
@@ -260,7 +264,7 @@ public class UserRatingsActivity extends AppCompatActivity {
         textView_demographicFemale_ages18to29_rating.setText(response.getDemographicFemales().getAges18To29().getRating());
 
         textView_demographicFemale_ages30to44_votes.setText(response.getDemographicFemales().getAges30To44().getVotes());
-        textView_demographicFemale_ages30to44_rating .setText(response.getDemographicFemales().getAges30To44().getRating());
+        textView_demographicFemale_ages30to44_rating.setText(response.getDemographicFemales().getAges30To44().getRating());
 
         textView_demographicFemale_agesOver45_votes.setText(response.getDemographicFemales().getAgesOver45().getVotes());
         textView_demographicFemale_agesOver45_rating.setText(response.getDemographicFemales().getAgesOver45().getRating());
@@ -270,8 +274,10 @@ public class UserRatingsActivity extends AppCompatActivity {
 
         textView_votersUs_votes.setText(response.getUsUsers().getVotes());
         textView_votersUs_rating.setText(response.getUsUsers().getRating());
+        textView_votersUs_rating.setText(response.getUsUsers().getRating());
 
         textView_votersNonUs_votes.setText(response.getNonUSUsers().getVotes());
+        textView_votersNonUs_rating.setText(response.getNonUSUsers().getRating());
         textView_votersNonUs_rating.setText(response.getNonUSUsers().getRating());
 
         constrainLayout_loadingWrapper.setVisibility(View.GONE);

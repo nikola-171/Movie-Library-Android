@@ -94,6 +94,9 @@ public class UsersRatingResponseModel {
     }
 
     public DemographicRatings getDemographicAll() {
+        if(demographicAll == null)
+            return new DemographicRatings();
+
         return demographicAll;
     }
 
@@ -102,6 +105,9 @@ public class UsersRatingResponseModel {
     }
 
     public DemographicRatings getDemographicMales() {
+        if(demographicMales == null)
+            return new DemographicRatings();
+
         return demographicMales;
     }
 
@@ -110,6 +116,9 @@ public class UsersRatingResponseModel {
     }
 
     public DemographicRatings getDemographicFemales() {
+        if(demographicFemales == null)
+            return new DemographicRatings();
+
         return demographicFemales;
     }
 
@@ -118,6 +127,9 @@ public class UsersRatingResponseModel {
     }
 
     public Ratings getTop1000Voters() {
+        if(top1000Voters == null)
+            return new Ratings();
+
         return top1000Voters;
     }
 
@@ -126,6 +138,9 @@ public class UsersRatingResponseModel {
     }
 
     public Ratings getUsUsers() {
+        if(usUsers == null)
+            return new Ratings();
+
         return usUsers;
     }
 
@@ -134,6 +149,9 @@ public class UsersRatingResponseModel {
     }
 
     public Ratings getNonUSUsers() {
+        if(nonUSUsers == null)
+            return new Ratings();
+
         return nonUSUsers;
     }
 

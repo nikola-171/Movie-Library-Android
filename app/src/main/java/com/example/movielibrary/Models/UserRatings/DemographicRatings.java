@@ -9,6 +9,9 @@ public class DemographicRatings {
     private Ratings agesOver45;
 
     public Ratings getAllAges() {
+        if(allAges == null)
+            return new Ratings();
+
         return allAges;
     }
 
@@ -17,6 +20,9 @@ public class DemographicRatings {
     }
 
     public Ratings getAgesUnder18() {
+        if(allAges == null)
+            return new Ratings();
+
         return agesUnder18;
     }
 
@@ -25,6 +31,9 @@ public class DemographicRatings {
     }
 
     public Ratings getAges18To29() {
+        if(allAges == null)
+            return new Ratings();
+
         return ages18To29;
     }
 
@@ -33,6 +42,9 @@ public class DemographicRatings {
     }
 
     public Ratings getAges30To44() {
+        if(allAges == null)
+            return new Ratings();
+
         return ages30To44;
     }
 
@@ -41,6 +53,9 @@ public class DemographicRatings {
     }
 
     public Ratings getAgesOver45() {
+        if(allAges == null)
+            return new Ratings();
+
         return agesOver45;
     }
 
