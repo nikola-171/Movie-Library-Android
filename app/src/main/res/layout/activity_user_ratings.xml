@@ -8,7 +8,6 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:visibility="gone"
         android:id="@+id/constrainLayout_loadingWrapper"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
