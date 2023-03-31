@@ -2,6 +2,9 @@ package com.example.movielibrary.MovieActivities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +12,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.movielibrary.Adapters.UserRatingRecycleAdapter;
 import com.example.movielibrary.Listeners.OnMovieResponseListener;
 import com.example.movielibrary.Models.UserRatings.UsersRatingResponseModel;
 import com.example.movielibrary.R;
+import com.example.movielibrary.Shared.Helper;
 import com.example.movielibrary.Shared.MovieActivitiesDefaults;
 import com.example.movielibrary.Utils.RequestManager;
 
@@ -20,6 +25,9 @@ import java.util.Objects;
 public class UserRatingsActivity extends AppCompatActivity {
 
     private String itemId, parent;
+
+    UserRatingRecycleAdapter adapter;
+
     ConstraintLayout constrainLayout_loadingWrapper;
 
     TextView textView_userRatingsMovieTitle,
@@ -93,11 +101,9 @@ public class UserRatingsActivity extends AppCompatActivity {
             textView_votersUs_rating,
 
     textView_votersNonUs_votes,
-            textView_votersNonUs_rating,
+            textView_votersNonUs_rating;
 
-    textView_votersOver1000_percent,
-            textView_votersUs_percent,
-            textView_votersNonUs_percent;
+    RecyclerView recycleView_userRatings;
 
 
     @Override
@@ -112,6 +118,8 @@ public class UserRatingsActivity extends AppCompatActivity {
             itemId = extras.getString(MovieActivitiesDefaults.ID);
             parent = extras.getString(MovieActivitiesDefaults.PARENT);
         }
+
+        recycleView_userRatings = findViewById(R.id.recycleView_userRatings);
 
         constrainLayout_loadingWrapper = findViewById(R.id.constrainLayout_loadingWrapper);
 
@@ -281,6 +289,11 @@ public class UserRatingsActivity extends AppCompatActivity {
         textView_votersNonUs_rating.setText(response.getNonUSUsers().getRating());
 
         constrainLayout_loadingWrapper.setVisibility(View.GONE);
+
+        adapter =  new UserRatingRecycleAdapter(UserRatingsActivity.this, response.getRatings());
+        recycleView_userRatings.setHasFixedSize(true);
+        recycleView_userRatings.setLayoutManager(new LinearLayoutManager(UserRatingsActivity.this, LinearLayoutManager.HORIZONTAL, false));
+        recycleView_userRatings.setAdapter(adapter);
     }
 
     @Override
