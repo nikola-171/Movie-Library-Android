@@ -22,7 +22,7 @@
 
             <TextView
                 android:textSize="20sp"
-                android:textColor="@color/black"
+                android:textColor="@color/textColor"
                 android:padding="8dp"
                 android:textAlignment="viewStart"
                 android:id="@+id/textView_username"
@@ -34,7 +34,7 @@
 
             <TextView
                 android:textSize="20sp"
-                android:textColor="@color/black"
+                android:textColor="@color/textColor"
                 android:id="@+id/textView_userRating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
 
         <TextView
             android:padding="8dp"
-            android:textColor="@color/black"
+            android:textColor="@color/textColor"
             android:id="@+id/textView_reviewDate"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
@@ -67,7 +67,7 @@
         <TextView
             android:padding="8dp"
             android:textSize="18sp"
-            android:textColor="@color/black"
+            android:textColor="@color/textColor"
             android:id="@+id/textView_userReviewTitle"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
@@ -75,14 +75,14 @@
 
         <TextView
             android:padding="8dp"
-            android:textColor="@color/black"
+            android:textColor="@color/textColor"
             android:id="@+id/textView_userReviewContent"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
-            android:textColor="@color/black"
+            android:textColor="@color/textColor"
             android:id="@+id/textView_userReviewUseful"
             android:layout_marginTop="8dp"
             android:textAlignment="viewStart"
