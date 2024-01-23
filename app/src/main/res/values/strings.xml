@@ -107,7 +107,7 @@
     <string name="detailsActivity_tvSeriesTitle">Tv Series Info</string>
     <string name="activityTop250Tvs_title">Top 250 TVs</string>
     <string name="searchMenu_title">Search</string>
-    <string name="savedMoviesActivity_filterMovies">Filter movies…</string>
+    <string name="savedMoviesActivity_filterMovies">Filter…</string>
     <string name="reviewsActivity_spoilerAlert">SPOILER ALERT!</string>
     <string name="mainActivity_searchMovies">Search Movies…</string>
     <string name="mainActivity_searchSeries">Search Series…</string>

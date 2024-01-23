@@ -175,22 +175,4 @@ public class RequestManager extends BaseRequestManager {
 
         setCallbackFunction(call, listener);
     }
-
-    private <T> void setCallbackFunction(Call<T> call, OnMovieResponseListener<T> listener){
-        call.enqueue(new Callback<T>() {
-            @Override
-            public void onResponse(@NonNull Call<T> call, @NonNull Response<T> response) {
-                if(!response.isSuccessful()){
-                    Toast.makeText(context, R.string.requestManager_requestFailed, Toast.LENGTH_LONG).show();
-                    return;
-                }
-                listener.onResponse(response.body());
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
-                listener.onError(t.getMessage());
-            }
-        });
-    }
 }

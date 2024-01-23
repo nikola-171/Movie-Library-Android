@@ -49,36 +49,10 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="8dp"
-            android:paddingBottom="15dp">
-
-            <LinearLayout
-                style="@style/LinearLayoutHeader">
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/LottieAnimationView_AnimationMoney"
-                    android:layout_width="match_parent"
-                    android:layout_height="100sp"
-                    android:layout_gravity="center"
-                    android:layout_weight="2"
-                    app:lottie_autoPlay="true"
-                    app:lottie_rawRes="@raw/save_anim" />
-
-                <TextView
-                    style="@style/TopListTitleText"
-                    android:text="@string/savedMovies_title" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_savedMovies"

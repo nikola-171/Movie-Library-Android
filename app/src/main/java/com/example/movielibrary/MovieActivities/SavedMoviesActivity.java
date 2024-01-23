@@ -45,6 +45,7 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_saved_movies);
         initViewElements();
+        getSupportActionBar().setTitle(R.string.savedMovies_title);
     }
 
     private void initViewElements() {
