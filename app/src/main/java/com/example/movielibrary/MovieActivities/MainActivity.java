@@ -236,56 +236,59 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
             return true;
         }
 
-        switch (item.getItemId()) {
-            case R.id.searchMovies:
-                this.searchType = SearchType.SEARCH_MOVIES;
-                this.searchView.setQueryHint(getString(R.string.mainActivity_searchMovies));
-                return true;
 
-            case R.id.searchSeries:
-                this.searchType = SearchType.SEARCH_SERIES;
-                this.searchView.setQueryHint(getString(R.string.mainActivity_searchSeries));
+        int id = item.getItemId();
 
-                return true;
+        if (id == R.id.searchMovies) {
 
-            case R.id.searchNames:
-                this.searchType = SearchType.SEARCH_NAMES;
-                this.searchView.setQueryHint(getString(R.string.mainActivity_searchNames));
+            this.searchType = SearchType.SEARCH_MOVIES;
+            this.searchView.setQueryHint(getString(R.string.mainActivity_searchMovies));
+            return true;
 
-                return true;
+        } else if (id == R.id.searchSeries) {
 
-            case R.id.searchKeyword:
-                this.searchType = SearchType.SEARCH_KEYWORD;
-                this.searchView.setQueryHint(getString(R.string.mainActivity_searchKeywords));
+            this.searchType = SearchType.SEARCH_SERIES;
+            this.searchView.setQueryHint(getString(R.string.mainActivity_searchSeries));
+            return true;
 
-                return true;
+        } else if (id == R.id.searchNames) {
 
-            case R.id.searchCompany:
-                this.searchType = SearchType.SEARCH_COMPANY;
-                this.searchView.setQueryHint(getString(R.string.mainActivity_searchCompanies));
+            this.searchType = SearchType.SEARCH_NAMES;
+            this.searchView.setQueryHint(getString(R.string.mainActivity_searchNames));
+            return true;
 
-                return true;
+        } else if (id == R.id.searchKeyword) {
 
-            case R.id.searchAll:
-                this.searchView.setQueryHint(getString(R.string.mainActivity_searchAll));
+            this.searchType = SearchType.SEARCH_KEYWORD;
+            this.searchView.setQueryHint(getString(R.string.mainActivity_searchKeywords));
+            return true;
 
-                this.searchType = SearchType.SEARCH_ALL;
-                return true;
+        } else if (id == R.id.searchCompany) {
 
-            case R.id.searchEpisodes:
-                this.searchView.setQueryHint(getString(R.string.mainActivity_searchEpisodes));
+            this.searchType = SearchType.SEARCH_COMPANY;
+            this.searchView.setQueryHint(getString(R.string.mainActivity_searchCompanies));
+            return true;
 
-                this.searchType = SearchType.SEARCH_EPISODES;
-                return true;
+        } else if (id == R.id.searchAll) {
 
-            default:
-                this.searchType = SearchType.SEARCH_DEFAULT;
-                this.searchView.setQueryHint(getString(R.string.mainActivity_searchDefault));
+            this.searchView.setQueryHint(getString(R.string.mainActivity_searchAll));
+            this.searchType = SearchType.SEARCH_ALL;
+            return true;
 
-                return super.onOptionsItemSelected(item);
+        } else if (id == R.id.searchEpisodes) {
 
+            this.searchView.setQueryHint(getString(R.string.mainActivity_searchEpisodes));
+            this.searchType = SearchType.SEARCH_EPISODES;
+            return true;
 
+        } else {
+
+            this.searchType = SearchType.SEARCH_DEFAULT;
+            this.searchView.setQueryHint(getString(R.string.mainActivity_searchDefault));
+            return super.onOptionsItemSelected(item);
         }
+
+
     }
 
     @Override
@@ -349,7 +352,7 @@ public class MainActivity extends AppCompatActivity implements OnMovieClickListe
     @Override
     public void onMovieClicked(String id) {
         startActivity(new Intent(MainActivity.this, DetailsActivity.class)
-        .putExtra(MovieActivitiesDefaults.DATA, id).putExtra(MovieActivitiesDefaults.PARENT, MainActivity.class.toString()));
+                .putExtra(MovieActivitiesDefaults.DATA, id).putExtra(MovieActivitiesDefaults.PARENT, MainActivity.class.toString()));
     }
 
     private void showLoadingAnimation(){

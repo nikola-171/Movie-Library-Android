@@ -65,19 +65,22 @@ public class SavedMoviesActivity extends AppCompatActivity implements OnMovieCli
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.filter_titleAsc:
-                this.list.sort(MovieSearchResult.comparatorTitleAsc);
-                adapter.notifyDataSetChanged();
-                return true;
-            case R.id.filter_titleDesc:
-                this.list.sort(MovieSearchResult.comparatorTitleDesc);
-                adapter.notifyDataSetChanged();
-                return true;
+        int id = item.getItemId();
 
-            default:
-                return super.onOptionsItemSelected(item);
+        if (id == R.id.filter_titleAsc) {
+            this.list.sort(MovieSearchResult.comparatorTitleAsc);
+            adapter.notifyDataSetChanged();
+            return true;
+
+        } else if (id == R.id.filter_titleDesc) {
+            this.list.sort(MovieSearchResult.comparatorTitleDesc);
+            adapter.notifyDataSetChanged();
+            return true;
+
+        } else {
+            return super.onOptionsItemSelected(item);
         }
+
     }
 
 
